@@ -1,0 +1,4 @@
+.gitinode_modules
+node_modules
+yarn-error-log
+.next

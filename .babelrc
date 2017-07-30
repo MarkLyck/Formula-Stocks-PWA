@@ -1,0 +1,27 @@
+{
+  "presets": [
+      "es2015",
+      "next/babel",
+      "stage-0"
+  ],
+  "plugins": [
+    ["emotion/babel", { "inline": true }],
+    ["inline-react-svg"],
+    ["module-alias",
+      [
+        { "src": "./common", "expose": "common" },
+        { "src": "./components", "expose": "components" },
+        { "src": "./pages", "expose": "pages" },
+        { "src": "./static", "expose": "static" }
+      ]
+    ],
+    ["module-resolver", {
+        "root": ["."],
+        "alias": {
+          "styles": "./styles"
+        },
+        "cwd": "babelrc"
+    }],
+    ["wrap-in-js", { "extensions": ["css$", "scss$"] }],
+  ]
+}
