@@ -12,7 +12,8 @@
         { "src": "./common", "expose": "common" },
         { "src": "./components", "expose": "components" },
         { "src": "./pages", "expose": "pages" },
-        { "src": "./static", "expose": "static" }
+        { "src": "./static", "expose": "static" },
+        { "src": "./lib", "expose": "lib" },
       ]
     ],
     ["module-resolver", {

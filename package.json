@@ -28,6 +28,8 @@
     "react": "^16.0.0-beta.1",
     "react-apollo": "^1.4.8",
     "react-dom": "^16.0.0-beta.1",
+    "react-dropzone": "^3.13.4",
+    "react-redux": "^5.0.5",
     "react-slick": "^0.14.11",
     "redux": "^3.7.2",
     "sass-loader": "^6.0.6",
