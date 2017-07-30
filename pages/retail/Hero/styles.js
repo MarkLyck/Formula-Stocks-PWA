@@ -2,7 +2,43 @@ import styled from 'emotion/react'
 import Slider from 'react-slick'
 
 export const HeroContainer = styled('div')`
+    position: relative;
     height: 650px;
+`
+
+export const Bold = styled('span')`
+    font-weight: bold;
+`
+
+export const Overlay = styled('div')`
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    background: -moz-linear-gradient(top,  rgba(0,4,56,0.2) 30%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,4,56,0.2) 30%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,4,56,0.2) 30%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d000438', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+`
+
+export const Content = styled('div')`
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: 100%;
+    max-width: calc(1160px + 64px);
+    margin: 0 32px;
+    h2 {
+        color: #fff;
+    }
+    h3 {
+        color: #fff;
+    }
+    .bold {
+        font-weight: bold;
+    }
 `
 
 export const SliderImage = styled('div')`
@@ -11,7 +47,7 @@ export const SliderImage = styled('div')`
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-image: url(${props => props.image})
+    background-image: url(${props => props['data-image']})
     width: 100%;
 `
 
