@@ -4,7 +4,6 @@ import { flush } from 'emotion'
 
 const dev = process.env.NODE_ENV !== 'production'
 
-// eslint-disable react/no-danger
 class MyDocument extends Document {
     static getInitialProps({ renderPage }) {
         if (dev) { flush() }

@@ -20,12 +20,12 @@ if (typeof window !== 'undefined') {
 
 class Retail extends React.PureComponent {
     render() {
-        const { data: { Plan } } = this.props
+        const { Plan } = this.props
         return (
             <div>
                 <NavBar />
-                <Hero portfolioReturn={Plan.portfolioReturn} statistics={Plan.statistics} />
-                <Introduction winRate={Plan.statistics.winRate} />
+                <Hero portfolioReturn={Plan.portfolioReturn || 450} statistics={Plan.statistics} />
+                <Introduction winRate={Plan.statistics && Plan.statistics.winRate} />
                 <WhatIsIt />
                 <Performance />
                 <PerformanceMatters />
@@ -49,19 +49,17 @@ const entryPlan = gql`
 `
 
 Retail.defaultProps = {
-    data: {
-        Plan: {},
-    },
+    Plan: {},
 }
 
 Retail.propTypes = {
-    data: PropTypes.object,
+    Plan: PropTypes.object,
 }
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (entryPlan)
 export default graphql(entryPlan, {
     props: ({ data }) => ({
-        data,
+        Plan: data.Plan,
     }),
 })(Retail)

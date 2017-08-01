@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
-import { planIds } from 'common/constants'
 import withData from 'lib/withData'
 import FileUploader from './FileUploader'
-
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -13,19 +11,19 @@ if (typeof window !== 'undefined') {
     hydrate(window.__NEXT_DATA__.ids)
 }
 
-const Dashboard = (props) => {
-    console.log(props)
+const Dashboard = ({ Plans }) => {
     return (
         <div>
             <p>Dashboard</p>
-            <FileUploader />
+            <FileUploader Plans={Plans} />
         </div>
     )
 }
 
-const entryPlan = gql`
+const Plans = gql`
   query {
-    Plan(id: "${planIds.ENTRY}") {
+    allPlans {
+      id
       name
       backtestedData
       price
@@ -37,19 +35,17 @@ const entryPlan = gql`
 `
 
 Dashboard.defaultProps = {
-    data: {
-        Plan: {},
-    },
+    Plans: [],
 }
 
 Dashboard.propTypes = {
-    data: PropTypes.object,
+    Plans: PropTypes.array,
 }
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (entryPlan)
-export default withData(graphql(entryPlan, {
+export default withData(graphql(Plans, {
     props: ({ data }) => ({
-        data,
+        Plans: data.allPlans,
     }),
 })(Dashboard))
