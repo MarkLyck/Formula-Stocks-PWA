@@ -29,7 +29,7 @@ class MyDocument extends Document {
                         name="viewport"
                         content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"
                     />
-                    <meta name="theme-color" content="#673ab7" />
+                    <meta name="theme-color" content="#27A5F9" />
                     <link rel="manifest" href="static/manifest.json" />
                     <title>Formula Stocks</title>
                     { //eslint-disable-next-line

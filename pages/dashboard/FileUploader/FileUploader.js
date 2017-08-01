@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone'
+// import { ThemeProvider } from 'emotion/react/theming'
+// import theme from 'common/theme'
 import JSONIcon from './json_icon.svg'
+
 
 class FileUploader extends Component {
     onDrop = (files) => {
+        console.log(' on drop ', files)
         const { actions } = this.props
 
         const filenames = [
@@ -44,13 +48,13 @@ class FileUploader extends Component {
 
     render() {
         return (
-            <div className="admin-api">
+            <div>
                 <div className="wrapper white">
                     <h2>Upload JSON files</h2>
-                    <Dropzone className="dropzone" onDrop={this.onDrop}>
+                    <Dropzone onDrop={this.onDrop} accept="application/json">
                         <div>
                             <h3>Drag and drop JSON files here</h3>
-                            <img src={JSONIcon} alt="json" />
+                            <JSONIcon />
                         </div>
                     </Dropzone>
                 </div>
