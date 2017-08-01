@@ -26,35 +26,20 @@ const acceptedFilenames = [
 
 class FileUploader extends Component {
     onDrop = (files) => {
-        console.log(' on drop ', files)
         const { actions } = this.props
 
         const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
-        if (badFiles.length) {
-            return null
-        }
-
-        actions.updatePlan(files)
-
-        // actions.showNotification(`uploading ${files.length} file(s)`)
-        // const entryFiles = files.filter(file => (file.name.indexOf('basic') > -1 || file.name.indexOf('entry') > -1))
-        // const premiumFiles = files.filter(file => file.name.indexOf('premium') > -1)
-        // const businessFiles = files.filter(file => file.name.indexOf('business') > -1)
-        // const fundFiles = files.filter(file => file.name.indexOf('fund') > -1)
-        //
-        // if (entryFiles.length > 0) { actions.updatePlan(entryFiles, 'entry') }
-        // if (premiumFiles.length > 0) { actions.updatePlan(premiumFiles, 'premium') }
-        // if (businessFiles.length > 0) { actions.updatePlan(businessFiles, 'business') }
-        // if (fundFiles.length > 0) { actions.updatePlan(fundFiles, 'fund') }
-
+        if (!badFiles.length) { actions.updatePlan(files) }
         return null
     }
 
     render() {
         console.log(this.props)
         const { Plans } = this.props
-
         if (!Plans.length) { return null }
+
+        this.props.updatePlan({ variables: { id: Plans[0].id, name: 'test3' } })
+            .then(res => console.log('plan updated', res))
         // updatePlan({ variables: { id: Plans[0].id } })
 
         return (
@@ -76,13 +61,13 @@ FileUploader.defaultProps = {
 }
 FileUploader.propTypes = {
     actions: PropTypes.object.isRequired,
-    // updatePlan: PropTypes.func.isRequired,
+    updatePlan: PropTypes.func.isRequired,
     Plans: PropTypes.array,
 }
 
 const updatePlan = gql`
-  mutation updatePlan($id: ID!, $plan: Object!) {
-    updatePlan(id: $id, plan: $plan) {
+  mutation updatePlan($id: ID!, $name: String!) {
+    updatePlan(id: $id, name: $name) {
       id
       name
       price
@@ -90,19 +75,6 @@ const updatePlan = gql`
   }
 `
 
-export default graphql(updatePlan, {
-    props: ({ mutate }) => ({
-        update: ({ id, plan }) => mutate({
-            variables: { id, plan },
-
-            optimisticResponse: {
-                __typename: 'Mutation',
-                updatePlan: {
-                    __typename: 'Plan',
-                },
-            },
-        }),
-    }),
-})(FileUploader)
+export default graphql(updatePlan, { name: 'updatePlan' })(FileUploader)
 
 // export default FileUploader
