@@ -11,14 +11,12 @@ if (typeof window !== 'undefined') {
     hydrate(window.__NEXT_DATA__.ids)
 }
 
-const Dashboard = ({ Plans }) => {
-    return (
-        <div>
-            <p>Dashboard</p>
-            <FileUploader Plans={Plans} />
-        </div>
-    )
-}
+const Dashboard = ({ Plans }) => (
+    <div>
+        <p>Dashboard</p>
+        <FileUploader Plans={Plans} />
+    </div>
+)
 
 const Plans = gql`
   query {

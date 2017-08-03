@@ -26,10 +26,10 @@ const acceptedFilenames = [
 
 class FileUploader extends Component {
     onDrop = (files) => {
-        const { actions } = this.props
+        const { actions, mutatePlan } = this.props
 
         const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
-        if (!badFiles.length) { actions.updatePlan(files) }
+        if (!badFiles.length) { actions.updatePlan(files, mutatePlan) }
         return null
     }
 
@@ -38,8 +38,8 @@ class FileUploader extends Component {
         const { Plans } = this.props
         if (!Plans.length) { return null }
 
-        this.props.updatePlan({ variables: { id: Plans[0].id, name: 'test3' } })
-            .then(res => console.log('plan updated', res))
+        // this.props.updatePlan({ variables: { id: Plans[0].id, name: 'test3' } })
+        //     .then(res => console.log('plan updated', res))
         // updatePlan({ variables: { id: Plans[0].id } })
 
         return (
@@ -61,7 +61,7 @@ FileUploader.defaultProps = {
 }
 FileUploader.propTypes = {
     actions: PropTypes.object.isRequired,
-    updatePlan: PropTypes.func.isRequired,
+    mutatePlan: PropTypes.func.isRequired,
     Plans: PropTypes.array,
 }
 
@@ -75,6 +75,6 @@ const updatePlan = gql`
   }
 `
 
-export default graphql(updatePlan, { name: 'updatePlan' })(FileUploader)
+export default graphql(updatePlan, { name: 'mutatePlan' })(FileUploader)
 
 // export default FileUploader
