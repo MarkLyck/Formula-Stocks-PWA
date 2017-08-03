@@ -17,6 +17,7 @@
     "emotion": "^6.0.3",
     "graphql": "^0.10.5",
     "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.4",
     "material-ui": "next",
     "next": "next",
     "node-sass": "^4.5.3",

@@ -22,12 +22,15 @@ const Plans = gql`
   query {
     allPlans {
       id
-      name
       backtestedData
-      price
-      portfolioReturn
+      latestSells
+      name
+      portfolio
       portfolioYields
+      price
       statistics
+      suggestions
+      updatedAt
     },
   }
 `

@@ -1,8 +1,8 @@
 export const planIds = {
     ENTRY: 'cj5p4ssvu2b3d0187t68k526j',
-    PREMIUM: 'premium ID',
-    BUSINESS: 'business ID',
-    FUND: 'fund ID',
+    PREMIUM: 'cj5wy9kgl29nq0108o0snly89',
+    BUSINESS: 'cj5wyqss42f4v0108a90zs0k2',
+    FUND: 'cj5wyr04d2f950108jvqy8xf0',
 }
 
 export default {}

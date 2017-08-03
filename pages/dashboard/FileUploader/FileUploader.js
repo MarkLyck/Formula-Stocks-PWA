@@ -26,17 +26,17 @@ const acceptedFilenames = [
 
 class FileUploader extends Component {
     onDrop = (files) => {
-        const { actions, mutatePlan } = this.props
+        const { actions, mutatePlan, Plans } = this.props
 
         const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
-        if (!badFiles.length) { actions.updatePlan(files, mutatePlan) }
+        if (!badFiles.length) { actions.updatePlan(files, mutatePlan, Plans) }
         return null
     }
 
     render() {
-        console.log(this.props)
         const { Plans } = this.props
         if (!Plans.length) { return null }
+        console.log(this.props)
 
         // this.props.updatePlan({ variables: { id: Plans[0].id, name: 'test3' } })
         //     .then(res => console.log('plan updated', res))
@@ -66,11 +66,35 @@ FileUploader.propTypes = {
 }
 
 const updatePlan = gql`
-  mutation updatePlan($id: ID!, $name: String!) {
-    updatePlan(id: $id, name: $name) {
+  mutation updatePlan(
+      $id: ID!,
+      $backtestedData: Json,
+      $latestSells: Json,
+      $portfolio: Json,
+      $portfolioYields: Json,
+      $statistics: Json,,
+      $launchStatistics: Json,,
+      $suggestions: Json,
+  ) {
+    updatePlan(
+        id: $id,
+        backtestedData: $backtestedData,
+        latestSells: $latestSells,
+        portfolio: $portfolio,
+        portfolioYields: $portfolioYields,
+        statistics: $statistics,
+        launchStatistics: $launchStatistics,
+        suggestions: $suggestions,
+    ) {
       id
       name
-      price
+      backtestedData
+      latestSells
+      portfolio
+      portfolioYields
+      statistics
+      launchStatistics
+      suggestions
     }
   }
 `
