@@ -33,10 +33,16 @@ class MyDocument extends Document {
                     <title>Formula Stocks</title>
                     { //eslint-disable-next-line
                     } <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+
+                    <script src="https://www.amcharts.com/lib/3/amcharts.js" />
+                    <script src="https://www.amcharts.com/lib/3/serial.js" />
+                    <script src="https://www.amcharts.com/lib/3/pie.js" />
+                    <script src="https://www.amcharts.com/lib/3/themes/light.js" />
                 </Head>
                 <body>
                     <Main />
                     <NextScript />
+
                 </body>
             </html>
         )

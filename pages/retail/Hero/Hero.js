@@ -19,24 +19,24 @@ const title = (
     <Typography type="title">A <Bold>better</Bold> way to <Bold>invest</Bold></Typography>
 )
 
-const renderSubtitles = (portfolioReturn, statistics) => (
+const renderSubtitles = (portfolioReturn, winRatio) => (
     <div id="subtitles">
         <Typography type="subheading">Achieve your goals</Typography>
         <Typography type="subheading">+{Math.floor(portfolioReturn)}% capital growth since 2009</Typography>
         <Typography type="subheading">Less risk</Typography>
         <Typography type="subheading">Easy to use</Typography>
         <Typography type="subheading">Lower costs</Typography>
-        <Typography type="subheading">+{statistics.winRate}% win ratio</Typography>
+        <Typography type="subheading">+{Math.floor(winRatio)}% win ratio</Typography>
     </div>
 )
 
-const Hero = ({ portfolioReturn, statistics }) => (
+const Hero = ({ portfolioReturn, winRatio }) => (
     <HeroContainer>
         <Content>
             <div>
                 {title}
                 <span id="subtitle" />
-                {renderSubtitles(portfolioReturn, statistics)}
+                {renderSubtitles(portfolioReturn, winRatio)}
             </div>
         </Content>
         <Overlay />
@@ -52,14 +52,13 @@ const Hero = ({ portfolioReturn, statistics }) => (
 )
 
 Hero.defaultProps = {
-    statistics: {
-        winRate: 89,
-    },
+    winRatio: 90,
+    portfolioReturn: 500,
 }
 
 Hero.propTypes = {
     portfolioReturn: PropTypes.number.isRequired,
-    statistics: PropTypes.object,
+    winRatio: PropTypes.number,
 }
 
 export default Hero

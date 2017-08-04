@@ -9,7 +9,7 @@ import Typography from 'material-ui/Typography'
 import theme from 'common/theme'
 import WinRateChart from './WinRateChart'
 
-const Introduction = ({ winRate }) => (
+const Introduction = ({ winRatio, portfolioReturn, planName }) => (
     <ThemeProvider theme={theme}>
         <Section>
             <SectionTitle>Invest intelligently</SectionTitle>
@@ -17,11 +17,11 @@ const Introduction = ({ winRate }) => (
                 <div>
                     <Typography>
                         Formula Stocks offers a better way to invest. It estimates which stocks will go up, before they go up.
-                        90% of the times we made such an estimate, it proved to be successful in the long run. You simply buy
+                        {Math.floor(winRatio)}% of the times we made such an estimate, it proved to be successful in the long run. You simply buy
                         these stocks in your own account.<br /><br />
 
                         Investing using these estimates, our Entry portfolio returned 59.39% in 2016. Cumulative returns since
-                        2009 are 506%* vs. the S&P500's 176%. It is based on groundbreaking technology, which really makes a
+                        2009 are {portfolioReturn}%* vs. the S&P500's 176%. It is based on groundbreaking technology, which really makes a
                         difference for our members. Typically, when you invest in stocks, your basic expectation is to receive
                         6-7% p.a. on average. Usually a fund product will provide you a risk adjusted, long-term return in
                         this neighborhood. Or, if it is a better performing fund, demand very high fees.<br /><br />
@@ -32,18 +32,22 @@ const Introduction = ({ winRate }) => (
                     </Typography>
                     <Disclaimer theme={theme}><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
                 </div>
-                <WinRateChart fsWinRate={winRate} marketWinRate={59} planName={'test'} />
+                <WinRateChart fsWinRate={winRatio} marketWinRate={59} planName={planName} />
             </Beside>
         </Section>
     </ThemeProvider>
 )
 
 Introduction.defaultProps = {
-    winRate: 89,
+    winRatio: 90,
+    portfolioReturn: 500,
+    planName: 'entry',
 }
 
 Introduction.propTypes = {
-    winRate: PropTypes.number,
+    winRatio: PropTypes.number,
+    portfolioReturn: PropTypes.number,
+    planName: PropTypes.string,
 }
 
 export default Introduction

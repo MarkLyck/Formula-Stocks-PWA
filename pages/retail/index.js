@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
 import { planIds } from 'common/constants'
@@ -21,13 +22,16 @@ if (typeof window !== 'undefined') {
 class Retail extends React.PureComponent {
     render() {
         const { Plan } = this.props
+        console.log(Plan)
+        const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
+        const winRatio = _.get(Plan, 'statistics.winRatio')
         return (
             <div>
                 <NavBar />
-                <Hero portfolioReturn={Plan.portfolioReturn || 450} statistics={Plan.statistics} />
-                <Introduction winRate={Plan.statistics && Plan.statistics.winRate} />
+                <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
+                <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={Plan.name} />
                 <WhatIsIt />
-                <Performance />
+                <Performance portfolioYields={Plan.portfolioYields} DJIA={[]} planName={Plan.name} />
                 <PerformanceMatters />
                 <FirstMonthOnus />
             </div>
@@ -41,8 +45,8 @@ const entryPlan = gql`
       name
       backtestedData
       price
-      portfolioReturn
       portfolioYields
+      launchStatistics
       statistics
     },
   }

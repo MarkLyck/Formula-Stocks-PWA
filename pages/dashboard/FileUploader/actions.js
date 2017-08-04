@@ -44,6 +44,8 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
         launchStatistics = _.merge(launchStatistics, file.data.statistics)
     }
     else if (file.name.indexOf('annual') > -1) {
+        statistics = _.clone(statistics)
+        statistics.winRatio = (100 - ((statistics.negatives / (statistics.positives + statistics.negatives)) * 100))
         statistics = _.merge(statistics, file.data.statistics)
         backtestedData = file.data.logs
     }
