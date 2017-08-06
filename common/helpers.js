@@ -7,7 +7,6 @@ export const formatPrice = (value, plusMinus = false, percent = false) => {
     let price = value
     if (percent) { price = `${price}%` }
     if (plusMinus && Number(value.replace(',', '')) > 0) { price = `+${price}` }
-    else if (plusMinus && Number(value.replace(',', '')) < 0) { price = `-${price}` }
     return price
 }
 

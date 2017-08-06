@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
 import { planIds } from 'common/constants'
+import withMaterial from 'lib/withMaterial'
 
 import NavBar from 'components/NavBar'
 import Hero from './Hero'
@@ -12,6 +13,7 @@ import WhatIsIt from './WhatIsIt'
 import Performance from './Performance'
 import PerformanceMatters from './PerformanceMatters'
 import FirstMonthOnus from './FirstMonthOnUs'
+import WhatToExpect from './WhatToExpect'
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -34,6 +36,7 @@ class Retail extends React.PureComponent {
                 <Performance portfolioYields={Plan.portfolioYields} DJIA={[]} planName={Plan.name} />
                 <PerformanceMatters />
                 <FirstMonthOnus />
+                <WhatToExpect latestSells={Plan.latestSells} />
             </div>
         )
     }
@@ -47,6 +50,7 @@ const entryPlan = gql`
       price
       portfolioYields
       launchStatistics
+      latestSells
       statistics
     },
   }
@@ -66,4 +70,4 @@ export default graphql(entryPlan, {
     props: ({ data }) => ({
         Plan: data.Plan,
     }),
-})(Retail)
+})(withMaterial(Retail))

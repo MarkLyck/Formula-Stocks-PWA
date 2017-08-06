@@ -40,8 +40,6 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
     const minimum = Math.floor(_.min([fsMin, marMin]) / 10) * 10
     const maximum = Math.ceil(_.maxBy(chartData, point => point.fs).fs / 20) * 20
 
-    console.log(chartData)
-
     const graphs = [
         {
             id: 'launch',
