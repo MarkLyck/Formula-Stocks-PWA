@@ -1,4 +1,5 @@
+import withData from 'lib/withData'
+import withMaterial from 'lib/withMaterial'
 import Retail from './retail'
-import withData from '../lib/withData'
 
-export default withData(Retail)
+export default withData(withMaterial(Retail))

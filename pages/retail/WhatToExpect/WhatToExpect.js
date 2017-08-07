@@ -68,8 +68,12 @@ const WhatToExpect = ({ latestSells }) => (
     </ThemeProvider>
 )
 
+WhatToExpect.defaultProps = {
+    latestSells: [],
+}
+
 WhatToExpect.propTypes = {
-    latestSells: PropTypes.array,
+    latestSells: PropTypes.array.isRequired,
 }
 
 export default WhatToExpect

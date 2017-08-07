@@ -5,7 +5,7 @@ import theme from 'common/theme'
 
 const Footer = () => (
     <ThemeProvider theme={theme}>
-        <footer theme={theme}>
+        <footer>
             <Disclaimer>
                 Formula Stocks is an information provider, not an investment advisory service or a registered investment advisor,
                 does not offer individual investment advice and does not manage client funds. Unless otherwise specified, all return

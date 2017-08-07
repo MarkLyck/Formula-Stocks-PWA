@@ -81,13 +81,18 @@ const LineGraph = ({
             equalSpacing: false,
         }
     }
-    if (data && data.length && graphs && graphs.length) {
+    if (data.length && graphs.length) {
         if (typeof window !== 'undefined') {
             window.AmCharts.makeChart(id, { ...config })
         }
         // return <AmCharts.React {...config} />
     }
     return <div id={id} style={{ height: '400px', width: '800px' }} />
+}
+
+LineGraph.defaultProps = {
+    data: [],
+    graphs: [],
 }
 
 LineGraph.propTypes = {

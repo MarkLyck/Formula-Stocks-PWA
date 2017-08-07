@@ -36,7 +36,7 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
                 }
                 latestSells = [newSell].concat(latestSells)
                 console.log('new sells', latestSells)
-                if (latestSells.length > 10) { latestSells.pop() }
+                if (latestSells && latestSells.length > 10) { latestSells.pop() }
             }
         })
         const weeklySuggestions = suggestions.filter(sugg => !sugg.model)

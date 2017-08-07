@@ -32,7 +32,6 @@ const LaunchPerformance = ({ planData, marketData, planName }) => {
         )
     }
     const chartData = createChartData(planData, marketData)
-    console.log(chartData)
 
     const fsMin = _.minBy(chartData, point => point.fs).fs
     const marMin = chartData[0].market ? _.minBy(chartData, point => point.market).market : 0

@@ -1,5 +1,5 @@
 import React from 'react'
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Card from 'material-ui/Card'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Beside from 'components/Section/Beside'

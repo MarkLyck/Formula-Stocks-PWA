@@ -89,3 +89,5 @@ export default graphql(entryPlan, {
         Plan: data.Plan,
     }),
 })(withMaterial(Retail))
+
+// export default Retail
