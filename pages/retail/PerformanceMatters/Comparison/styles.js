@@ -27,4 +27,10 @@ export const Bar = styled('div')`
     }
 `
 
+export const Dollars = styled('h3')`
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: ${props => (props.market ? props.theme.colors.black : props.theme.colors.white)};
+`
+
 export default null

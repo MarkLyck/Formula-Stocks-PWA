@@ -12,6 +12,7 @@ export const titleCSS = theme => ({
 })
 
 export const Title = ({ children, theme }) => <Typography style={titleCSS(theme)}>{children}</Typography>
+
 Title.propTypes = {
     children: PropTypes.node.isRequired,
     theme: PropTypes.object.isRequired,

@@ -13,7 +13,7 @@ const WhatIsIt = () => (
         <Section data-offWhite theme={theme}>
             <SectionTitle>What is it?</SectionTitle>
             <Beside>
-                <Left>
+                <Left data-center>
                     <Screenshot src="static/images/Suggestions.jpg" alt="" />
                 </Left>
                 <Right>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import LineGraph from 'components/graphs/LineGraph'
 import { formatPrice } from 'common/helpers'
+import theme from 'common/theme'
+import { PerformanceContainer, Legends, Legend } from './styles'
 
 const createChartData = (portfolioYields, DJIA) => {
     const startValue = portfolioYields[0].balance
@@ -74,13 +76,11 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
     }
 
     return (
-        <div>
-            <div>
-                <div>Business</div>
-                <div>Fund</div>
-                <div>Premium</div>
-                <div>DJIA</div>
-            </div>
+        <PerformanceContainer>
+            <Legends>
+                <Legend color={theme.colors.primary}><p>{planName}</p></Legend>
+                <Legend color={theme.colors.black}><p>DJIA</p></Legend>
+            </Legends>
             <LineGraph
                 id="single-launch-performace-graph"
                 graphs={graphs}
@@ -91,7 +91,7 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
                 maximum={maximum}
                 minimum={minimum}
             />
-        </div>
+        </PerformanceContainer>
     )
 }
 
