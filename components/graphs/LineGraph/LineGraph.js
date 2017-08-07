@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import platform from 'platform'
 
 const LineGraph = ({
+    id,
     data,
     graphs,
     chartTheme,
@@ -82,14 +83,15 @@ const LineGraph = ({
     }
     if (data && data.length && graphs && graphs.length) {
         if (typeof window !== 'undefined') {
-            window.AmCharts.makeChart('single-launch-performance-container', { ...config })
+            window.AmCharts.makeChart(id, { ...config })
         }
         // return <AmCharts.React {...config} />
     }
-    return <div id="single-launch-performance-container" style={{ height: '400px', width: '800px' }} />
+    return <div id={id} style={{ height: '400px', width: '800px' }} />
 }
 
 LineGraph.propTypes = {
+    id: PropTypes.string.isRequired,
     data: PropTypes.array,
     graphs: PropTypes.array,
     chartTheme: PropTypes.string,

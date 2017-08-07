@@ -4,35 +4,35 @@ import _ from 'lodash'
 import LineGraph from 'components/graphs/LineGraph'
 import { formatPrice } from 'common/helpers'
 
-const createChartData = (portfolioYields, DJIA) => {
-    const startValue = portfolioYields[0].balance
-    const marketStartValue = Number(DJIA[0]) || 0
+const createChartData = (planData, marketData) => planData.map((point, i) => {
+    let balance = 25000
+    let marketBalance = 25000
 
-    return portfolioYields.map((point, i) => {
-        const balance = (((portfolioYields[i].balance - startValue) / startValue) * 100).toFixed(2)
-        const marketBalance = (((Number(DJIA[i]) - marketStartValue) / marketStartValue) * 100).toFixed(2)
+    if (planData[i] && i !== 0) { balance = planData[i].balance }
+    if (marketData[i]) { marketBalance = marketData[i] }
+    else if (i !== 0 && planData[i - 1] !== 25000) { marketBalance = planData[i - 1] }
 
-        const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
+    const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
 
-        return {
-            market: Number(marketBalance) || 0,
-            fs: Number(balance),
-            fsBalloon: formatPrice(balance, true, true),
-            marketBalloon: formatPrice(marketBalance, true, true),
-            date: `${point.date.year}-${month}-${point.date.day}`,
-        }
-    })
-}
+    return {
+        market: Number(marketBalance) || 0,
+        fs: Number(balance),
+        fsBalloon: formatPrice(balance, true, false),
+        marketBalloon: formatPrice(marketBalance, true, false),
+        date: `${point.date.year}-${month}-${point.date.day}`,
+    }
+})
 
-const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
-    if (!portfolioYields || !portfolioYields.length) {
+const LaunchPerformance = ({ planData, marketData, planName }) => {
+    if (!planData || !planData.length) {
         return (
             <div id="result-chart" className="loading">
                 <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
             </div>
         )
     }
-    const chartData = createChartData(portfolioYields, DJIA)
+    const chartData = createChartData(planData, marketData)
+    console.log(chartData)
 
     const fsMin = _.minBy(chartData, point => point.fs).fs
     const marMin = chartData[0].market ? _.minBy(chartData, point => point.market).market : 0
@@ -56,7 +56,7 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
             balloonText: `<div class="chart-balloon"><span class="plan-name">${planName}</span><span class="balloon-value">[[fsBalloon]]</span></div>`,
         },
     ]
-    if (DJIA.length) {
+    if (marketData.length) {
         graphs.unshift({
             id: 'market',
             lineColor: '#989898',
@@ -82,28 +82,29 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
                 <div>DJIA</div>
             </div>
             <LineGraph
-                id="single-launch-performace-graph"
+                id="single-long-term-performance-graph"
                 graphs={graphs}
                 data={chartData}
-                unit="%"
-                unitPosition="right"
+                unit="$"
+                unitPosition="left"
                 axisAlpha={0.5}
                 maximum={maximum}
                 minimum={minimum}
+                // logarithmic
             />
         </div>
     )
 }
 
 LaunchPerformance.defaultProps = {
-    portfolioYields: [],
-    DJIA: [],
+    planData: [],
+    marketData: [],
     planName: '',
 }
 
 LaunchPerformance.propTypes = {
-    portfolioYields: PropTypes.array,
-    DJIA: PropTypes.array,
+    planData: PropTypes.array,
+    marketData: PropTypes.array,
     planName: PropTypes.string,
 }
 

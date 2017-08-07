@@ -28,7 +28,14 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
         portfolioYields = file.data.logs
         file.data.actionable.forEach((sugg) => {
             if (sugg.action === 'SELL') {
-                latestSells = [sugg].concat(latestSells)
+                const newSell = {
+                    originalPrice: sugg.original_purchase,
+                    sellPrice: sugg.suggested_price,
+                    name: sugg.name,
+                    return: Number((((sugg.suggested_price - sugg.original_purchase) * 100) / sugg.original_purchase).toFixed(2)),
+                }
+                latestSells = [newSell].concat(latestSells)
+                console.log('new sells', latestSells)
                 if (latestSells.length > 10) { latestSells.pop() }
             }
         })

@@ -14,6 +14,15 @@ import Performance from './Performance'
 import PerformanceMatters from './PerformanceMatters'
 import FirstMonthOnus from './FirstMonthOnUs'
 import WhatToExpect from './WhatToExpect'
+import PilotProgram from './PilotProgram'
+import BacktestedPerformance from './BacktestedPerformance'
+import Statistics from './Statistics'
+import HowWeBeatTheMarket from './HowWeBeatTheMarket'
+import RiskManagement from './RiskManagement'
+import CorporateProfile from './CorporateProfile'
+import IntendedAudience from './IntendedAudience'
+import ScrolledToBottom from './ScrolledToBottom'
+import Footer from './Footer'
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -37,6 +46,15 @@ class Retail extends React.PureComponent {
                 <PerformanceMatters />
                 <FirstMonthOnus />
                 <WhatToExpect latestSells={Plan.latestSells} />
+                <PilotProgram />
+                <BacktestedPerformance backtestedData={Plan.backtestedData} SP500={[]} planName={Plan.name} />
+                <Statistics />
+                <HowWeBeatTheMarket />
+                <RiskManagement />
+                <CorporateProfile />
+                <IntendedAudience />
+                <ScrolledToBottom />
+                <Footer />
             </div>
         )
     }

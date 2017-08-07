@@ -51,13 +51,13 @@ const WhatToExpect = ({ latestSells }) => (
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {latestSells.map(sell => (
-                            <TableRow key={sell.name}>
+                        {latestSells.map((sell, i) => (
+                            <TableRow key={sell.name + i}>
                                 <TableCell>{sell.name}</TableCell>
-                                <TableCell numeric>{sell.original_purchase.toFixed(2)}</TableCell>
-                                <TableCell numeric>{sell.suggested_price.toFixed(2)}</TableCell>
+                                <TableCell numeric>{sell.originalPrice.toFixed(2)}</TableCell>
+                                <TableCell numeric>{sell.sellPrice.toFixed(2)}</TableCell>
                                 <TableCell numeric>
-                                    {(((sell.suggested_price - sell.original_purchase) * 100) / sell.original_purchase).toFixed(2)}
+                                    {(((sell.sellPrice - sell.originalPrice) * 100) / sell.originalPrice).toFixed(2)}%
                                 </TableCell>
                             </TableRow>
                         ))}
