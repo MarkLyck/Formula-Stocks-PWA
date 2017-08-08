@@ -30,7 +30,17 @@ export const Bar = styled('div')`
 export const Dollars = styled('h3')`
     font-size: 1.2rem;
     font-weight: bold;
-    color: ${props => (props.market ? props.theme.colors.black : props.theme.colors.white)};
+    color: ${props => props.theme.colors.white};
+`
+
+export const MarketDollars = styled('h3')`
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: ${props => props.theme.colors.black};
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translate(100%, -50%);
 `
 
 export default null

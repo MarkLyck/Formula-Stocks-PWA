@@ -11,7 +11,7 @@ import theme from 'common/theme'
 const HowWeBeatTheMarket = () => (
     <ThemeProvider theme={theme}>
         <Section data-offWhite theme={theme}>
-            <SectionTitle>What is it?</SectionTitle>
+            <SectionTitle>How we beat the market</SectionTitle>
             <p>
                 Formula Stocks uses a combination of many specific technologies developed over a 14- year period to do as Mark Twain
                 originally suggested:<br /><br />
@@ -22,7 +22,7 @@ const HowWeBeatTheMarket = () => (
                 We identify stocks that go up, before they go up, with a 89-92% probability of being correct. Some of the techniques
                 employed include in no specific order:
             </p>
-            <Paper>
+            <Paper style={{ width: '100%' }}>
                 <Table>
                     <TableBody>
                         <TableRow>

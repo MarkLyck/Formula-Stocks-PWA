@@ -6,7 +6,7 @@ import Beside from 'components/Section/Beside'
 import Disclaimer from 'components/Disclaimer'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
-import WinRateChart from './WinRateChart'
+import DualBarChart from 'components/graphs/DualBarChart'
 
 const Introduction = ({ winRatio, portfolioReturn, planName }) => (
     <ThemeProvider theme={theme}>
@@ -31,7 +31,16 @@ const Introduction = ({ winRatio, portfolioReturn, planName }) => (
                     </p>
                     <Disclaimer theme={theme}><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
                 </div>
-                <WinRateChart fsWinRate={winRatio} marketWinRate={59} planName={planName} />
+                <DualBarChart
+                    primaryStatistic={Math.floor(winRatio)}
+                    secondaryStatistic={59}
+                    primaryName={planName}
+                    secondaryName="Market"
+                    primaryHeight={Math.floor(winRatio)}
+                    secondaryHeight={59}
+                    description="Winners in %"
+                    unit="%"
+                />
             </Beside>
         </Section>
     </ThemeProvider>

@@ -36,6 +36,9 @@ class Retail extends React.PureComponent {
         console.log(Plan)
         const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
         const winRatio = _.get(Plan, 'statistics.winRatio')
+        const avgGain = _.get(Plan, 'info.avgGainPerPosition')
+        const avgLoss = _.get(Plan, 'info.avgLossPerPosition')
+
         return (
             <div>
                 <NavBar />
@@ -48,7 +51,7 @@ class Retail extends React.PureComponent {
                 <WhatToExpect latestSells={Plan.latestSells} />
                 <PilotProgram />
                 <BacktestedPerformance backtestedData={Plan.backtestedData} SP500={[]} planName={Plan.name} />
-                <Statistics />
+                <Statistics winRatio={winRatio} planName={Plan.name} avgGain={avgGain} avgLoss={avgLoss} />
                 <HowWeBeatTheMarket />
                 <RiskManagement />
                 <CorporateProfile />
@@ -65,6 +68,7 @@ const entryPlan = gql`
     Plan(id: "${planIds.ENTRY}") {
       name
       backtestedData
+      info
       price
       portfolioYields
       launchStatistics

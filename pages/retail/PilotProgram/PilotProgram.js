@@ -12,7 +12,7 @@ import theme from 'common/theme'
 const PilotProgram = () => (
     <ThemeProvider theme={theme}>
         <Section theme={theme}>
-            <SectionTitle>What is it?</SectionTitle>
+            <SectionTitle>Pilot program</SectionTitle>
             <Beside>
                 <Left>
                     <p>
@@ -20,7 +20,7 @@ const PilotProgram = () => (
                         under normal real-time market conditions with capital, and financial results
                         reviewed by a state-licensed auditor. We recorded an average return on equity
                         employed to sustain securities trading of +78.94% in 2009,
-                        +44.64% in 2010 and +17.51% in 2011.<sup>*</sup><br /><br />
+                        +44.64% in 2010 and +17.51% in 2011.<sup>*</sup>
                     </p>
                     <Disclaimer><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
                 </Left>

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import LineGraph from 'components/graphs/LineGraph'
 import { formatPrice } from 'common/helpers'
+import { Legends, Legend } from 'components/graphs/Legends/Legends'
+import theme from 'common/theme'
+import { GraphContainer } from './styles'
 
 const createChartData = (planData, marketData) => planData.map((point, i) => {
     let balance = 25000
@@ -33,11 +36,11 @@ const LaunchPerformance = ({ planData, marketData, planName }) => {
     }
     const chartData = createChartData(planData, marketData)
 
-    const fsMin = _.minBy(chartData, point => point.fs).fs
-    const marMin = chartData[0].market ? _.minBy(chartData, point => point.market).market : 0
+    // const fsMin = _.minBy(chartData, point => point.fs).fs
+    // const marMin = chartData[0].market ? _.minBy(chartData, point => point.market).market : 0
 
-    const minimum = Math.floor(_.min([fsMin, marMin]) / 10) * 10
-    const maximum = Math.ceil(_.maxBy(chartData, point => point.fs).fs / 20) * 20
+    // const minimum = Math.floor(_.min([fsMin, marMin]) / 10) * 10
+    // const maximum = Math.ceil(_.maxBy(chartData, point => point.fs).fs / 20) * 20
 
     const graphs = [
         {
@@ -73,13 +76,11 @@ const LaunchPerformance = ({ planData, marketData, planName }) => {
     }
 
     return (
-        <div>
-            <div>
-                <div>Business</div>
-                <div>Fund</div>
-                <div>Premium</div>
-                <div>DJIA</div>
-            </div>
+        <GraphContainer>
+            <Legends data-left={40}>
+                <Legend color={theme.colors.primary}><p>{planName}</p></Legend>
+                <Legend color={theme.colors.black}><p>S&P 500</p></Legend>
+            </Legends>
             <LineGraph
                 id="single-long-term-performance-graph"
                 graphs={graphs}
@@ -87,11 +88,13 @@ const LaunchPerformance = ({ planData, marketData, planName }) => {
                 unit="$"
                 unitPosition="left"
                 axisAlpha={0.5}
-                maximum={maximum}
-                minimum={minimum}
-                // logarithmic
+                // maximum={maximum}
+                // minimum={minimum}
+                logarithmic
+                minorGridEnabled
+                insideY
             />
-        </div>
+        </GraphContainer>
     )
 }
 

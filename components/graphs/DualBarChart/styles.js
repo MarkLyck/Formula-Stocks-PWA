@@ -21,7 +21,7 @@ export const Chart = styled('div')`
     }
 `
 
-export const WinRate = styled('p')`
+export const Statistic = styled('p')`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,9 +38,10 @@ export const ChartName = styled('p')`
     top: -40px;
     background: none;
     text-align: center;
+    text-transform: capitalize;
 `
 
-export const Winners = styled('h3')`
+export const Description = styled('h3')`
     text-align: center;
 `
 

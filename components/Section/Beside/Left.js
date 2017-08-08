@@ -5,6 +5,7 @@ const Left = styled('div')`
     max-width: inherit;
     margin-right: 32px;
     display: flex;
+    flex-direction: column;
     align-items: ${props => (props['data-center'] ? 'center' : 'flex-start')};
 `
 

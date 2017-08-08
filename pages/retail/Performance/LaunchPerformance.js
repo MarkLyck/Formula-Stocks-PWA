@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import LineGraph from 'components/graphs/LineGraph'
+import { Legends, Legend } from 'components/graphs/Legends/Legends'
 import { formatPrice } from 'common/helpers'
 import theme from 'common/theme'
-import { PerformanceContainer, Legends, Legend } from './styles'
+import { GraphContainer } from './styles'
 
 const createChartData = (portfolioYields, DJIA) => {
     const startValue = portfolioYields[0].balance
@@ -76,7 +77,7 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
     }
 
     return (
-        <PerformanceContainer>
+        <GraphContainer>
             <Legends>
                 <Legend color={theme.colors.primary}><p>{planName}</p></Legend>
                 <Legend color={theme.colors.black}><p>DJIA</p></Legend>
@@ -91,7 +92,7 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
                 maximum={maximum}
                 minimum={minimum}
             />
-        </PerformanceContainer>
+        </GraphContainer>
     )
 }
 

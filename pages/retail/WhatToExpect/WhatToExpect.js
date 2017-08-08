@@ -14,7 +14,7 @@ import { Screenshot } from './styles'
 const WhatToExpect = ({ latestSells }) => (
     <ThemeProvider theme={theme}>
         <Section data-offWhite theme={theme}>
-            <SectionTitle>What is it?</SectionTitle>
+            <SectionTitle>What to expect</SectionTitle>
             <Beside>
                 <Left>
                     <p>
@@ -40,7 +40,7 @@ const WhatToExpect = ({ latestSells }) => (
 
                 Here are the latest 10 sales performed by the Entry product
             </p>
-            <Paper>
+            <Paper style={{ width: '100%' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
