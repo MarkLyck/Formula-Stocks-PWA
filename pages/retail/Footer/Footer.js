@@ -2,10 +2,11 @@ import React from 'react'
 import Disclaimer from 'components/Disclaimer'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
+import { FooterContainer, CopyRightContainer } from './styles'
 
 const Footer = () => (
     <ThemeProvider theme={theme}>
-        <footer>
+        <FooterContainer theme={theme}>
             <Disclaimer>
                 Formula Stocks is an information provider, not an investment advisory service or a registered investment advisor,
                 does not offer individual investment advice and does not manage client funds. Unless otherwise specified, all return
@@ -43,14 +44,14 @@ const Footer = () => (
                 to change without notice.
             </Disclaimer>
             <Disclaimer>By visiting this site, you agree to our Terms and Conditions & Privacy Policy</Disclaimer>
-            <div>
-                <img src="static/images/photos/office.jpg" alt="office" />
+            <CopyRightContainer>
+                <img src="static/images/photos/office.png" alt="office" />
                 <div>
                     <p>Contact us at: <a href="mailto:info@formulastocks.com">info@formulastocks.com</a></p>
                     <p>© Formula Stocks ApS 2017 - All rights reserved.</p>
                 </div>
-            </div>
-        </footer>
+            </CopyRightContainer>
+        </FooterContainer>
     </ThemeProvider>
 )
 
