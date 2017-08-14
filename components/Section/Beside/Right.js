@@ -2,6 +2,7 @@ import styled from 'emotion/react'
 
 const Right = styled('div')`
     max-width: calc(50% - 16px);
+    width: 100%;
     margin-left: 32px;
     display: flex;
     flex-direction: column;

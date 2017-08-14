@@ -1,8 +1,8 @@
 import styled from 'emotion/react'
 
 const Left = styled('div')`
-    width: calc(50% - 16px);
-    max-width: inherit;
+    max-width: calc(50% - 16px);
+    width: 100%;
     margin-right: 32px;
     display: flex;
     flex-direction: column;

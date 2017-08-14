@@ -7,6 +7,7 @@ import Left from 'components/Section/Beside/Left'
 import Right from 'components/Section/Beside/Right'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
+import { cardStyle, ProfileImg, ProfileTextContainer } from './styles'
 
 const CorporateProfile = () => (
     <ThemeProvider theme={theme}>
@@ -29,9 +30,27 @@ const CorporateProfile = () => (
                 </Left>
                 <Right>
                     <h3>Executive team</h3>
-                    <Card><img src="static/images/photos/Thomas.jpg" alt="" /><div><h5>Thomas Lyck</h5><p>CEO</p></div></Card>
-                    <Card><img src="static/images/photos/Mark.jpg" alt="" /><div><h5>Mark Lyck</h5><p>COO</p></div></Card>
-                    <Card><img src="static/images/photos/Marie.jpg" alt="" /><div><h5>Marie Lauritzen</h5><p>CHRO</p></div></Card>
+                    <Card style={cardStyle}>
+                        <ProfileImg src="static/images/photos/Thomas.jpg" alt="" />
+                        <ProfileTextContainer>
+                            <h5>Thomas Lyck</h5>
+                            <p>CEO</p>
+                        </ProfileTextContainer>
+                    </Card>
+                    <Card style={cardStyle}>
+                        <ProfileImg src="static/images/photos/Mark.jpg" alt="" />
+                        <ProfileTextContainer>
+                            <h5>Mark Lyck</h5>
+                            <p>COO</p>
+                        </ProfileTextContainer>
+                    </Card>
+                    <Card style={cardStyle}>
+                        <ProfileImg src="static/images/photos/Marie.jpg" alt="" />
+                        <ProfileTextContainer>
+                            <h5>Marie Lauritzen</h5>
+                            <p>CHRO</p>
+                        </ProfileTextContainer>
+                    </Card>
                 </Right>
             </Beside>
         </Section>

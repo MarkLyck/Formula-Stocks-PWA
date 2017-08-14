@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
         return (
             <html lang="en">
                 <Head>
-                    <title>Formula Stocks</title>
+                    <title>PWA</title>
                     <meta charSet="utf-8" />
                     <meta
                         name="viewport"
