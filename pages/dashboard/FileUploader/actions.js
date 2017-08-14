@@ -35,7 +35,6 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
                     return: Number((((sugg.suggested_price - sugg.original_purchase) * 100) / sugg.original_purchase).toFixed(2)),
                 }
                 latestSells = [newSell].concat(latestSells)
-                console.log('new sells', latestSells)
                 if (latestSells && latestSells.length > 10) { latestSells.pop() }
             }
         })
@@ -85,7 +84,6 @@ const extractJSONFromFile = file => (
 )
 
 export function updatePlan(fileArr, mutatePlan, Plans) {
-    // console.log('updating plan!', mutatePlan)
     return (dispatch) => {
         dispatch(updatingPlan('planName'))
         fileArr.forEach((file) => {

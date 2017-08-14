@@ -33,7 +33,6 @@ if (typeof window !== 'undefined') {
 class Retail extends React.PureComponent {
     render() {
         const { Plan } = this.props
-        console.log(Plan)
         const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
         const winRatio = _.get(Plan, 'statistics.winRatio')
         const avgGain = _.get(Plan, 'info.avgGainPerPosition')

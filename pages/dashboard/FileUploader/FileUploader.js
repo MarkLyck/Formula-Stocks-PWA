@@ -36,11 +36,6 @@ class FileUploader extends Component {
     render() {
         const { Plans } = this.props
         if (!Plans.length) { return null }
-        console.log(this.props)
-
-        // this.props.updatePlan({ variables: { id: Plans[0].id, name: 'test3' } })
-        //     .then(res => console.log('plan updated', res))
-        // updatePlan({ variables: { id: Plans[0].id } })
 
         return (
             <ThemeProvider theme={theme}>

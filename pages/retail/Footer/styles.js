@@ -2,13 +2,21 @@ import styled from 'emotion/react'
 
 export const FooterContainer = styled('footer')`
     background: ${props => props.theme.colors.gray};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     p {
         color: ${props => props.theme.colors.white};
     }
 `
 
+export const FooterDisclaimer = styled('div')`
+    padding: 40px;
+`
+
 export const CopyRightContainer = styled('footer')`
     background: ${props => props.theme.colors.darkGray};
+    width: 100%;
     padding: 20px 0;
     display: flex;
     justify-content: center;
