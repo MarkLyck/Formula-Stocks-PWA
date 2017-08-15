@@ -5,4 +5,9 @@ export const planIds = {
     FUND: 'cj5wyr04d2f950108jvqy8xf0',
 }
 
+export const marketIds = {
+    SP500: 'cj60pwi9v6rh201942t6fq6h7',
+    DJIA: '',
+}
+
 export default {}

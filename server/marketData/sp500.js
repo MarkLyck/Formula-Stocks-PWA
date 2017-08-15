@@ -1,4 +1,43 @@
 // const https = require('https')
+const Lokka = require('lokka').Lokka
+const Transport = require('lokka-transport-http').Transport
+
+process.env.TZ = 'UTC'
+
+const client = new Lokka({
+    transport: new Transport('https://api.graph.cool/simple/v1/cj5p24f2bblwp0122hin6ek1u'),
+})
+
+client.query(`
+    {
+      allMarkets {
+          name
+      }
+    }
+`).then((result) => {
+    console.log(result)
+})
+
+client.mutate(`{
+    newMarket: createMarket(
+        name: "TEST",
+    ) {
+        name
+    }
+}`).then((response) => {
+    console.log(`RESPONSE: ${response}`)
+})
+
+// client.mutate(`{
+//     newMarket: createMarket(
+//         name: "TEST",
+//     ) {
+//         name
+//     }
+// }`).then((response) => {
+//     console.log(`RESPONSE: ${response}`)
+// })
+
 //
 // const options = {
 //     host: 'www.quandl.com',
