@@ -7,18 +7,19 @@ import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import LaunchPerformance from './LaunchPerformance'
 
-const Performance = ({ portfolioYields, planName }) => (
+const Performance = ({ portfolioYields, marketPrices, planName }) => (
     <ThemeProvider theme={theme}>
         <Section theme={theme}>
             <SectionTitle>Performance</SectionTitle>
             <Subtitle>Unleveraged returns since 2009, compared to the Dow Jones Industrial Average.</Subtitle>
-            <LaunchPerformance portfolioYields={portfolioYields} planName={planName} />
+            <LaunchPerformance portfolioYields={portfolioYields} marketPrices={marketPrices} planName={planName} />
         </Section>
     </ThemeProvider>
 )
 
 Performance.propTypes = {
     portfolioYields: PropTypes.array,
+    marketPrices: PropTypes.array,
     planName: PropTypes.string,
 }
 

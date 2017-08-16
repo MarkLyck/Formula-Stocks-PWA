@@ -1,32 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+// import _ from 'lodash'
 import LineGraph from 'components/graphs/LineGraph'
 import { formatPrice } from 'common/helpers'
 import { Legends, Legend } from 'components/graphs/Legends/Legends'
 import theme from 'common/theme'
 import { GraphContainer } from './styles'
 
-const createChartData = (planData, marketData) => planData.map((point, i) => {
+const createChartData = (planData, marketPrices) => planData.map((point, i) => {
     let balance = 25000
     let marketBalance = 25000
 
+    const percentIncrease = (((marketPrices[i].price - marketPrices[0].price) / marketPrices[0].price))
+
     if (planData[i] && i !== 0) { balance = planData[i].balance }
-    if (marketData[i]) { marketBalance = marketData[i] }
+    if (marketPrices[i].price) { marketBalance = 25000 + Math.floor(percentIncrease * 25000) }
     else if (i !== 0 && planData[i - 1] !== 25000) { marketBalance = planData[i - 1] }
+
+    console.log(marketBalance)
 
     const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
 
     return {
         market: Number(marketBalance) || 0,
         fs: Number(balance),
-        fsBalloon: formatPrice(balance, true, false),
-        marketBalloon: formatPrice(marketBalance, true, false),
+        fsBalloon: formatPrice(balance, false, false, '$'),
+        marketBalloon: formatPrice(marketBalance, false, false, '$'),
         date: `${point.date.year}-${month}-${point.date.day}`,
     }
 })
 
-const LaunchPerformance = ({ planData, marketData, planName }) => {
+const LaunchPerformance = ({ planData, marketPrices, planName }) => {
     if (!planData || !planData.length) {
         return (
             <div id="result-chart" className="loading">
@@ -34,11 +38,11 @@ const LaunchPerformance = ({ planData, marketData, planName }) => {
             </div>
         )
     }
-    const chartData = createChartData(planData, marketData)
+    const chartData = createChartData(planData, marketPrices)
 
     // const fsMin = _.minBy(chartData, point => point.fs).fs
     // const marMin = chartData[0].market ? _.minBy(chartData, point => point.market).market : 0
-
+    //
     // const minimum = Math.floor(_.min([fsMin, marMin]) / 10) * 10
     // const maximum = Math.ceil(_.maxBy(chartData, point => point.fs).fs / 20) * 20
 
@@ -58,7 +62,7 @@ const LaunchPerformance = ({ planData, marketData, planName }) => {
             balloonText: `<div class="chart-balloon"><span class="plan-name">${planName}</span><span class="balloon-value">[[fsBalloon]]</span></div>`,
         },
     ]
-    if (marketData.length) {
+    if (marketPrices.length) {
         graphs.unshift({
             id: 'market',
             lineColor: '#989898',
@@ -106,7 +110,7 @@ LaunchPerformance.defaultProps = {
 
 LaunchPerformance.propTypes = {
     planData: PropTypes.array,
-    marketData: PropTypes.array,
+    marketPrices: PropTypes.array,
     planName: PropTypes.string,
 }
 

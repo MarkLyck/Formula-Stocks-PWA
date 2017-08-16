@@ -7,13 +7,13 @@ import { formatPrice } from 'common/helpers'
 import theme from 'common/theme'
 import { GraphContainer } from './styles'
 
-const createChartData = (portfolioYields, DJIA) => {
+const createChartData = (portfolioYields, marketPrices) => {
     const startValue = portfolioYields[0].balance
-    const marketStartValue = Number(DJIA[0]) || 0
+    const marketStartValue = Number(marketPrices[0].price) || 0
 
     return portfolioYields.map((point, i) => {
         const balance = (((portfolioYields[i].balance - startValue) / startValue) * 100).toFixed(2)
-        const marketBalance = (((Number(DJIA[i]) - marketStartValue) / marketStartValue) * 100).toFixed(2)
+        const marketBalance = (((Number(marketPrices[i].price) - marketStartValue) / marketStartValue) * 100).toFixed(2)
 
         const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
 
@@ -27,7 +27,7 @@ const createChartData = (portfolioYields, DJIA) => {
     })
 }
 
-const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
+const LaunchPerformance = ({ portfolioYields, marketPrices, planName }) => {
     if (!portfolioYields || !portfolioYields.length) {
         return (
             <div id="result-chart" className="loading">
@@ -35,7 +35,7 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
             </div>
         )
     }
-    const chartData = createChartData(portfolioYields, DJIA)
+    const chartData = createChartData(portfolioYields, marketPrices)
 
     const fsMin = _.minBy(chartData, point => point.fs).fs
     const marMin = chartData[0].market ? _.minBy(chartData, point => point.market).market : 0
@@ -59,7 +59,7 @@ const LaunchPerformance = ({ portfolioYields, DJIA, planName }) => {
             balloonText: `<div class="chart-balloon"><span class="plan-name">${planName}</span><span class="balloon-value">[[fsBalloon]]</span></div>`,
         },
     ]
-    if (DJIA.length) {
+    if (marketPrices.length) {
         graphs.unshift({
             id: 'market',
             lineColor: '#989898',
@@ -104,7 +104,7 @@ LaunchPerformance.defaultProps = {
 
 LaunchPerformance.propTypes = {
     portfolioYields: PropTypes.array,
-    DJIA: PropTypes.array,
+    marketPrices: PropTypes.array,
     planName: PropTypes.string,
 }
 

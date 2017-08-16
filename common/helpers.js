@@ -1,4 +1,4 @@
-export const formatPrice = (value, plusMinus = false, percent = false) => {
+export const formatPrice = (value, plusMinus = false, percent = false, unit = '') => {
     value = String(value)
     while (/(\d+)(\d{3})/.test(value.toString())) {
         //eslint-disable-next-line
@@ -7,6 +7,7 @@ export const formatPrice = (value, plusMinus = false, percent = false) => {
     let price = value
     if (percent) { price = `${price}%` }
     if (plusMinus && Number(value.replace(',', '')) > 0) { price = `+${price}` }
+    if (unit) { price = `${unit}${price}` }
     return price
 }
 

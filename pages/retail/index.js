@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
-import { planIds } from 'common/constants'
+import { planIds, marketIds } from 'common/constants'
 import withMaterial from 'lib/withMaterial'
 
 import NavBar from 'components/NavBar'
@@ -32,7 +32,8 @@ if (typeof window !== 'undefined') {
 
 class Retail extends React.PureComponent {
     render() {
-        const { Plan } = this.props
+        const { Plan, SP500, DJIA } = this.props
+        console.log(SP500)
         const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
         const winRatio = _.get(Plan, 'statistics.winRatio')
         const avgGain = _.get(Plan, 'info.avgGainPerPosition')
@@ -44,12 +45,12 @@ class Retail extends React.PureComponent {
                 <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
                 <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={Plan.name} />
                 <WhatIsIt />
-                <Performance portfolioYields={Plan.portfolioYields} DJIA={[]} planName={Plan.name} />
+                <Performance portfolioYields={Plan.portfolioYields} marketPrices={DJIA.pricesSince2009} planName={Plan.name} />
                 <PerformanceMatters />
                 <FirstMonthOnus />
                 <WhatToExpect latestSells={Plan.latestSells} />
                 <PilotProgram />
-                <BacktestedPerformance backtestedData={Plan.backtestedData} SP500={[]} planName={Plan.name} />
+                <BacktestedPerformance backtestedData={Plan.backtestedData} marketPrices={SP500.longtermPrices} planName={Plan.name} />
                 <Statistics winRatio={winRatio} planName={Plan.name} avgGain={avgGain} avgLoss={avgLoss} />
                 <HowWeBeatTheMarket />
                 <RiskManagement />
@@ -74,23 +75,34 @@ const entryPlan = gql`
       latestSells
       statistics
     },
+    SP500: Market(id: "${marketIds.SP500}") {
+        name
+        pricesSince2009
+        longtermPrices
+    }
+    DJIA: Market(id: "${marketIds.DJIA}") {
+        name
+        pricesSince2009
+    }
   }
 `
 
 Retail.defaultProps = {
     Plan: {},
+    SP500: {},
+    DJIA: {},
 }
 
 Retail.propTypes = {
     Plan: PropTypes.object,
+    SP500: PropTypes.object,
+    DJIA: PropTypes.object,
 }
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (entryPlan)
 export default graphql(entryPlan, {
-    props: ({ data }) => ({
-        Plan: data.Plan,
-    }),
+    props: ({ data }) => ({ Plan: data.Plan, SP500: data.SP500, DJIA: data.DJIA }),
 })(withMaterial(Retail))
 
 // export default Retail

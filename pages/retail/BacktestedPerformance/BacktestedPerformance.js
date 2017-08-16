@@ -8,12 +8,12 @@ import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import LongTermGraph from './LongTermGraph'
 
-const Performance = ({ backtestedData, planName }) => (
+const Performance = ({ backtestedData, marketPrices, planName }) => (
     <ThemeProvider theme={theme}>
         <Section data-offWhite theme={theme}>
             <SectionTitle>Long-term performance</SectionTitle>
             <Subtitle>Log scale graph 1970 - 2017</Subtitle>
-            <LongTermGraph planData={backtestedData} planName={planName} />
+            <LongTermGraph planData={backtestedData} marketPrices={marketPrices} planName={planName} />
             <Disclaimer>
                 Historical numbers are based on backtested data. Since our 2009 launch we have observed similar results in real time.
                 See our ToS for details.
@@ -24,6 +24,7 @@ const Performance = ({ backtestedData, planName }) => (
 
 Performance.propTypes = {
     backtestedData: PropTypes.array,
+    marketPrices: PropTypes.array,
     planName: PropTypes.string,
 }
 
