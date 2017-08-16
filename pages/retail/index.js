@@ -33,7 +33,6 @@ if (typeof window !== 'undefined') {
 class Retail extends React.PureComponent {
     render() {
         const { Plan, SP500, DJIA } = this.props
-        console.log(SP500)
         const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
         const winRatio = _.get(Plan, 'statistics.winRatio')
         const avgGain = _.get(Plan, 'info.avgGainPerPosition')
@@ -104,5 +103,3 @@ Retail.propTypes = {
 export default graphql(entryPlan, {
     props: ({ data }) => ({ Plan: data.Plan, SP500: data.SP500, DJIA: data.DJIA }),
 })(withMaterial(Retail))
-
-// export default Retail

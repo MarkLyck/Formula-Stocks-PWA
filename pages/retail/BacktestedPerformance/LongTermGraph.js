@@ -17,8 +17,6 @@ const createChartData = (planData, marketPrices) => planData.map((point, i) => {
     if (marketPrices[i].price) { marketBalance = 25000 + Math.floor(percentIncrease * 25000) }
     else if (i !== 0 && planData[i - 1] !== 25000) { marketBalance = planData[i - 1] }
 
-    console.log(marketBalance)
-
     const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
 
     return {
