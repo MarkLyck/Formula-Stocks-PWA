@@ -17,11 +17,11 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
             <Beside>
                 <Left data-center>
                     <DualBarChart
-                        primaryStatistic={Math.floor(winRatio)}
+                        primaryStatistic={Math.floor(winRatio) || 90}
                         secondaryStatistic={59}
-                        primaryName={planName}
+                        primaryName={planName || 'entry'}
                         secondaryName="Market"
-                        primaryHeight={Math.floor(winRatio)}
+                        primaryHeight={Math.floor(winRatio) || 90}
                         secondaryHeight={59}
                         description="Winners in %"
                         unit="%"
@@ -35,7 +35,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
                     <DualBarChart
                         primaryStatistic={36}
                         secondaryStatistic={12}
-                        primaryName={planName}
+                        primaryName={planName || 'entry'}
                         secondaryName="Market"
                         primaryHeight={90}
                         secondaryHeight={30}
@@ -51,24 +51,24 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
             <Beside>
                 <Left data-center>
                     <DualUpDownChart
-                        primaryStatistic={Math.floor(avgGain)}
-                        secondaryStatistic={Math.floor(avgLoss)}
+                        primaryStatistic={Math.floor(avgGain) || 0}
+                        secondaryStatistic={Math.floor(avgLoss) || 0}
                         primaryName="Win"
                         secondaryName="Loss"
-                        primaryHeight={Math.floor(avgGain)}
-                        secondaryHeight={Math.floor(avgLoss)}
+                        primaryHeight={Math.floor(avgGain) || 0}
+                        secondaryHeight={Math.floor(avgLoss) || 0}
                         unit="%"
                         description="Avg. win/loss per stock"
                     />
                 </Left>
                 <Right data-center>
                     <DualBarChart
-                        primaryStatistic={Math.floor(winRatio)}
-                        secondaryStatistic={100 - Math.floor(winRatio)}
+                        primaryStatistic={Math.floor(winRatio) || 0}
+                        secondaryStatistic={100 - Math.floor(winRatio) || 0}
                         primaryName="Wins"
                         secondaryName="Losses"
-                        primaryHeight={Math.floor(winRatio)}
-                        secondaryHeight={100 - Math.floor(winRatio)}
+                        primaryHeight={Math.floor(winRatio) || 0}
+                        secondaryHeight={100 - Math.floor(winRatio) || 0}
                         unit="%"
                         description="Win/loss ratio"
                     />

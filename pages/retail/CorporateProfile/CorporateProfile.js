@@ -7,7 +7,7 @@ import Left from 'components/Section/Beside/Left'
 import Right from 'components/Section/Beside/Right'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
-import { cardStyle, ProfileImg, ProfileTextContainer } from './styles'
+import { cardStyle, ProfileImg, ProfileTextContainer, ExecutiveTeam } from './styles'
 
 const CorporateProfile = () => (
     <ThemeProvider theme={theme}>
@@ -29,7 +29,7 @@ const CorporateProfile = () => (
                     </p>
                 </Left>
                 <Right>
-                    <h3>Executive team</h3>
+                    <ExecutiveTeam>Executive team</ExecutiveTeam>
                     <Card style={cardStyle}>
                         <ProfileImg src="static/images/photos/Thomas.jpg" alt="" />
                         <ProfileTextContainer>

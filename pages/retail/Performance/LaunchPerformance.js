@@ -56,7 +56,11 @@ const LaunchPerformance = ({ portfolioYields, marketPrices, planName }) => {
             lineThickness: 2,
             useLineColorForBulletBorder: true,
             valueField: 'fs',
-            balloonText: `<div class="chart-balloon"><span class="plan-name">${planName}</span><span class="balloon-value">[[fsBalloon]]</span></div>`,
+            balloonText: `
+                <div class="chart-balloon">
+                    <span class="plan-name">${planName}</span>
+                    <span class="balloon-value">[[fsBalloon]]</span>
+                </div>`,
         },
     ]
     if (marketPrices.length) {
@@ -72,12 +76,16 @@ const LaunchPerformance = ({ portfolioYields, marketPrices, planName }) => {
             lineThickness: 2,
             useLineColorForBulletBorder: true,
             valueField: 'market',
-            balloonText: '<div class="chart-balloon"><span class="plan-name market-name">DJIA</span><span class="balloon-value">[[marketBalloon]]</span></div>',
+            balloonText: `
+                <div class="chart-balloon">
+                    <span class="plan-name market-name">DJIA</span>
+                    <span class="balloon-value">[[marketBalloon]]</span>
+                </div>`,
         })
     }
 
     return (
-        <GraphContainer>
+        <GraphContainer theme={theme}>
             <Legends>
                 <Legend color={theme.colors.primary}><p>{planName}</p></Legend>
                 <Legend color={theme.colors.black}><p>DJIA</p></Legend>

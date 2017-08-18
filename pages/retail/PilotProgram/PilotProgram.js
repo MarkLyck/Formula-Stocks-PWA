@@ -1,5 +1,6 @@
 import React from 'react'
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table'
+import Paper from 'material-ui/Paper'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Beside from 'components/Section/Beside'
@@ -8,6 +9,12 @@ import Right from 'components/Section/Beside/Right'
 import Disclaimer from 'components/Disclaimer'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
+import { Result } from './styles'
+
+const rightStyle = {
+    alignItems: 'center',
+    marginTop: '16px',
+}
 
 const PilotProgram = () => (
     <ThemeProvider theme={theme}>
@@ -24,23 +31,25 @@ const PilotProgram = () => (
                     </p>
                     <Disclaimer><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
                 </Left>
-                <Right>
-                    <Table>
-                        <TableBody>
-                            <TableRow>
-                                <TableCell><p>Year 1</p></TableCell>
-                                <TableCell><p>+78.94%</p></TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><p>Year 2</p></TableCell>
-                                <TableCell><p>+44.64%</p></TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><p>Year 3</p></TableCell>
-                                <TableCell><p>+17.51%</p></TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
+                <Right style={rightStyle}>
+                    <Paper>
+                        <Table>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell><p>Year 1</p></TableCell>
+                                    <TableCell><Result>+78.94%</Result></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell><p>Year 2</p></TableCell>
+                                    <TableCell><Result>+44.64%</Result></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell><p>Year 3</p></TableCell>
+                                    <TableCell><Result>+17.51%</Result></TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </Paper>
                 </Right>
             </Beside>
         </Section>

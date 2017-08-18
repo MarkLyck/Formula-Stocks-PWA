@@ -7,10 +7,10 @@ import theme from 'common/theme'
 
 const ScrolledToBottom = () => (
     <ThemeProvider theme={theme}>
-        <Section theme={theme}>
+        <Section data-offWhite theme={theme}>
             <h2>Now that you have scrolled all the way to the bottom...</h2>
             <Subtitle>It can be just the right moment to stop reading and do some clicking instead.</Subtitle>
-            <Button raised color="primary">I'm ready to try</Button>
+            <Button raised color="primary" style={{ marginBottom: '16px' }}>I'm ready to try</Button>
             <a href="mailto:i194mpvo@incoming.intercom.io">Want more information? - Let's talk!</a>
         </Section>
     </ThemeProvider>

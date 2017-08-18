@@ -5,6 +5,20 @@ export const GraphContainer = styled('div')`
     & a[href="http://www.amcharts.com/javascript-charts/"] {
         display: none !important;
     }
+    .chart-balloon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .plan-name {
+            color: ${props => props.theme.colors.primary};
+            font-size: 1rem;
+        }
+        .balloon-value {
+            font-size: 1.25rem;
+            text-align: center;
+        }
+    }
 `
 
 export default null

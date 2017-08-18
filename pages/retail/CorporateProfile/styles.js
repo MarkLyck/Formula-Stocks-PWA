@@ -7,6 +7,10 @@ export const cardStyle = {
     width: '100%',
 }
 
+export const ExecutiveTeam = styled('h3')`
+    margin-bottom: 16px;
+`
+
 export const ProfileImg = styled('img')`
     height: 100%;
     width: auto;
