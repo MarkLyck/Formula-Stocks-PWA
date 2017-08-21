@@ -6,6 +6,7 @@ import { hydrate } from 'emotion'
 import { planIds, marketIds } from 'common/constants'
 import withMaterial from 'lib/withMaterial'
 
+import Signup from 'components/Dialogs/Signup'
 import NavBar from 'components/NavBar'
 import Hero from './Hero'
 import Introduction from './Introduction'
@@ -57,6 +58,8 @@ class Retail extends React.PureComponent {
                 <IntendedAudience />
                 <ScrolledToBottom />
                 <Footer />
+
+                <Signup onRequestClose={() => {}} open />
             </div>
         )
     }
