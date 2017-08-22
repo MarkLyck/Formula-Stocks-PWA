@@ -7,20 +7,17 @@ import Logo from './logo_horizontal.svg'
 
 import { NavLinks } from './styles'
 
-const NavBar = ({ actions }) => {
-    console.log(actions)
-    return (
-        <AppBar position="fixed" color="default">
-            <Toolbar>
-                <Logo />
-                <NavLinks>
-                    <Button color="primary">Login</Button>
-                    <Button raised color="primary" onClick={actions.toggleSignupModal}>Sign up</Button>
-                </NavLinks>
-            </Toolbar>
-        </AppBar>
-    )
-}
+const NavBar = ({ actions }) => (
+    <AppBar position="fixed" color="default">
+        <Toolbar>
+            <Logo />
+            <NavLinks>
+                <Button color="primary" onClick={actions.toggleLoginModal}>Login</Button>
+                <Button raised color="primary" onClick={actions.toggleSignupModal}>Sign up</Button>
+            </NavLinks>
+        </Toolbar>
+    </AppBar>
+)
 
 NavBar.propTypes = {
     actions: PropTypes.object,

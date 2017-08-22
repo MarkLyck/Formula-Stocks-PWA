@@ -95,5 +95,3 @@ const updatePlan = gql`
 `
 
 export default graphql(updatePlan, { name: 'mutatePlan' })(FileUploader)
-
-// export default FileUploader

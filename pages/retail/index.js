@@ -6,11 +6,13 @@ import _ from 'lodash'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
 import { planIds, marketIds } from 'common/constants'
-import { toggleSignupModal } from 'common/ui/actions'
+import { toggleSignupModal, toggleLoginModal } from 'common/ui/actions'
 import withMaterial from 'lib/withMaterial'
 
 import Signup from 'components/Dialogs/Signup'
+import Login from 'components/Dialogs/Login'
 import NavBar from 'components/NavBar'
+
 import Hero from './Hero'
 import Introduction from './Introduction'
 import WhatIsIt from './WhatIsIt'
@@ -68,6 +70,7 @@ class Retail extends React.PureComponent {
                 <Footer />
 
                 {ui.signupIsVisible && <Signup onRequestClose={actions.toggleSignupModal} open />}
+                {ui.loginIsVisible && <Login onRequestClose={actions.toggleLoginModal} open />}
             </div>
         )
     }
@@ -115,7 +118,7 @@ Retail.propTypes = {
 
 const mapStateToProps = state => state
 const mapDispatchToProps = (dispatch) => {
-    const actions = { toggleSignupModal }
+    const actions = { toggleSignupModal, toggleLoginModal }
     return { actions: bindActionCreators(actions, dispatch) }
 }
 

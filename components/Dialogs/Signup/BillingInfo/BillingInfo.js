@@ -20,13 +20,13 @@ class BillingInfo extends Component {
     submitBillingInfo = () => {
         // TODO add Form validation here...
         const { name, cardNumber, expiryDate, cvc } = this.state
-        const card = {
+        const billingDetails = {
             name,
             number: cardNumber,
             expiryDate,
             cvc,
         }
-        this.props.signUp(card)
+        this.props.handleSignup(billingDetails)
     }
 
     toggleTerms = () => this.setState({ termsIsVisible: !this.state.termsIsVisible })
@@ -93,7 +93,7 @@ class BillingInfo extends Component {
 }
 
 BillingInfo.propTypes = {
-    signUp: PropTypes.func.isRequired,
+    handleSignup: PropTypes.func.isRequired,
     tax: PropTypes.number,
 }
 
