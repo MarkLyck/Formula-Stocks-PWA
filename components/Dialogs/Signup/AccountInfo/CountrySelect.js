@@ -9,7 +9,7 @@ import { MenuItem } from 'material-ui/Menu'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
 import countries from 'common/data/countries'
-import { AutoCompleteContainer } from './styles'
+import { AutoCompleteContainer } from '../styles'
 
 
 function renderInput(inputProps) {

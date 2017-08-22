@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import _ from 'lodash'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
 import { planIds, marketIds } from 'common/constants'
+import { toggleSignupModal } from 'common/ui/actions'
 import withMaterial from 'lib/withMaterial'
 
 import Signup from 'components/Dialogs/Signup'
@@ -32,8 +35,13 @@ if (typeof window !== 'undefined') {
 }
 
 class Retail extends React.PureComponent {
+    state = {
+        showSignup: false,
+        showLogin: false,
+        showTerms: false,
+    }
     render() {
-        const { Plan, SP500, DJIA } = this.props
+        const { Plan, SP500, DJIA, ui, actions } = this.props
         const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
         const winRatio = _.get(Plan, 'statistics.winRatio')
         const avgGain = _.get(Plan, 'info.avgGainPerPosition')
@@ -59,7 +67,7 @@ class Retail extends React.PureComponent {
                 <ScrolledToBottom />
                 <Footer />
 
-                <Signup onRequestClose={() => {}} open />
+                {ui.signupIsVisible && <Signup onRequestClose={actions.toggleSignupModal} open />}
             </div>
         )
     }
@@ -93,16 +101,26 @@ Retail.defaultProps = {
     Plan: {},
     SP500: {},
     DJIA: {},
+    ui: {},
+    actions: {},
 }
 
 Retail.propTypes = {
     Plan: PropTypes.object,
     SP500: PropTypes.object,
     DJIA: PropTypes.object,
+    actions: PropTypes.object,
+    ui: PropTypes.object,
+}
+
+const mapStateToProps = state => state
+const mapDispatchToProps = (dispatch) => {
+    const actions = { toggleSignupModal }
+    return { actions: bindActionCreators(actions, dispatch) }
 }
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (entryPlan)
 export default graphql(entryPlan, {
     props: ({ data }) => ({ Plan: data.Plan, SP500: data.SP500, DJIA: data.DJIA }),
-})(withMaterial(Retail))
+})(withMaterial(connect(mapStateToProps, mapDispatchToProps)(Retail)))
