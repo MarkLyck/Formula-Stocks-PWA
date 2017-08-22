@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Router from 'next/router'
 import { gql, graphql } from 'react-apollo'
 import Dialog, { DialogTitle, DialogContent } from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
@@ -19,6 +20,7 @@ class Login extends Component {
             .then((response) => {
                 console.log(response)
                 localStorage.setItem('graphcoolToken', response.data.signinUser.token)
+                Router.push('/dashboard')
             })
             .catch(e => console.error(e))
     }
