@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
 import withData from 'lib/withData'
-import FileUploader from './FileUploader'
+import SideMenu from './SideMenu'
+// import FileUploader from './FileUploader'
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -14,7 +15,8 @@ if (typeof window !== 'undefined') {
 const Dashboard = ({ Plans }) => (
     <div>
         <p>Dashboard</p>
-        <FileUploader Plans={Plans} />
+        <SideMenu />
+        {/* <FileUploader Plans={Plans} /> */}
     </div>
 )
 

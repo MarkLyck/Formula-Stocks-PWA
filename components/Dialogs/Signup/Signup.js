@@ -9,30 +9,31 @@ import BillingInfo from './BillingInfo'
 class SignUp extends Component {
     state = {
         accountInfo: {},
-        billingInfo: {},
         page: 1,
     }
 
-    handleRequestClose = () => this.props.onRequestClose()
     nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
     handleSignup = (card) => {
+        const { createUser } = this.props
+
+        const email = 'test@test.com'
+        const password = 'pass'
+        const name = 'Mark'
+
+        createUser({ variables: { email, password, name } })
         console.log(this.state.accountInfo)
         console.log(card)
     }
 
     render() {
-        console.log(this.props)
         if (typeof window === 'undefined') { return null }
         const { page } = this.state
-        const { createUser, ...other } = this.props
+        const { ...other } = this.props
+        delete other.createUser
 
-        const email = 'test@test.com'
-        const password = 'pass'
-        const name = 'Mark'
-        createUser({ variables: { email, password, name } })
         return (
-            <Dialog onRequestClose={this.handleRequestClose} {...other} transition={Slide}>
+            <Dialog {...other} transition={Slide}>
                 <DialogTitle>Sign up</DialogTitle>
                 { page === 1 && <AccountInfo nextPage={this.nextPage} /> }
                 { page === 2 && <BillingInfo handleSignup={this.handleSignup} /> }

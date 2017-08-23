@@ -2,6 +2,7 @@ import { TOGGLE_SIGNUP_MODAL, TOGGLE_LOGIN_MODAL } from './constants'
 
 const initialState = {
     signupIsVisible: false,
+    loginIsVisible: false,
 }
 
 export default (state, action) => {
