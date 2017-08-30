@@ -6,14 +6,14 @@ import Dashboard from '../'
 import Suggestion from './Suggestion'
 import { SuggestionsList } from './styles'
 
-const Suggestions = ({ Plan }) => {
+const Suggestions = ({ Plan, trades }) => {
     // TODO return loader instead.
-    if (!Plan) { return null }
-    console.log(Plan)
+    if (!Plan || !Plan.suggestions) { return null }
+    const suggestions = trades || Plan.suggestions
     return (
         <Dashboard>
             <SuggestionsList>
-                {Plan.suggestions.map(sugg => <Suggestion suggestion={sugg} key={sugg.name} />)}
+                {suggestions.map(sugg => <Suggestion suggestion={sugg} key={sugg.name} />)}
             </SuggestionsList>
         </Dashboard>
     )
@@ -32,6 +32,7 @@ const Plan = gql`
 
 Suggestions.propTypes = {
     Plan: PropTypes.object,
+    trades: PropTypes.array,
 }
 
 export default graphql(Plan, {
