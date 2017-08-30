@@ -19,7 +19,7 @@ const PortfolioItem = ({ stock }) => {
                 <p>{stock.percentage_weight}%</p>
             </TableCell>
             <TableCell numeric>
-                <PercentChange isPositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
+                <PercentChange data-isPositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
             </TableCell>
             <TableCell numeric>
                 <p>${costBasisPrice.toFixed(2)}</p>
