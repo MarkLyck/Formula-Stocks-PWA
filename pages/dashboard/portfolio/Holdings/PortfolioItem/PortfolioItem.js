@@ -7,6 +7,7 @@ const PortfolioItem = ({ stock }) => {
     const costBasisPrice = stock.purchase_price - stock.dividends
     const percentIncrease = (((stock.latest_price - costBasisPrice) * 100) / costBasisPrice).toFixed(2)
     const isPositive = percentIncrease > 0
+    console.log(percentIncrease)
     return (
         <TableRow key={stock.ticker}>
             <TableCell>
@@ -19,13 +20,16 @@ const PortfolioItem = ({ stock }) => {
                 <p>{stock.percentage_weight}%</p>
             </TableCell>
             <TableCell numeric>
-                <PercentChange data-isPositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
+                {!isNaN(percentIncrease)
+                    ? <PercentChange data-isPositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
+                    : ''
+                }
             </TableCell>
             <TableCell numeric>
-                <p>${costBasisPrice.toFixed(2)}</p>
+                {!isNaN(costBasisPrice) ? <p>${costBasisPrice.toFixed(2)}</p> : ''}
             </TableCell>
             <TableCell numeric>
-                <p>${stock.latest_price && stock.latest_price.toFixed(2)}</p>
+                {!isNaN(stock.latest_price) ? <p>${stock.latest_price && stock.latest_price.toFixed(2)}</p> : ''}
             </TableCell>
             <TableCell numeric>
                 <p>{stock.days_owned}</p>

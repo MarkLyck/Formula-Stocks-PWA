@@ -5,15 +5,15 @@ import Paper from 'material-ui/Paper'
 import theme from 'common/theme'
 import PortfolioGraph from './PortfolioGraph'
 import Allocation from './Allocation'
+import { headerStyle, RightSide } from './styles'
 
 const getIncrease = (startSum, endSum) => (((endSum - startSum) / startSum) * 100).toFixed(2)
 
-const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio }) => {
-    console.log(portfolio)
-    return (
-        <ThemeProvider theme={theme}>
-            <Paper>
-                <PortfolioGraph portfolioYields={portfolioYields} marketPrices={marketPrices} planName={planName} />
+const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio }) => (
+    <ThemeProvider theme={theme}>
+        <Paper style={headerStyle}>
+            <PortfolioGraph portfolioYields={portfolioYields} marketPrices={marketPrices} planName={planName} />
+            <RightSide>
                 <div>
                     <h3>{planName} Formula</h3>
                     <p>
@@ -29,10 +29,10 @@ const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio })
                     </p>
                 </div>
                 <Allocation portfolio={portfolio} id="allocation-chart" />
-            </Paper>
-        </ThemeProvider>
-    )
-}
+            </RightSide>
+        </Paper>
+    </ThemeProvider>
+)
 
 PortfolioHeader.propTypes = {
     portfolioYields: PropTypes.array,

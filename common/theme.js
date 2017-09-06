@@ -1,11 +1,13 @@
 const theme = {
     colors: {
         primary: '#27A5F9',
-        secondary: '#63DAAB',
+        secondary: '#12D99E',
         error: '#ec1b5f',
+        text: '#49494A',
         black: '#49494A',
-        gray: '#373e4c',
-        darkGray: '#2c323d',
+        gray: '#2D333C',
+        lightGray: '#95989E',
+        darkGray: '#232730',
         offWhite: '#F5F6F5',
         white: '#FFFFFF',
     },

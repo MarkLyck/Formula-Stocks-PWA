@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
+import { Button } from './styles'
 
 const MenuItem = ({ route, children }) => (
-    <button onClick={() => Router.push(`/dashboard/${route}`)}>
+    <Button onClick={() => Router.push(`/dashboard/${route}`)}>
         {children}
-    </button>
+    </Button>
 )
 
 MenuItem.propTypes = {

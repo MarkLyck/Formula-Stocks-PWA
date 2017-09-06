@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { TextContainer } from './styles'
 
 const Return = ({ title, returnSince }) => (
-    <div>
+    <TextContainer>
         <h3>{title}</h3>
         <h4>+{returnSince}%</h4>
-    </div>
+    </TextContainer>
 )
 
 Return.propTypes = {
     title: PropTypes.string,
-    returnSince: PropTypes.number,
+    returnSince: PropTypes.string,
 }
 
 export default Return

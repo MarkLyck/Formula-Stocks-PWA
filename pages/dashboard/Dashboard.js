@@ -6,6 +6,8 @@ import withMaterial from 'lib/withMaterial'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import SideMenu from './SideMenu'
+import NavBar from './NavBar'
+import { DashboardLayout, DashboardContent } from './styles'
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -15,11 +17,13 @@ if (typeof window !== 'undefined') {
 
 const Dashboard = ({ children }) => (
     <ThemeProvider theme={theme}>
-        <div>
-            <p>Dashboard</p>
+        <DashboardLayout>
             <SideMenu />
-            {children}
-        </div>
+            <DashboardContent>
+                <NavBar />
+                {children}
+            </DashboardContent>
+        </DashboardLayout>
     </ThemeProvider>
 )
 
