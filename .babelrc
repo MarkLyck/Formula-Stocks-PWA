@@ -10,6 +10,7 @@
     ["module-alias",
       [
         { "src": "./common", "expose": "common" },
+        { "src": "./models", "expose": "models" },
         { "src": "./components", "expose": "components" },
         { "src": "./pages", "expose": "pages" },
         { "src": "./static", "expose": "static" },

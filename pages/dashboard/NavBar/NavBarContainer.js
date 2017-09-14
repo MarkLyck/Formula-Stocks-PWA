@@ -1,11 +1,15 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { toggleSignupModal, toggleLoginModal } from 'models/ui/actions'
+import { selectPlan } from 'models/user/actions'
+
 import NavBar from './NavBar'
 
-const mapStateToProps = state => state
+const mapStateToProps = state => ({
+    selectedPlan: state.user.selectedPlan,
+})
+
 const mapDispatchToProps = (dispatch) => {
-    const actions = { toggleSignupModal, toggleLoginModal }
+    const actions = { selectPlan }
     return { actions: bindActionCreators(actions, dispatch) }
 }
 

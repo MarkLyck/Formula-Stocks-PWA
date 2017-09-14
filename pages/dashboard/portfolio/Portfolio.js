@@ -28,7 +28,7 @@ const Portfolio = ({ Plan, DJIA }) => {
 
 const Plan = gql`
   query {
-    Plan(id: "${planIds.ENTRY}") {
+    Plan(id: "${planIds.BUSINESS}") {
       name
       portfolio
       info

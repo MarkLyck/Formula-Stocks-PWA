@@ -28,6 +28,7 @@ const createChartData = (portfolioYields, marketPrices) => {
 }
 
 const PortfolioGraph = ({ portfolioYields, marketPrices, planName }) => {
+    console.log(portfolioYields)
     if (!portfolioYields || !portfolioYields.length) {
         return (
             <div id="result-chart" className="loading">
