@@ -6,7 +6,7 @@ export const DashboardLayout = styled('div')`
     width: 100vw;
 `
 export const DashboardContent = styled('div')`
-    height: calc(100% - 64px);
+    height: 100%;
     width: 100%;
     overflow-y: scroll;
     position: relative;

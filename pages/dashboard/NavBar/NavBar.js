@@ -1,9 +1,16 @@
 import React from 'react'
-// import Logo from 'components/NavBar/logo_horizontal.svg'
+import Button from 'material-ui/Button'
+import Logo from './logo_horizontal.svg'
 import { Bar } from './styles'
 
 export default () => (
     <Bar>
-        {/* <Logo /> */}
+        <div>
+            <Button color="primary" onClick={() => {}}>Entry</Button>
+            <Button color="primary" onClick={() => {}}>Premium</Button>
+            <Button color="primary" onClick={() => {}}>Business</Button>
+            <Button color="primary" onClick={() => {}}>Fund</Button>
+        </div>
+        <Logo />
     </Bar>
 )

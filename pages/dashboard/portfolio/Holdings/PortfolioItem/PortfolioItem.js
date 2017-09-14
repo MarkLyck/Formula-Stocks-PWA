@@ -7,7 +7,7 @@ const PortfolioItem = ({ stock }) => {
     const costBasisPrice = stock.purchase_price - stock.dividends
     const percentIncrease = (((stock.latest_price - costBasisPrice) * 100) / costBasisPrice).toFixed(2)
     const isPositive = percentIncrease > 0
-    console.log(percentIncrease)
+
     return (
         <TableRow key={stock.ticker}>
             <TableCell>
