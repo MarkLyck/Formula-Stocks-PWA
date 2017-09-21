@@ -6,7 +6,7 @@ import { getContext, setContext } from 'lib/materialStyles'
 
 const dev = process.env.NODE_ENV !== 'production'
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
     static getInitialProps(ctx) {
         // Reset the context for handling a new request.
         setContext()
@@ -64,3 +64,5 @@ export default class MyDocument extends Document {
         )
     }
 }
+
+export default MyDocument

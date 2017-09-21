@@ -4,9 +4,7 @@ import { selectPlan } from 'models/user/actions'
 
 import NavBar from './NavBar'
 
-const mapStateToProps = state => ({
-    selectedPlan: state.user.selectedPlan,
-})
+const mapStateToProps = state => ({ selectedPlan: state.user.selectedPlan })
 
 const mapDispatchToProps = (dispatch) => {
     const actions = { selectPlan }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { gql, graphql } from 'react-apollo'
+import { gql, graphql, compose } from 'react-apollo'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import { FileDrop } from './styles'
@@ -26,16 +26,17 @@ const acceptedFilenames = [
 
 class FileUploader extends Component {
     onDrop = (files) => {
-        const { actions, mutatePlan, Plans } = this.props
+        const { actions, mutatePlan, allPlans } = this.props
 
         const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
-        if (!badFiles.length) { actions.updatePlan(files, mutatePlan, Plans) }
+        if (!badFiles.length) { actions.updatePlan(files, mutatePlan, allPlans) }
         return null
     }
 
     render() {
-        const { Plans } = this.props
-        if (!Plans.length) { return null }
+        const { allPlans } = this.props
+        console.log('render', this.props)
+        if (!allPlans.length) { return null }
 
         return (
             <ThemeProvider theme={theme}>
@@ -52,13 +53,30 @@ class FileUploader extends Component {
 }
 
 FileUploader.defaultProps = {
-    Plans: [],
+    allPlans: [],
 }
 FileUploader.propTypes = {
     actions: PropTypes.object.isRequired,
     mutatePlan: PropTypes.func.isRequired,
-    Plans: PropTypes.array,
+    allPlans: PropTypes.array,
 }
+
+const PlansQuery = gql`
+    query {
+        allPlans {
+          id
+          backtestedData
+          latestSells
+          name
+          portfolio
+          portfolioYields
+          price
+          statistics
+          suggestions
+          updatedAt
+        },
+    }
+`
 
 const updatePlan = gql`
   mutation updatePlan(
@@ -94,4 +112,9 @@ const updatePlan = gql`
   }
 `
 
-export default graphql(updatePlan, { name: 'mutatePlan' })(FileUploader)
+export default compose(
+    graphql(PlansQuery, {
+        props: ({ data }) => ({ ...data }),
+    }),
+    graphql(updatePlan, { name: 'mutatePlan' }),
+)(FileUploader)

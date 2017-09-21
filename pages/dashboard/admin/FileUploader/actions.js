@@ -5,6 +5,7 @@ import { UPDATING_PLAN } from './constants'
 const updatingPlan = planName => ({ type: UPDATING_PLAN, plan: planName })
 
 const mutatePlanData = (file, mutatePlan, Plans) => {
+    console.log('mutatePlan')
     let planId
     if (file.name.indexOf('basic') > -1 || file.name.indexOf('entry') > -1) { planId = planIds.ENTRY }
     else if (file.name.indexOf('premium') > -1) { planId = planIds.PREMIUM }
@@ -20,9 +21,13 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
     let statistics = oldPlan.statistics
     let suggestions = oldPlan.suggestions
 
+    console.log('oldSuggestions: ', oldPlan.suggestions)
+
     if (file.name.indexOf('weekly') > -1) {
         const modelSuggestions = suggestions.filter(sugg => sugg.model)
+        console.log('modelSuggestions: ', modelSuggestions)
         suggestions = file.data.actionable.concat(modelSuggestions)
+        console.log('newSuggestions: ', suggestions)
     }
     else if (file.name.indexOf('monthly') > -1) {
         portfolioYields = file.data.logs
@@ -31,7 +36,8 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
                 const newSell = {
                     originalPrice: sugg.original_purchase,
                     sellPrice: sugg.suggested_price,
-                    name: sugg.name,
+                    ticker: sugg.ticker,
+                    name: sugg.name || sugg.systemname,
                     return: Number((((sugg.suggested_price - sugg.original_purchase) * 100) / sugg.original_purchase).toFixed(2)),
                 }
                 latestSells = [newSell].concat(latestSells)
@@ -47,6 +53,7 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
             })
         }
         suggestions = weeklySuggestions.concat(modelSuggestions)
+        console.log('newSuggestions: ', suggestions)
         launchStatistics = _.merge(launchStatistics, file.data.statistics)
     }
     else if (file.name.indexOf('annual') > -1) {

@@ -1,4 +1,6 @@
 import withData from 'lib/withData'
-import Suggestions from './Suggestions'
+// import withMaterial from 'lib/withMaterial'
+import Suggestions from './SuggestionsContainer'
 
+// export default withMaterial(withData(Suggestions))
 export default withData(Suggestions)

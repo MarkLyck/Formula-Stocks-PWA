@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
+import apolloClient from 'lib/initApollo'
 import { planIds, marketIds } from 'common/constants'
 import { hasStorage } from 'common/featureTests'
 
-import apolloClient from 'lib/initApollo'
-
-import Dashboard from '../Dashboard'
+import Dashboard from '../'
 import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
 import Holdings from './Holdings'
@@ -67,9 +66,7 @@ if (apolloClient().store) selectedPlan = apolloClient().store.getState().user.se
 
 export default graphql(PortfolioQuery, {
     options: {
-        variables: {
-            id: planIds[selectedPlan.toUpperCase()],
-        },
+        variables: { id: planIds[selectedPlan.toUpperCase()] },
     },
     props: ({ data }) => ({ ...data }),
 })(Portfolio)

@@ -14,7 +14,7 @@ class Suggestion extends Component {
     render() {
         const { suggestion } = this.props
         const { detailsIsVisible } = this.state
-        console.log(suggestion)
+
         const suggestedPriceText = suggestion.action === 'BUY' ? 'Buy at' : 'Sell at'
         const allocationText = suggestion.percentage_weight ? 'Cash allocation' : 'Portfolio allocation'
         const allocation = suggestion.percentage_weight ? suggestion.percentage_weight : suggestion.portfolio_weight
