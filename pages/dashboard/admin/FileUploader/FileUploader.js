@@ -35,7 +35,6 @@ class FileUploader extends Component {
 
     render() {
         const { allPlans } = this.props
-        console.log('render', this.props)
         if (!allPlans.length) { return null }
 
         return (

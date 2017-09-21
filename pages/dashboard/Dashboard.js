@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { hydrate } from 'emotion'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
-import SideMenu from './SideMenu'
-import NavBar from './NavBar'
+import SideMenu from './sideMenu'
+import NavBar from './navBar'
 import { DashboardLayout, DashboardContent } from './styles'
 
 // Adds server generated styles to emotion cache.

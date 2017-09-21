@@ -7,6 +7,8 @@ import { hasStorage } from 'common/featureTests'
 import { planIds } from 'common/constants'
 import Dashboard from '../'
 import Suggestion from './Suggestion'
+import StatisticsHeader from './StatisticsHeader'
+import StatisticsBox from './StatisticsHeader/StatisticsBox'
 import { SuggestionsList } from './styles'
 
 class Suggestions extends Component {
@@ -28,6 +30,12 @@ class Suggestions extends Component {
         const suggestions = trades || Plan.suggestions.filter(sugg => !sugg.model || sugg.action === 'SELL')
         return (
             <Dashboard>
+                <StatisticsHeader>
+                    <StatisticsBox title="Annual growth" icon="" />
+                    <StatisticsBox title="Sold with profit" icon="" />
+                    <StatisticsBox title="Suggestions" icon="" />
+                    <StatisticsBox title="Percent in cash" icon="" />
+                </StatisticsHeader>
                 <SuggestionsList>
                     {suggestions.map(sugg => <Suggestion suggestion={sugg} key={sugg.ticker} />)}
                 </SuggestionsList>
