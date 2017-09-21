@@ -1,4 +1,4 @@
 import withData from 'lib/withData'
-import Portfolio from './Portfolio'
+import Portfolio from './PortfolioContainer'
 
 export default withData(Portfolio)

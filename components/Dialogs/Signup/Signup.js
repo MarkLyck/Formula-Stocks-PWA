@@ -49,9 +49,14 @@ SignUp.propTypes = {
 
 const createUser = gql`
   mutation ($email: String!, $password: String!, $name: String!) {
-    createUser(authProvider: { email: { email: $email, password: $password } }, name: $name) {
-      id
-    }
+    createUser(authProvider: {
+        email: {
+            email: $email,
+            password: $password,
+        }
+    },
+    name: $name,
+    ) { id }
   }
 `
 

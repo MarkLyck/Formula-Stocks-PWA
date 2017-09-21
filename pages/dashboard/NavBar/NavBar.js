@@ -5,17 +5,9 @@ import { hasStorage } from 'common/featureTests'
 import Logo from './logo_horizontal.svg'
 import { Bar } from './styles'
 
-
-const setPlan = (plan) => {
+const setPlan = (plan, selectPlan) => {
     if (hasStorage) localStorage.setItem('selectedPlan', plan)
-}
-
-const isSelected = (plan) => {
-    let selectedPlan
-    if (hasStorage) {
-        selectedPlan = localStorage.getItem('selectedPlan')
-    }
-    return selectedPlan === plan
+    selectPlan(plan)
 }
 
 const NavBar = ({ selectedPlan, actions }) => (
@@ -23,28 +15,28 @@ const NavBar = ({ selectedPlan, actions }) => (
         <div>
             <Button
                 color="primary"
-                raised={isSelected(selectedPlan, 'entry')}
+                raised={selectedPlan === 'entry'}
                 onClick={() => setPlan('entry', actions.selectPlan)}
             >
                 Entry
             </Button>
             <Button
                 color="primary"
-                raised={isSelected(selectedPlan, 'premium')}
+                raised={selectedPlan === 'premium'}
                 onClick={() => setPlan('premium', actions.selectPlan)}
             >
                 Premium
             </Button>
             <Button
                 color="primary"
-                raised={isSelected(selectedPlan, 'business')}
+                raised={selectedPlan === 'business'}
                 onClick={() => setPlan('business', actions.selectPlan)}
             >
                 Business
             </Button>
             <Button
                 color="primary"
-                raised={isSelected(selectedPlan, 'fund')}
+                raised={selectedPlan === 'fund'}
                 onClick={() => setPlan('fund', actions.selectPlan)}
             >
                 Fund
