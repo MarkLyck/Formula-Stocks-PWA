@@ -16,6 +16,11 @@ class Suggestions extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps) {
+        // Only update if the selectedPlan and plan are the same.
+        return nextProps.selectedPlan === nextProps.Plan.name
+    }
+
     render() {
         const { Plan, trades } = this.props
         // TODO return loader instead.
@@ -34,6 +39,7 @@ class Suggestions extends Component {
 const SuggestionsQuery = gql`
   query SuggestionsQuery($id: ID!) {
     Plan(id: $id) {
+        name
         suggestions
         info
         launchStatistics

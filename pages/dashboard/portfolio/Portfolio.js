@@ -17,8 +17,14 @@ class Portfolio extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps) {
+        // Only update if the selectedPlan and plan are the same.
+        return nextProps.selectedPlan === nextProps.Plan.name
+    }
+
     render() {
         const { Plan, DJIA } = this.props
+        // TODO return spinner here
         if (!Plan) return ''
         return (
             <Dashboard>

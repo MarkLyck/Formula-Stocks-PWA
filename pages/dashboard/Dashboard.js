@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { hydrate } from 'emotion'
-// import withMaterial from 'lib/withMaterial'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import SideMenu from './SideMenu'
