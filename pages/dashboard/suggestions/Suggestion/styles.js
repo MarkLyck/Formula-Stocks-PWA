@@ -1,7 +1,7 @@
 import styled from 'emotion/react'
 
 export const SuggStyles = {
-    width: 'calc(50% - 24px)',
+    width: 'calc(50% - 16px)',
     margin: '8px',
     marginBottom: '16px',
 }

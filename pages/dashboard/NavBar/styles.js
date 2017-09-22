@@ -10,6 +10,9 @@ export const Bar = styled('div')`
     justify-content: space-between;
     align-items: center;
     background: ${props => props.theme.colors.white};
+    button {
+        margin-right: 8px;
+    }
 `
 
 export default null

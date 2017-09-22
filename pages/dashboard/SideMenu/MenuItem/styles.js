@@ -2,7 +2,7 @@ import styled from 'emotion/react'
 
 export const Button = styled('button')`
     position: relative;
-    margin-top: 40px;
+    margin-bottom: 32px;
     width: 56px;
     height: 56px;
     padding: 12px;

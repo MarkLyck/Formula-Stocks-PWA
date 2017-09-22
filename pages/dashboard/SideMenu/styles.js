@@ -10,8 +10,14 @@ export const MenuList = styled('ul')`
     flex-direction: column;
     align-items: center;
     padding-left: 2px;
+    padding-top: 16px;
     width: 84px;
     height: 100%;
+    > button:last-child {
+        position: absolute;
+        bottom: 8px;
+        margin-bottom: 0;
+    }
 `
 
 export default null
