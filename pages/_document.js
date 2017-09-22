@@ -55,6 +55,10 @@ class MyDocument extends Document {
                     <script src="https://www.amcharts.com/lib/3/serial.js" />
                     <script src="https://www.amcharts.com/lib/3/pie.js" />
                     <script src="https://www.amcharts.com/lib/3/themes/light.js" />
+                    {/* <script defer src="/static/fontawesome/light.min.js" /> */}
+                    {/* <script defer src="/static/fontawesome/regular.min.js" /> */}
+                    <script defer src="/static/fontawesome/solid.min.js" />
+                    <script defer src="/static/fontawesome/fontawesome.min.js" />
                 </Head>
                 <body>
                     <Main />

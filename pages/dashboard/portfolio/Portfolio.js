@@ -5,6 +5,8 @@ import apolloClient from 'lib/initApollo'
 import { planIds, marketIds } from 'common/constants'
 import { hasStorage } from 'common/featureTests'
 
+import StatisticsContainer from 'components/statisticsContainer'
+import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import Dashboard from '../'
 import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
@@ -37,6 +39,12 @@ class Portfolio extends Component {
                     />
                     <AnnualReturns portfolioYields={Plan.portfolioYields} />
                     <Holdings portfolio={Plan.portfolio} />
+                    <StatisticsContainer>
+                        <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
+                        <StatisticsBox title="Sold with profit" value={`${Plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
+                        <StatisticsBox title="Portfolio" value={Plan.portfolio.length} icon="list-ul" />
+                        <StatisticsBox title="Percent in cash" value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
+                    </StatisticsContainer>
                 </div>
             </Dashboard>
         )

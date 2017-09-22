@@ -48,6 +48,7 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
             })
         }
         suggestions = weeklySuggestions.concat(modelSuggestions)
+        file.data.statistics.percentInCash = file.data.portfolio[file.data.portfolio.length - 1].percentage_weight
         launchStatistics = _.merge(launchStatistics, file.data.statistics)
     }
     else if (file.name.indexOf('annual') > -1) {

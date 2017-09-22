@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
 import apolloClient from 'lib/initApollo'
 import { hasStorage } from 'common/featureTests'
-
 import { planIds } from 'common/constants'
+
+import StatisticsContainer from 'components/statisticsContainer'
+import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import Dashboard from '../'
 import Suggestion from './Suggestion'
-import StatisticsHeader from './StatisticsHeader'
-import StatisticsBox from './StatisticsHeader/StatisticsBox'
+
 import { SuggestionsList } from './styles'
 
 class Suggestions extends Component {
@@ -27,15 +28,16 @@ class Suggestions extends Component {
         const { Plan, trades } = this.props
         // TODO return loader instead.
         if (!Plan || !Plan.suggestions) { return null }
+        console.log(Plan)
         const suggestions = trades || Plan.suggestions.filter(sugg => !sugg.model || sugg.action === 'SELL')
         return (
             <Dashboard>
-                <StatisticsHeader>
-                    <StatisticsBox title="Annual growth" icon="" />
-                    <StatisticsBox title="Sold with profit" icon="" />
-                    <StatisticsBox title="Suggestions" icon="" />
-                    <StatisticsBox title="Percent in cash" icon="" />
-                </StatisticsHeader>
+                <StatisticsContainer>
+                    <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
+                    <StatisticsBox title="Sold with profit" value={`${Plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
+                    <StatisticsBox title="Suggestions" value={suggestions.length} icon="list-ul" />
+                    <StatisticsBox title="Percent in cash" value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
+                </StatisticsContainer>
                 <SuggestionsList>
                     {suggestions.map(sugg => <Suggestion suggestion={sugg} key={sugg.ticker} />)}
                 </SuggestionsList>
@@ -49,7 +51,6 @@ const SuggestionsQuery = gql`
     Plan(id: $id) {
         name
         suggestions
-        info
         launchStatistics
         statistics
     }
