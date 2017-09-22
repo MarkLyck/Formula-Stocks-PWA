@@ -28,7 +28,6 @@ class Suggestions extends Component {
         const { Plan, trades } = this.props
         // TODO return loader instead.
         if (!Plan || !Plan.suggestions) { return null }
-        console.log(Plan)
         const suggestions = trades || Plan.suggestions.filter(sugg => !sugg.model || sugg.action === 'SELL')
         return (
             <Dashboard>

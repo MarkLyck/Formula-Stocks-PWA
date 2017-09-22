@@ -14,8 +14,16 @@ export const Button = styled('button')`
     background: none;
     border: none;
     color: ${props => props.theme.colors.lightGray};
+    background: ${props => (props['data-isActive'] ? props.theme.colors.primary : 'none')};
+    color: ${props => (props['data-isActive'] ? props.theme.colors.white : props.theme.colors.lightGray)};
+    outline: none;
+    svg {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
     &:hover {
         cursor: pointer;
+        color: ${props => (props['data-isActive'] ? props.theme.colors.white : props.theme.colors.primary)};
     }
 `
 
