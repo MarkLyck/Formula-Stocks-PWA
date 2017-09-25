@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { gql, graphql } from 'react-apollo'
+import platform from 'platform'
 import _ from 'lodash'
+import { hasStorage } from 'common/featureTests'
 
 import Signup from 'components/Dialogs/Signup'
 import Login from 'components/Dialogs/Login'
@@ -29,6 +32,44 @@ class Retail extends React.PureComponent {
         showLogin: false,
         showTerms: false,
     }
+
+    componentDidMount() {
+        if (hasStorage && !localStorage.getItem('visitorID')) this.newVisit()
+    }
+
+    newVisit = () => {
+        const { createVisitor } = this.props
+
+        const geoHeaders = new Headers()
+        geoHeaders.append('dataType', 'jsonp')
+        geoHeaders.append('Access-Control-Allow-Origin', '*')
+        geoHeaders.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+
+        const myInit = {
+            method: 'GET',
+            headers: geoHeaders,
+            mode: 'cors',
+            cache: 'default',
+        }
+        const myRequest = new Request('https://freegeoip.net/json', myInit)
+
+        fetch(myRequest).then((response) => {
+            console.log('geo data', response)
+        })
+        createVisitor({ variables: {
+            url: document.referrer,
+            device: {
+                os: platform.os.family,
+                product: platform.product,
+                browser: platform.name,
+            },
+            location: { country: 'unknown' },
+        } })
+            .then((data) => {
+                if (hasStorage) localStorage.setItem('visitorID', data.data.createVisitor.id)
+            })
+    }
+
     render() {
         const { Plan, SP500, DJIA, ui, actions } = this.props
         const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
@@ -77,6 +118,16 @@ Retail.propTypes = {
     DJIA: PropTypes.object,
     actions: PropTypes.object,
     ui: PropTypes.object,
+    createVisitor: PropTypes.func,
 }
 
-export default Retail
+const createVisitor = gql`
+  mutation ($url: String, $device: Json, $location: Json) {
+    createVisitor(
+    url: $url,
+    device: $device,
+    location: $location,
+    ) { id }
+  }
+`
+export default graphql(createVisitor, { name: 'createVisitor' })(Retail)

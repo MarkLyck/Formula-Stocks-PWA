@@ -22,7 +22,6 @@ class SignUp extends Component {
         const name = 'Mark'
 
         createUser({ variables: { email, password, name } })
-        console.log(this.state.accountInfo)
         console.log(card)
     }
 
