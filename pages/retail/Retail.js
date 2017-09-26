@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
 import platform from 'platform'
+import fetchJsonP from 'fetch-jsonp'
 import _ from 'lodash'
 import { hasStorage } from 'common/featureTests'
 
@@ -40,33 +41,22 @@ class Retail extends React.PureComponent {
     newVisit = () => {
         const { createVisitor } = this.props
 
-        const geoHeaders = new Headers()
-        geoHeaders.append('dataType', 'jsonp')
-        geoHeaders.append('Access-Control-Allow-Origin', '*')
-        geoHeaders.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-
-        const myInit = {
-            method: 'GET',
-            headers: geoHeaders,
-            mode: 'cors',
-            cache: 'default',
-        }
-        const myRequest = new Request('https://freegeoip.net/json', myInit)
-
-        fetch(myRequest).then((response) => {
-            console.log('geo data', response)
-        })
-        createVisitor({ variables: {
-            url: document.referrer,
-            device: {
-                os: platform.os.family,
-                product: platform.product,
-                browser: platform.name,
-            },
-            location: { country: 'unknown' },
-        } })
-            .then((data) => {
-                if (hasStorage) localStorage.setItem('visitorID', data.data.createVisitor.id)
+        fetchJsonP('https://freegeoip.net/json')
+            .then(response => response.json())
+            .then((location) => {
+                createVisitor({
+                    variables: {
+                        url: document.referrer,
+                        device: {
+                            os: platform.os.family,
+                            product: platform.product,
+                            browser: platform.name,
+                        },
+                        location,
+                    },
+                }).then((data) => {
+                    if (hasStorage) localStorage.setItem('visitorID', data.data.createVisitor.id)
+                })
             })
     }
 
