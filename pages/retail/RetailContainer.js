@@ -5,6 +5,7 @@ import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
 import withMaterial from 'lib/withMaterial'
 import { planIds, marketIds } from 'common/constants'
+import { newVisit } from './actions'
 
 import Retail from './Retail'
 
@@ -40,7 +41,7 @@ const entryPlan = gql`
 
 const mapStateToProps = state => state
 const mapDispatchToProps = (dispatch) => {
-    const actions = { toggleSignupModal, toggleLoginModal }
+    const actions = { toggleSignupModal, toggleLoginModal, newVisit }
     return { actions: bindActionCreators(actions, dispatch) }
 }
 

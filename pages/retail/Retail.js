@@ -35,29 +35,10 @@ class Retail extends React.PureComponent {
     }
 
     componentDidMount() {
-        if (hasStorage && !localStorage.getItem('visitorID')) this.newVisit()
-    }
-
-    newVisit = () => {
-        const { createVisitor } = this.props
-
-        fetchJsonP('https://freegeoip.net/json')
-            .then(response => response.json())
-            .then((location) => {
-                createVisitor({
-                    variables: {
-                        url: document.referrer,
-                        device: {
-                            os: platform.os.family,
-                            product: platform.product,
-                            browser: platform.name,
-                        },
-                        location,
-                    },
-                }).then((data) => {
-                    if (hasStorage) localStorage.setItem('visitorID', data.data.createVisitor.id)
-                })
-            })
+        if (hasStorage && !localStorage.getItem('visitorID')) {
+            const { createVisitor, actions } = this.props
+            actions.newVisit(createVisitor)
+        }
     }
 
     render() {
