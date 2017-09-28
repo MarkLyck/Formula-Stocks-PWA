@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { gql, graphql, compose } from 'react-apollo'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
+import Admin from '../'
 import { FileDrop } from './styles'
 import JSONIcon from './json_icon.svg'
 
@@ -38,15 +39,17 @@ class FileUploader extends Component {
         if (!allPlans.length) { return null }
 
         return (
-            <ThemeProvider theme={theme}>
-                <div className="wrapper white">
-                    <h2>Upload JSON files</h2>
-                    <FileDrop onDrop={this.onDrop} accept="application/json">
-                        <h3>Drag and drop JSON files here</h3>
-                        <JSONIcon />
-                    </FileDrop>
-                </div>
-            </ThemeProvider>
+            <Admin>
+                <ThemeProvider theme={theme}>
+                    <div className="wrapper white">
+                        <h2>Upload JSON files</h2>
+                        <FileDrop onDrop={this.onDrop} accept="application/json">
+                            <h3>Drag and drop JSON files here</h3>
+                            <JSONIcon />
+                        </FileDrop>
+                    </div>
+                </ThemeProvider>
+            </Admin>
         )
     }
 }

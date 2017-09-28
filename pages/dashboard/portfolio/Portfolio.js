@@ -76,14 +76,7 @@ Portfolio.propTypes = {
 }
 
 let selectedPlan = (hasStorage && localStorage.getItem('selectedPlan')) ? localStorage.getItem('selectedPlan') : 'entry'
-if (hasStorage) {
-    console.log(hasStorage, localStorage.getItem('selectedPlan'))
-}
-
 if (apolloClient().store) selectedPlan = apolloClient().store.getState().user.selectedPlan
-console.log(selectedPlan)
-console.log('apollo')
-
 
 export default graphql(PortfolioQuery, {
     options: {

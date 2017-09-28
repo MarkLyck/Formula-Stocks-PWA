@@ -1,50 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
-import { hasStorage } from 'common/featureTests'
+import Router from 'next/router'
 import Logo from './logo_horizontal.svg'
+import PlanButtons from './planButtons'
+import AdminButtons from './adminButtons'
 import { Bar } from './styles'
 
-const setPlan = (plan, selectPlan) => {
-    if (hasStorage) localStorage.setItem('selectedPlan', plan)
-    selectPlan(plan)
-}
+const NavBar = ({ selectedPlan, actions }) => {
+    let route = ''
+    if (typeof window !== 'undefined') {
+        route = Router.router.pathname
+    } else {
+        return (<Bar><div /><Logo /></Bar>)
+    }
 
-const NavBar = ({ selectedPlan, actions }) => (
-    <Bar>
-        <div>
-            <Button
-                color="primary"
-                raised={selectedPlan === 'entry'}
-                onClick={() => setPlan('entry', actions.selectPlan)}
-            >
-                Entry
-            </Button>
-            <Button
-                color="primary"
-                raised={selectedPlan === 'premium'}
-                onClick={() => setPlan('premium', actions.selectPlan)}
-            >
-                Premium
-            </Button>
-            <Button
-                color="primary"
-                raised={selectedPlan === 'business'}
-                onClick={() => setPlan('business', actions.selectPlan)}
-            >
-                Business
-            </Button>
-            <Button
-                color="primary"
-                raised={selectedPlan === 'fund'}
-                onClick={() => setPlan('fund', actions.selectPlan)}
-            >
-                Fund
-            </Button>
-        </div>
-        <Logo />
-    </Bar>
-)
+    return (
+        <Bar>
+            {
+                route.indexOf('admin') === -1
+                    ? <PlanButtons selectedPlan={selectedPlan} actions={actions} />
+                    : <AdminButtons route={route} />
+            }
+            <Logo />
+        </Bar>
+    )
+}
 
 NavBar.propTypes = {
     selectedPlan: PropTypes.string,

@@ -1,11 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Dashboard from '../'
-import FileUploader from './FileUploader'
 
-const Admin = () => (
+const Admin = ({ children }) => (
     <Dashboard>
-        <FileUploader />
+        { children }
     </Dashboard>
 )
+
+Admin.propTypes = {
+    children: PropTypes.node,
+}
 
 export default Admin
