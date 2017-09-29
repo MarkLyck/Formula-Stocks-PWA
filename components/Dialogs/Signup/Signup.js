@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import platform from 'platform'
+import Router from 'next/router'
 import { gql, graphql } from 'react-apollo'
 import Dialog, { DialogTitle } from 'material-ui/Dialog'
 import Slide from 'material-ui/transitions/Slide'
+import { hasStorage } from 'common/featureTests'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
 
@@ -16,12 +19,36 @@ class SignUp extends Component {
 
     handleSignup = (card) => {
         const { createUser } = this.props
+        const { accountInfo } = this.state
 
-        const email = 'test@test.com'
-        const password = 'pass'
         const name = 'Mark'
+        const type = 'trial'
+        const location = (hasStorage && localStorage.getItem('location'))
+            ? JSON.parse(localStorage.getItem('location')) : {}
+        const device = {
+            os: platform.os.family,
+            product: platform.product,
+            browser: platform.name,
+        }
 
-        createUser({ variables: { email, password, name } })
+        // TODO handle stripe subscription
+
+        createUser({ variables: {
+            email: accountInfo.email,
+            password: accountInfo.password,
+            address: {
+                country: accountInfo.country,
+                city: accountInfo.city,
+                postalCode: accountInfo.postalCode,
+                address: accountInfo.address,
+            },
+            name,
+            type,
+            location,
+            device,
+        } })
+            .then(() => Router.push('/dashboard/portfolio'))
+            .catch(e => console.error(e))
         console.log(card)
     }
 
@@ -47,7 +74,14 @@ SignUp.propTypes = {
 }
 
 const createUser = gql`
-  mutation ($email: String!, $password: String!, $name: String!) {
+  mutation (
+      $email: String!,
+      $password: String!,
+      $name: String!
+      $type: String!
+      $location: Json!
+      $device: Json!
+  ) {
     createUser(authProvider: {
         email: {
             email: $email,
@@ -55,6 +89,9 @@ const createUser = gql`
         }
     },
     name: $name,
+    type: $type,
+    location: $location,
+    device: $device,
     ) { id }
   }
 `

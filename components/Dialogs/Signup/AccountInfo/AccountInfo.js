@@ -13,6 +13,9 @@ class AccountInfo extends Component {
         email: '',
         password: '',
         country: '',
+        city: '',
+        postalCode: '',
+        address: '',
     }
 
     handleCountrySelect = country => this.setState({ country })
@@ -34,17 +37,20 @@ class AccountInfo extends Component {
                         label="Street address"
                         margin="normal"
                         style={{ width: '100%' }}
+                        onChange={event => this.setState({ address: event.target.value })}
                     />
                     <div>
                         <TextField
                             id="city"
                             label="City"
                             margin="normal"
+                            onChange={event => this.setState({ city: event.target.value })}
                         />
                         <TextField
                             id="postalCode"
                             label="Postal Code"
                             margin="normal"
+                            onChange={event => this.setState({ postalCode: event.target.value })}
                         />
                     </div>
                 </div>

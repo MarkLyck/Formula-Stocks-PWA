@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
-import platform from 'platform'
-import fetchJsonP from 'fetch-jsonp'
 import _ from 'lodash'
 import { hasStorage } from 'common/featureTests'
 
