@@ -6,6 +6,7 @@ import { gql, graphql } from 'react-apollo'
 import Dialog, { DialogTitle } from 'material-ui/Dialog'
 import Slide from 'material-ui/transitions/Slide'
 import { hasStorage } from 'common/featureTests'
+import { getDeviceType } from 'common/helpers'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
 
@@ -29,6 +30,7 @@ class SignUp extends Component {
             os: platform.os.family,
             product: platform.product,
             browser: platform.name,
+            type: getDeviceType(),
         }
 
         // TODO handle stripe subscription
