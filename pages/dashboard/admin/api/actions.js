@@ -6,10 +6,10 @@ const updatingPlan = planName => ({ type: UPDATING_PLAN, plan: planName })
 
 const mutatePlanData = (file, mutatePlan, Plans) => {
     let planId
-    if (file.name.indexOf('basic') > -1 || file.name.indexOf('entry') > -1) { planId = planIds.ENTRY }
-    else if (file.name.indexOf('premium') > -1) { planId = planIds.PREMIUM }
-    else if (file.name.indexOf('business') > -1) { planId = planIds.BUSINESS }
-    else if (file.name.indexOf('fund') > -1) { planId = planIds.FUND }
+    if (file.name.indexOf('basic') > -1 || file.name.indexOf('entry') > -1) planId = planIds.ENTRY
+    else if (file.name.indexOf('premium') > -1) planId = planIds.PREMIUM
+    else if (file.name.indexOf('business') > -1) planId = planIds.BUSINESS
+    else if (file.name.indexOf('fund') > -1) planId = planIds.FUND
 
     const oldPlan = Plans.filter(plan => plan.id === planId)[0]
 
@@ -23,8 +23,7 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
     if (file.name.indexOf('weekly') > -1) {
         const modelSuggestions = suggestions.filter(sugg => sugg.model)
         suggestions = file.data.actionable.concat(modelSuggestions)
-    }
-    else if (file.name.indexOf('monthly') > -1) {
+    } else if (file.name.indexOf('monthly') > -1) {
         portfolioYields = file.data.logs
         file.data.actionable.forEach((sugg) => {
             if (sugg.action === 'SELL') {
@@ -50,8 +49,7 @@ const mutatePlanData = (file, mutatePlan, Plans) => {
         suggestions = weeklySuggestions.concat(modelSuggestions)
         file.data.statistics.percentInCash = file.data.portfolio[file.data.portfolio.length - 1].percentage_weight
         launchStatistics = _.merge(launchStatistics, file.data.statistics)
-    }
-    else if (file.name.indexOf('annual') > -1) {
+    } else if (file.name.indexOf('annual') > -1) {
         statistics = _.clone(statistics)
         statistics.winRatio = (100 - ((statistics.negatives / (statistics.positives + statistics.negatives)) * 100))
         statistics = _.merge(statistics, file.data.statistics)

@@ -9,9 +9,10 @@ import VisitorList from './visitorList'
 
 const uniqueVisitsFromOldSite = 6600
 
-const getPayingSubscribers = allUsers => allUsers.filter(user => user.type === 'subscriber').length
-const getActiveTrials = allUsers => allUsers.filter(user => user.type === 'trial').length
+const getPayingSubscribers = allUsers => allUsers && allUsers.filter(user => user.type === 'subscriber').length
+const getActiveTrials = allUsers => allUsers && allUsers.filter(user => user.type === 'trial').length
 const getTrialConversionRate = (allUsers, activeTrials) => {
+    if (!allUsers) return 0
     const stayedThroughTrial = allUsers.filter((user) => {
         // if user cancelled AFTER the trial ended.
         // or if the user is currently a paying subscriber
@@ -28,7 +29,7 @@ const getTrialConversionRate = (allUsers, activeTrials) => {
 }
 
 const Panel = ({ visitorCount, allUsers, allVisitors }) => {
-    const uniqueVisitors = visitorCount.count + uniqueVisitsFromOldSite
+    const uniqueVisitors = visitorCount ? (visitorCount.count + uniqueVisitsFromOldSite) : ''
     const activeTrials = getActiveTrials(allUsers)
     return (
         <Admin>

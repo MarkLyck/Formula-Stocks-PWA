@@ -16,7 +16,7 @@ const VisitorList = ({ visitors }) => (
                 </TableRow>
             </TableHead>
             <TableBody>
-                {visitors.map(visitor => <Visitor visitor={visitor} key={visitor.id} />)}
+                {visitors && visitors.map(visitor => <Visitor visitor={visitor} key={visitor.id} />)}
             </TableBody>
         </Table>
     </Paper>
