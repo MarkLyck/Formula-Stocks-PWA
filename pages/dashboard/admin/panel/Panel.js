@@ -5,7 +5,7 @@ import { gql, graphql } from 'react-apollo'
 import _ from 'lodash'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
-import Admin from '../'
+import Dashboard from '../../'
 import DAUGraph from './DAUGraph'
 import VisitorList from './visitorList'
 
@@ -34,7 +34,7 @@ const Panel = ({ visitorCount, allUsers, allVisitors }) => {
     const uniqueVisitors = visitorCount ? (visitorCount.count + uniqueVisitsFromOldSite) : ''
     const activeTrials = getActiveTrials(allUsers)
     return (
-        <Admin>
+        <Dashboard>
             <StatisticsContainer>
                 <StatisticsBox title="Unique visitors" value={uniqueVisitors} icon="users" />
                 <StatisticsBox title="Subscribers" value={getPayingSubscribers(allUsers)} icon="flask" />
@@ -43,7 +43,7 @@ const Panel = ({ visitorCount, allUsers, allVisitors }) => {
             </StatisticsContainer>
             <DAUGraph visitors={allVisitors} users={allUsers} />
             <VisitorList visitors={allVisitors} />
-        </Admin>
+        </Dashboard>
     )
 }
 
