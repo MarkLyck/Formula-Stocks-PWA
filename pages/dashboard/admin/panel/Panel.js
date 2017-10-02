@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import { gql, graphql } from 'react-apollo'
 import _ from 'lodash'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import Admin from '../'
+import DAUGraph from './DAUGraph'
 import VisitorList from './visitorList'
 
 const uniqueVisitsFromOldSite = 6600
@@ -39,6 +41,7 @@ const Panel = ({ visitorCount, allUsers, allVisitors }) => {
                 <StatisticsBox title="Trials" value={activeTrials} icon="hourglass-half" />
                 <StatisticsBox title="Trial conversion rate" value={`${getTrialConversionRate(allUsers, activeTrials)}%`} icon="hourglass-end" />
             </StatisticsContainer>
+            <DAUGraph visitors={allVisitors} users={allUsers} />
             <VisitorList visitors={allVisitors} />
         </Admin>
     )
@@ -50,12 +53,16 @@ Panel.propTypes = {
     allVisitors: PropTypes.array,
 }
 
+const date30DaysAgo = moment().subtract(30, 'days').format('YYYY-MM-DD')
+
 const VisitorsQuery = gql`
   query {
       visitorCount: _allVisitorsMeta {
         count
       }
-      allVisitors(first: 20) {
+      allVisitors(filter: {
+        createdAt_gte: "${date30DaysAgo}",
+      }) {
           id
           createdAt
           location
@@ -64,6 +71,7 @@ const VisitorsQuery = gql`
       }
       allUsers {
         id
+        createdAt
         name
         email
       },
