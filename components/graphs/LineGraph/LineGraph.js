@@ -87,7 +87,7 @@ const LineGraph = ({
         }
         // return <AmCharts.React {...config} />
     }
-    return <div id={id} style={{ height: '400px', width: '800px' }} />
+    return <div id={id} style={{ height: '400px', width: '100%' }} />
 }
 
 LineGraph.defaultProps = {

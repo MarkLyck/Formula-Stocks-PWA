@@ -60,11 +60,9 @@ const DAUGraph = ({ visitors, users }) => {
         <Paper>
             <GraphContainer>
                 <LineGraph
-                    id="portfolio-graph"
+                    id="dau-graph"
                     graphs={graphs}
                     data={chartData}
-                    unit="%"
-                    unitPosition="right"
                     axisAlpha={0.5}
                 />
             </GraphContainer>

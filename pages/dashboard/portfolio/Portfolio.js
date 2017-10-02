@@ -75,8 +75,10 @@ Portfolio.propTypes = {
     refetch: PropTypes.func,
 }
 
-let selectedPlan = (hasStorage && localStorage.getItem('selectedPlan')) ? localStorage.getItem('selectedPlan') : 'entry'
-if (apolloClient().store) selectedPlan = apolloClient().store.getState().user.selectedPlan
+let selectedPlan = hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan') : 'entry'
+if (apolloClient().store && apolloClient().store.getState().user.selectedPlan) {
+    selectedPlan = apolloClient().store.getState().user.selectedPlan
+}
 
 export default graphql(PortfolioQuery, {
     options: {

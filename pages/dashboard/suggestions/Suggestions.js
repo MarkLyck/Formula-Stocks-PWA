@@ -21,7 +21,10 @@ class Suggestions extends Component {
 
     shouldComponentUpdate(nextProps) {
         // Only update if the selectedPlan and plan are the same.
-        return nextProps.selectedPlan === nextProps.Plan.name
+        // if (nextProps.Plan) {
+        //     return nextProps.selectedPlan === nextProps.Plan.name
+        // }
+        return true
     }
 
     render() {
@@ -63,8 +66,10 @@ Suggestions.propTypes = {
     refetch: PropTypes.func,
 }
 
-let selectedPlan = hasStorage ? localStorage.getItem('selectedPlan') : 'entry'
-if (apolloClient().store) selectedPlan = apolloClient().store.getState().user.selectedPlan
+let selectedPlan = hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan') : 'entry'
+if (apolloClient().store && apolloClient().store.getState().user.selectedPlan) {
+    selectedPlan = apolloClient().store.getState().user.selectedPlan
+}
 
 export default graphql(SuggestionsQuery, {
     options: {
