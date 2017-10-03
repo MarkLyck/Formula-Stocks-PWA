@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
 import Visitor from './visitor'
+import { ContainerStyle } from './styles'
 
 const VisitorList = ({ visitors }) => (
-    <Paper>
+    <Paper style={ContainerStyle}>
         <Table>
             <TableHead>
                 <TableRow>

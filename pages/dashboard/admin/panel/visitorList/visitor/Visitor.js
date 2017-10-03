@@ -41,8 +41,8 @@ const getDeviceIcon = (device) => {
 const Visitor = ({ visitor }) => (
     <TableRow key={visitor.id}>
         <TableCell>
-            {getFlag(visitor.location.country_code)}
-            <p>{visitor.location.country_name}</p>
+            {visitor.location && getFlag(visitor.location.country_code)}
+            <p>{visitor.location && visitor.location.country_name}</p>
         </TableCell>
         <TableCell onClick={() => console.log(visitor.url)}>
             <p>{visitor.url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0]}</p>
@@ -51,9 +51,9 @@ const Visitor = ({ visitor }) => (
             {moment(visitor.createdAt).fromNow()}
         </TableCell>
         <TableCell style={tableCellStyle}>
-            <i className={`fa ${getDeviceIcon(visitor.device)}`} />
-            <Icon src={`/static/device/${getOSIcon(visitor.device.os)}`} alt="os" />
-            <Icon src={`/static/device/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />
+            {visitor.device && <i className={`fa ${getDeviceIcon(visitor.device)}`} />}
+            {visitor.device && <Icon src={`/static/device/${getOSIcon(visitor.device.os)}`} alt="os" />}
+            {visitor.device && <Icon src={`/static/device/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />}
         </TableCell>
     </TableRow>
 )

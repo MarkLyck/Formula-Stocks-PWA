@@ -1,9 +1,12 @@
 import styled from 'emotion/react'
 
+export const ContainerStyle = {
+    margin: '16px',
+}
+
 export const GraphContainer = styled('div')`
     position: relative;
-    width: calc(100% - 24px);
-    margin: 0 auto;
+    width: 100%;
     .chart-balloon {
         display: flex;
         flex-direction: column;

@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
 import Paper from 'material-ui/Paper'
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
+import { ContainerStyle } from './styles'
 import Dashboard from '../../'
 import User from './user'
 
 const UserList = ({ allUsers }) => (
     <Dashboard>
-        <Paper>
+        <Paper style={ContainerStyle}>
             <Table>
                 <TableHead>
                     <TableRow>
