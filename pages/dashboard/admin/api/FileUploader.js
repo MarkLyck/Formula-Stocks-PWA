@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { gql, graphql, compose } from 'react-apollo'
+import Paper from 'material-ui/Paper'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import Admin from '../'
-import { FileDrop } from './styles'
+import { FileDrop, containerStyles } from './styles'
 import JSONIcon from './json_icon.svg'
 
 const acceptedFilenames = [
@@ -41,13 +42,13 @@ class FileUploader extends Component {
         return (
             <Admin>
                 <ThemeProvider theme={theme}>
-                    <div className="wrapper white">
+                    <Paper style={containerStyles}>
                         <h2>Upload JSON files</h2>
                         <FileDrop onDrop={this.onDrop} accept="application/json">
                             <h3>Drag and drop JSON files here</h3>
                             <JSONIcon />
                         </FileDrop>
-                    </div>
+                    </Paper>
                 </ThemeProvider>
             </Admin>
         )

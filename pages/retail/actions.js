@@ -1,7 +1,10 @@
 import fetchJsonP from 'fetch-jsonp'
 import platform from 'platform'
 import { hasStorage } from 'common/featureTests'
+import { getDeviceType } from 'common/helpers'
 import { CREATE_VISIT } from './constants'
+
+console.log(platform)
 
 const createVisit = createVisitor => fetchJsonP('https://freegeoip.net/json')
     .then(response => response.json())
@@ -13,6 +16,7 @@ const createVisit = createVisitor => fetchJsonP('https://freegeoip.net/json')
                     os: platform.os.family,
                     product: platform.product,
                     browser: platform.name,
+                    type: getDeviceType(),
                 },
                 location,
             },

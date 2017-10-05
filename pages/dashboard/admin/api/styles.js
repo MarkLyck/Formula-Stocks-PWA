@@ -1,6 +1,11 @@
 import styled from 'emotion/react'
 import Dropzone from 'react-dropzone'
 
+export const containerStyles = {
+    padding: '16px',
+    margin: '16px',
+}
+
 export const FileDrop = styled(Dropzone)`
     display: flex;
     flex-direction: column;
