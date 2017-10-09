@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { gql, graphql } from 'react-apollo'
 import _ from 'lodash'
+import { statisticsId } from 'common/constants'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import Dashboard from '../../'
 import DAUGraph from './DAUGraph'
+import VisitorStatistics from './statistics'
 import VisitorList from './visitorList'
 
 const uniqueVisitsFromOldSite = 6600
@@ -30,7 +32,7 @@ const getTrialConversionRate = (allUsers, activeTrials) => {
     return conversionRate
 }
 
-const Panel = ({ visitorCount, allUsers, allVisitors }) => {
+const Panel = ({ visitorCount, allUsers, allVisitors, Statistics }) => {
     const uniqueVisitors = visitorCount ? (visitorCount.count + uniqueVisitsFromOldSite) : ''
     const activeTrials = getActiveTrials(allUsers)
     return (
@@ -42,6 +44,7 @@ const Panel = ({ visitorCount, allUsers, allVisitors }) => {
                 <StatisticsBox title="Trial conversion rate" value={`${getTrialConversionRate(allUsers, activeTrials)}%`} icon="hourglass-end" />
             </StatisticsContainer>
             <DAUGraph visitors={allVisitors} users={allUsers} />
+            <VisitorStatistics statistics={Statistics} />
             <VisitorList visitors={allVisitors} />
         </Dashboard>
     )
@@ -51,11 +54,12 @@ Panel.propTypes = {
     visitorCount: PropTypes.object,
     allUsers: PropTypes.array,
     allVisitors: PropTypes.array,
+    Statistics: PropTypes.object,
 }
 
 const date30DaysAgo = moment().subtract(30, 'days').format('YYYY-MM-DD')
 
-const VisitorsQuery = gql`
+const PanelQuery = gql`
   query {
       visitorCount: _allVisitorsMeta {
         count
@@ -74,10 +78,18 @@ const VisitorsQuery = gql`
         createdAt
         name
         email
-      },
+      }
+      Statistics(id: "${statisticsId}") {
+        id
+        urls
+        devices
+        browsers
+        countries
+        os
+      }
   }
 `
 
-export default graphql(VisitorsQuery, {
+export default graphql(PanelQuery, {
     props: ({ data }) => ({ ...data }),
 })(Panel)

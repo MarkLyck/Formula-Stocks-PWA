@@ -4,9 +4,10 @@ import PropTypes from 'prop-types'
 const PieChart = ({
     id,
     data,
-    unit,
-    colors,
+    unit = '',
+    colors = [],
 }) => {
+    console.log(data)
     const config = {
         type: 'pie',
         dataProvider: data,
