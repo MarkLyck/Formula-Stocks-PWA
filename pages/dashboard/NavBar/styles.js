@@ -1,6 +1,7 @@
 import styled from 'emotion/react'
 
 export const Bar = styled('div')`
+    position: relative;
     height: 64px;
     padding: 0 24px;
     width: 100%;
@@ -10,8 +11,23 @@ export const Bar = styled('div')`
     justify-content: space-between;
     align-items: center;
     background: ${props => props.theme.colors.white};
+
     button {
         margin-right: 8px;
+    }
+    @media(max-width: 820px) {
+        > svg {
+            display: none;
+        }
+        &::after {
+            content: '';
+            background: url('/static/flask.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: calc(100% - 24px);
+            box-sizing: border-box;
+            width: 40px;
+        }
     }
 `
 

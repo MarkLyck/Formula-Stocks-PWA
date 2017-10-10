@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Router from 'next/router'
 import Logo from './logo_horizontal.svg'
 import PlanButtons from './planButtons'
+import PlanMenu from './planMenu'
 import AdminButtons from './adminButtons'
 import { Bar } from './styles'
 
@@ -16,6 +17,7 @@ const NavBar = ({ selectedPlan, actions }) => {
 
     return (
         <Bar>
+            <PlanMenu selectedPlan={selectedPlan} actions={actions} />
             {
                 route.indexOf('admin') === -1
                     ? <PlanButtons selectedPlan={selectedPlan} actions={actions} />

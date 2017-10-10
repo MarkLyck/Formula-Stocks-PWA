@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from 'material-ui/Button'
 import { hasStorage } from 'common/featureTests'
+import { ButtonContainer } from './styles'
 
 const setPlan = (plan, selectPlan) => {
     if (hasStorage) localStorage.setItem('selectedPlan', plan)
@@ -9,7 +10,7 @@ const setPlan = (plan, selectPlan) => {
 }
 
 const PlanButtons = ({ selectedPlan, actions }) => (
-    <div key="plan-buttons">
+    <ButtonContainer key="plan-buttons">
         <Button
             color="primary"
             raised={selectedPlan === 'entry'}
@@ -38,7 +39,7 @@ const PlanButtons = ({ selectedPlan, actions }) => (
         >
             Fund
         </Button>
-    </div>
+    </ButtonContainer>
 )
 
 PlanButtons.propTypes = {
