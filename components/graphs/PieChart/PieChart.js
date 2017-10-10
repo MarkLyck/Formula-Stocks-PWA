@@ -7,7 +7,6 @@ const PieChart = ({
     unit = '',
     colors = [],
 }) => {
-    console.log(data)
     const config = {
         type: 'pie',
         dataProvider: data,
@@ -23,7 +22,7 @@ const PieChart = ({
     if (data.length && typeof window !== 'undefined') {
         window.AmCharts.makeChart(id, { ...config })
     }
-    return <div id={id} style={{ height: '100px', width: '100px' }} />
+    return <div id={id} />
 }
 
 PieChart.defaultProps = {
