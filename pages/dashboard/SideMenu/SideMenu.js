@@ -15,14 +15,14 @@ const isActive = (route) => {
 const SideMenu = () => (
     <ThemeProvider theme={theme}>
         <MenuList>
-            <MenuItem icon="flask" route="suggestions" isActive={isActive('suggestions')}>Suggestions</MenuItem>
-            <MenuItem icon="chart-line" route="portfolio" isActive={isActive('portfolio')}>Portfolio</MenuItem>
-            <MenuItem icon="tasks" route="trades" isActive={isActive('trades')}>Portfolio trades</MenuItem>
-            <MenuItem icon="newspaper" route="articles" isActive={isActive('articles')}>Articles</MenuItem>
-            <MenuItem icon="tachometer-alt" route="admin" isActive={isActive('admin')}>Admin</MenuItem>
-            <MenuItem icon="user-alt" route="account" isActive={isActive('account')}>Account</MenuItem>
-            <MenuItem icon="sign-out" route="">Log out</MenuItem>
-            <MenuItem icon="question-circle">Support</MenuItem>
+            <MenuItem icon="flask" route="suggestions" isActive={isActive('suggestions')}><h4>Suggestions</h4></MenuItem>
+            <MenuItem icon="chart-line" route="portfolio" isActive={isActive('portfolio')}><h4>Portfolio</h4></MenuItem>
+            <MenuItem icon="tasks" route="trades" isActive={isActive('trades')}><h4>Portfolio trades</h4></MenuItem>
+            <MenuItem icon="newspaper" route="articles" isActive={isActive('articles')}><h4>Articles</h4></MenuItem>
+            <MenuItem icon="tachometer-alt" route="admin" isActive={isActive('admin')}><h4>Admin</h4></MenuItem>
+            <MenuItem icon="user-alt" route="account" isActive={isActive('account')}><h4>Account</h4></MenuItem>
+            <MenuItem icon="sign-out" route=""><h4>Log out</h4></MenuItem>
+            <MenuItem icon="question-circle"><h4>Support</h4></MenuItem>
         </MenuList>
     </ThemeProvider>
 )

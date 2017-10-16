@@ -4,7 +4,6 @@ export const Button = styled('button')`
     position: relative;
     margin-bottom: 32px;
     width: 56px;
-    height: 56px;
     padding: 12px;
     border-radius: 8px;
     display: flex;
@@ -13,7 +12,6 @@ export const Button = styled('button')`
     flex-direction: column;
     background: none;
     border: none;
-    color: ${props => props.theme.colors.lightGray};
     background: ${props => (props['data-isActive'] ? props.theme.colors.primary : 'none')};
     color: ${props => (props['data-isActive'] ? props.theme.colors.white : props.theme.colors.lightGray)};
     outline: none;
@@ -21,6 +19,15 @@ export const Button = styled('button')`
         font-size: 24px;
         margin-bottom: 6px;
     }
+    h4 {
+        min-width: 50px;
+        display: block;
+        text-align: center;
+        font-weight: 600;
+        font-size: 11px;
+        margin: 0;
+        margin-top: 8px;
+      }
     &:hover {
         cursor: pointer;
         color: ${props => (props['data-isActive'] ? props.theme.colors.white : props.theme.colors.primary)};
