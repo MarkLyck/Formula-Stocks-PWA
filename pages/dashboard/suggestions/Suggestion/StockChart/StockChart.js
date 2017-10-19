@@ -2,19 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import LineGraph from 'components/graphs/LineGraph'
 import theme from 'common/theme'
-import { GraphContainer } from './styles'
+import { GraphContainer, LoadingContainer, FailedContainer } from './styles'
 
 const createChartData = sixMonthsPrices => sixMonthsPrices.map(point => ({
     price: point[1],
     date: point[0],
 }))
 
-const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action }) => {
-    if (!sixMonthsPrices || !sixMonthsPrices.length || !ticker) {
+const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, stockFetchFailed }) => {
+    if (!stockFetchFailed && (!sixMonthsPrices || !sixMonthsPrices.length || !ticker)) {
         return (
-            <div id="result-chart" className="loading">
-                <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-            </div>
+            <LoadingContainer theme={theme}>
+                <i className="fa fa-spinner-third fa-spin fa-3x fa-fw" />
+                <h4>Loading</h4>
+            </LoadingContainer>
+        )
+    } else if (stockFetchFailed) {
+        return (
+            <FailedContainer theme={theme}>
+                <i className="fa fa-exclamation-circle fa-2x" />
+                {/* <i className="fa fa-info fa-spin fa-3x fa-fw" /> */}
+                <h4>No graph data available</h4>
+            </FailedContainer>
         )
     }
     const chartData = createChartData(sixMonthsPrices)
@@ -81,6 +90,7 @@ StockChart.propTypes = {
     ticker: PropTypes.string,
     action: PropTypes.string,
     suggestedPrice: PropTypes.number,
+    stockFetchFailed: PropTypes.bool,
 }
 
 export default StockChart

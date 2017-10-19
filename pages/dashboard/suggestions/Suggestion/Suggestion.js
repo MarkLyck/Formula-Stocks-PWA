@@ -11,16 +11,23 @@ import StockChart from './StockChart'
 import { SuggContainer, CardContentStyles, SuggHeader, ContentContainer, StockInfoList, Placeholder } from './styles'
 
 class Suggestion extends Component {
-    state = { detailsIsVisible: false }
+    state = { detailsIsVisible: false, stockFetchFailed: false }
 
     componentDidMount() {
         this.props.refetch({ ticker: this.props.suggestion.ticker })
+        window.setTimeout(() => this.checkFetchStatus(), 10000)
+    }
+
+    checkFetchStatus() {
+        if (!this.props.allStocks.length) {
+            this.setState({ stockFetchFailed: true })
+        }
     }
 
     toggleDetails = () => this.setState({ detailsIsVisible: !this.state.detailsIsVisible })
     render() {
         const { suggestion, allStocks } = this.props
-        const { detailsIsVisible } = this.state
+        const { detailsIsVisible, stockFetchFailed } = this.state
 
         const stock = allStocks ? allStocks[0] : {}
 
@@ -56,6 +63,7 @@ class Suggestion extends Component {
                                 ticker={suggestion.ticker}
                                 suggestedPrice={suggestion.suggested_price}
                                 action={suggestion.action}
+                                stockFetchFailed={stockFetchFailed}
                             />
                         </ContentContainer>
                     </CardContent>
