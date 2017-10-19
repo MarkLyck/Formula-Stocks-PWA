@@ -13,8 +13,7 @@ app.prepare().then(() => {
     const server = createServer((req, res) => {
         if (req.url === '/sw.js') {
             app.serveStatic(req, res, path.resolve('./.next/sw.js'))
-        }
-        else {
+        } else {
             handle(req, res)
         }
     })

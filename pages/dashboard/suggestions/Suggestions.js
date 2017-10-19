@@ -21,9 +21,9 @@ class Suggestions extends Component {
 
     shouldComponentUpdate(nextProps) {
         // Only update if the selectedPlan and plan are the same.
-        // if (nextProps.Plan) {
-        //     return nextProps.selectedPlan === nextProps.Plan.name
-        // }
+        if (nextProps.Plan) {
+            return nextProps.selectedPlan === nextProps.Plan.name
+        }
         return true
     }
 

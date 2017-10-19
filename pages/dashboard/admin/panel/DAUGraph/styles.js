@@ -7,6 +7,9 @@ export const ContainerStyle = {
 export const GraphContainer = styled('div')`
     position: relative;
     width: 100%;
+    br {
+        display: none;
+    }
     .chart-balloon {
         display: flex;
         flex-direction: column;
