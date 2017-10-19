@@ -1,8 +1,9 @@
 import styled from 'emotion/react'
 
 export const MenuContainer = styled('div')`
-    @media(min-width: 600px) {
-        display: none;
+    display: none;
+    @media(max-width: 600px) {
+        display: block;
     }
 `
 export const SelectedPlanName = styled('p')`

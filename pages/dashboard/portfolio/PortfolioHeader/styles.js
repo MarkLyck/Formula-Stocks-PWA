@@ -3,8 +3,12 @@ import styled from 'emotion/react'
 export const GraphContainer = styled('div')`
     position: relative;
     width: 100%;
+    height: 400px;
     br {
         display: none;
+    }
+    #portfolio-graph {
+        height: 100%;
     }
     .chart-balloon {
         display: flex;

@@ -17,7 +17,7 @@ const NavBar = ({ selectedPlan, actions }) => {
 
     return (
         <Bar>
-            <PlanMenu selectedPlan={selectedPlan} actions={actions} />
+            <PlanMenu selectedPlan={selectedPlan} actions={actions} className="plan-menu-container" />
             {
                 route.indexOf('admin') === -1
                     ? <PlanButtons selectedPlan={selectedPlan} actions={actions} />

@@ -15,6 +15,7 @@ export const Bar = styled('div')`
     button {
         margin-right: 8px;
     }
+
     @media(max-width: 820px) {
         > svg {
             display: none;

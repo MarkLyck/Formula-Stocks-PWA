@@ -11,6 +11,7 @@ import Dashboard from '../'
 import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
 import Holdings from './Holdings'
+import { PortfolioContainer } from './styles'
 
 class Portfolio extends Component {
     componentWillReceiveProps(nextProps) {
@@ -30,7 +31,7 @@ class Portfolio extends Component {
         if (!Plan) return ''
         return (
             <Dashboard>
-                <div>
+                <PortfolioContainer>
                     <PortfolioHeader
                         portfolioYields={Plan.portfolioYields}
                         marketPrices={DJIA.pricesSince2009}
@@ -39,13 +40,13 @@ class Portfolio extends Component {
                     />
                     <AnnualReturns portfolioYields={Plan.portfolioYields} />
                     <Holdings portfolio={Plan.portfolio} />
-                    <StatisticsContainer>
-                        <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
-                        <StatisticsBox title="Sold with profit" value={`${Plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
-                        <StatisticsBox title="Portfolio" value={Plan.portfolio.length} icon="list-ul" />
-                        <StatisticsBox title="Percent in cash" value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
-                    </StatisticsContainer>
-                </div>
+                </PortfolioContainer>
+                <StatisticsContainer>
+                    <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
+                    <StatisticsBox title="Sold with profit" value={`${Plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
+                    <StatisticsBox title="Portfolio" value={Plan.portfolio.length} icon="list-ul" />
+                    <StatisticsBox title="Percent in cash" value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
+                </StatisticsContainer>
             </Dashboard>
         )
     }

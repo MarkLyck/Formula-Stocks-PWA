@@ -8,6 +8,10 @@ class LineGraph extends Component {
         this.makeChart()
     }
 
+    componentDidUpdate() {
+        this.makeChart()
+    }
+
     getConfig = () => {
         const {
             data,

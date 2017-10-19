@@ -20,8 +20,9 @@ class PlanButtons extends Component {
     render() {
         const { selectedPlan } = this.props
         return (
-            <MenuContainer>
+            <MenuContainer key="plan-menu-container">
                 <Button
+                    className="plan-menu-button"
                     color="primary"
                     raised
                     aria-owns={this.state.open ? 'plan-menu' : null}
