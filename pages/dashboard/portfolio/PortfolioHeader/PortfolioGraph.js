@@ -96,7 +96,8 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName }) => {
                 data={chartData}
                 unit="%"
                 unitPosition="right"
-                axisAlpha={0.5}
+                axisAlpha={0}
+                marginRight={-4}
                 maximum={maximum}
                 minimum={minimum}
                 baseValue={minimum}
