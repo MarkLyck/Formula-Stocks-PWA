@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { gql, graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import theme from 'common/theme'
 import { TableBody, TableRow, TableCell } from 'material-ui/Table'
@@ -66,8 +67,25 @@ class PortfolioItem extends Component {
     }
 }
 
+const PortfolioStockQuery = gql`
+  query PortfolioStockQuery($ticker: String) {
+    allStocks(filter: {
+        ticker: $ticker
+    }) {
+        ticker
+        latestPrice
+        sixMonthsPrices
+    }
+  }
+`
+
 PortfolioItem.propTypes = {
     stock: PropTypes.object,
 }
 
-export default PortfolioItem
+export default graphql(PortfolioStockQuery, {
+    options: {
+        variables: { ticker: '' },
+    },
+    props: ({ data }) => ({ ...data }),
+})(PortfolioItem)
