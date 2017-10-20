@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Paper from 'material-ui/Paper'
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
+import Table, { TableCell, TableHead, TableRow } from 'material-ui/Table'
 import { ThemeProvider } from 'emotion/react/theming'
 import theme from 'common/theme'
 import PortfolioItem from './PortfolioItem'
@@ -29,9 +29,7 @@ const Holdings = ({ portfolio }) => (
                             <TableCell numeric style={TableCellPadding} className="days-owned">Days owned</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody style={{ color: theme.colors.text }}>
-                        {portfolio.map(stock => <PortfolioItem stock={stock} key={stock.ticker} />)}
-                    </TableBody>
+                    {portfolio.map(stock => <PortfolioItem stock={stock} key={stock.ticker} />)}
                 </Table>
             </TableContainer>
         </Paper>
