@@ -34,7 +34,7 @@ export const headerStyle = {
 export const RightSide = styled('div')`
     display: flex;
     flex-direction: column;
-    width: 240px;
+    width: 180px;
     padding: 16px;
     .results {
         margin-bottom: 16px;
@@ -60,8 +60,8 @@ export const RightSide = styled('div')`
         position: relative;
         margin-top: auto;
         width: 100%;
-        height: 160px;
-        &::after {
+        height: 180px;
+        &::before {
             content: 'allocation';
             display: block;
             position: absolute;
@@ -70,17 +70,24 @@ export const RightSide = styled('div')`
             transform: translate(-50%, -50%);
         }
     }
+    @media(max-width: 800px) {
+        display: none;
+    }
 `
 
 export const LeftSide = styled('div')`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 180px);
     border-right: 1px solid ${props => props.theme.colors.lightGray};
     h4 {
         font-weight: 400;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         margin: 16px;
+    }
+    @media(max-width: 800px) {
+        width: 100%;
+        border: none;
     }
 `
 

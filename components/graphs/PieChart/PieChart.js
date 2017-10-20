@@ -26,6 +26,9 @@ class PieChart extends Component {
             radius: '40%',
             innerRadius: '70%',
             labelsEnabled: false,
+            balloon: {
+                fillAlpha: 1,
+            },
             colors,
         }
 

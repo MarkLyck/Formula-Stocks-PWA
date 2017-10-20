@@ -3,27 +3,39 @@ import PropTypes from 'prop-types'
 
 import Paper from 'material-ui/Paper'
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
-
+import { ThemeProvider } from 'emotion/react/theming'
+import theme from 'common/theme'
 import PortfolioItem from './PortfolioItem'
+import { TableContainer, HeaderContainer } from './styles'
+
+const TableCellPadding = { padding: '0 16px' }
 
 const Holdings = ({ portfolio }) => (
-    <Paper>
-        <Table>
-            <TableHead>
-                <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell numeric>Allocation</TableCell>
-                    <TableCell numeric>Return</TableCell>
-                    <TableCell numeric>Cost basis</TableCell>
-                    <TableCell numeric>Last price</TableCell>
-                    <TableCell numeric>Days owned</TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {portfolio.map(stock => <PortfolioItem stock={stock} key={stock.ticker} />)}
-            </TableBody>
-        </Table>
-    </Paper>
+    <ThemeProvider theme={theme}>
+        <Paper>
+            <HeaderContainer>
+                <h4>Holdings</h4>
+                <h4 className="stocks-number">{portfolio.length - 1} stocks</h4>
+            </HeaderContainer>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell style={TableCellPadding}>Stock</TableCell>
+                            <TableCell numeric style={TableCellPadding} className="allocation">Allocation</TableCell>
+                            <TableCell numeric style={TableCellPadding} className="return">Return</TableCell>
+                            <TableCell numeric style={TableCellPadding} className="cost-basis">Cost basis</TableCell>
+                            <TableCell numeric style={TableCellPadding} className="last-price">Last price</TableCell>
+                            <TableCell numeric style={TableCellPadding} className="days-owned">Days owned</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody style={{ color: theme.colors.text }}>
+                        {portfolio.map(stock => <PortfolioItem stock={stock} key={stock.ticker} />)}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
+    </ThemeProvider>
 )
 
 Holdings.propTypes = {
