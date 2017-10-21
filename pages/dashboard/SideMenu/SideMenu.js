@@ -19,7 +19,7 @@ const SideMenu = () => (
             <MenuItem icon="chart-line" route="portfolio" isActive={isActive('portfolio')}><h4>Portfolio</h4></MenuItem>
             <MenuItem icon="tasks" route="trades" isActive={isActive('trades')}><h4>Portfolio trades</h4></MenuItem>
             <MenuItem icon="newspaper" route="articles" isActive={isActive('articles')}><h4>Articles</h4></MenuItem>
-            <MenuItem icon="tachometer-alt" route="admin" isActive={isActive('admin')}><h4>Admin</h4></MenuItem>
+            <MenuItem icon="tachometer-alt" route="admin/panel" isActive={isActive('admin')}><h4>Admin</h4></MenuItem>
             <MenuItem icon="user-alt" route="account" isActive={isActive('account')}><h4>Account</h4></MenuItem>
             <MenuItem icon="sign-out" route=""><h4>Log out</h4></MenuItem>
             <MenuItem icon="question-circle"><h4>Support</h4></MenuItem>
