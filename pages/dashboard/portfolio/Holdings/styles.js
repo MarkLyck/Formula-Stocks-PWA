@@ -15,6 +15,12 @@ export const HeaderContainer = styled('div')`
 `
 
 export const TableContainer = styled('div')`
+    .stock-row {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     @media(max-width: 880px) {
         .days-owned {
             display: none;

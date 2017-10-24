@@ -41,7 +41,7 @@ class PortfolioItem extends Component {
                 <TableRow
                     key={stock.ticker}
                     style={{ fontWeight: '500' }}
-                    className={isCash ? 'cash-row' : ''}
+                    className={isCash ? 'cash-row' : 'stock-row'}
                     onClick={this.toggleExpandStock}
                 >
                     <TableCell style={TableCellPadding}>
