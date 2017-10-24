@@ -3,21 +3,32 @@ import { gql, graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import theme from 'common/theme'
 import { TableBody, TableRow, TableCell } from 'material-ui/Table'
+import PortfolioitemGraph from './PortfolioItemGraph'
 import { PercentChange, NameCellWrapper } from './styles'
 
 class PortfolioItem extends Component {
     state = {
         isExpanded: false,
+        stockFetchFailed: false,
+    }
+
+    checkFetchStatus() {
+        if (!this.props.allStocks.length) {
+            this.setState({ stockFetchFailed: true })
+        }
     }
 
     toggleExpandStock = () => {
         this.setState({ isExpanded: !this.state.isExpanded })
-        console.log('toggleExpandStock')
+        if (!this.props.allStocks.length) {
+            this.props.refetch({ ticker: this.props.stock.ticker })
+            window.setTimeout(() => this.checkFetchStatus(), 10000)
+        }
     }
 
     render() {
-        const { stock } = this.props
-        const { isExpanded } = this.state
+        const { stock, allStocks } = this.props
+        const { isExpanded, stockFetchFailed } = this.state
 
         const costBasisPrice = stock.purchase_price - stock.dividends
         const percentIncrease = (((stock.latest_price - costBasisPrice) * 100) / costBasisPrice).toFixed(2)
@@ -34,7 +45,7 @@ class PortfolioItem extends Component {
                     onClick={this.toggleExpandStock}
                 >
                     <TableCell style={TableCellPadding}>
-                        <NameCellWrapper isCash={isCash}>
+                        <NameCellWrapper data-isCash={isCash}>
                             <i className={`fa fa-fw fa-${isCash ? 'dollar-sign' : 'flask'}`} />
                             <div>
                                 {!isCash && <p className="stock-name">{stock.name}</p>}
@@ -61,7 +72,20 @@ class PortfolioItem extends Component {
                         <p>{stock.days_owned}</p>
                     </TableCell>
                 </TableRow>
-                {isExpanded && <div>TEST</div>}
+                {
+                    isExpanded && (
+                        <TableRow>
+                            <TableCell colSpan={6} style={{ padding: 0, maxWidth: 'calc(100vw - 124px)' }}>
+                                <PortfolioitemGraph
+                                    historicPrices={allStocks[0] && allStocks[0].historicPrices}
+                                    ticker={stock.ticker}
+                                    costBasis={costBasisPrice}
+                                    stockFetchFailed={stockFetchFailed}
+                                />
+                            </TableCell>
+                        </TableRow>
+                    )
+                }
             </TableBody>
         )
     }
@@ -72,15 +96,15 @@ const PortfolioStockQuery = gql`
     allStocks(filter: {
         ticker: $ticker
     }) {
-        ticker
-        latestPrice
-        sixMonthsPrices
+        historicPrices
     }
   }
 `
 
 PortfolioItem.propTypes = {
     stock: PropTypes.object,
+    allStocks: PropTypes.array,
+    refetch: PropTypes.func,
 }
 
 export default graphql(PortfolioStockQuery, {

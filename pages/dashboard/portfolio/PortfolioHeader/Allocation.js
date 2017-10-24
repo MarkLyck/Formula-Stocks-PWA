@@ -20,9 +20,6 @@ const Allocation = ({ portfolio, id }) => {
         }
     })
 
-    console.log(allocation)
-    console.log(colors)
-
     return (
         <PieChart
             className="stock-allocation"
