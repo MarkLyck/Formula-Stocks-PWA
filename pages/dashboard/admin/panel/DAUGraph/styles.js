@@ -7,6 +7,9 @@ export const ContainerStyle = {
 export const GraphContainer = styled('div')`
     position: relative;
     width: 100%;
+    #dau-graph {
+        height: 400px;
+    }
     br {
         display: none;
     }
