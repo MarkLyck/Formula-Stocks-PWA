@@ -8,7 +8,7 @@ const AdminButtons = ({ route }) => {
     Router.prefetch('/dashboard/admin/users')
     Router.prefetch('/dashboard/admin/api')
     Router.prefetch('/dashboard/admin/articles')
-
+    console.log('render admin buttons')
     return (
         <div key="admin-buttons">
             <Button
@@ -34,8 +34,8 @@ const AdminButtons = ({ route }) => {
             </Button>
             <Button
                 color="primary"
-                raised={route.indexOf('article') !== -1}
-                onClick={() => Router.push('/dashboard/admin/articles')}
+                raised={route.indexOf('newArticle') !== -1}
+                onClick={() => Router.push('/dashboard/admin/newArticle')}
             >
                 New Article
             </Button>

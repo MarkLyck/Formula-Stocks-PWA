@@ -14,12 +14,12 @@ const NavBar = ({ selectedPlan, actions }) => {
     } else {
         return (<Bar><div /><Logo /></Bar>)
     }
-
+    console.log(route.indexOf('admin'))
     return (
         <Bar>
             <PlanMenu selectedPlan={selectedPlan} actions={actions} className="plan-menu-container" route={route} />
-            {route.indexOf('admin') === 1 && <AdminButtons route={route} />}
-            {(route.indexOf('account') !== 1 && route.indexOf('admin') !== 1) && <PlanButtons selectedPlan={selectedPlan} actions={actions} />}
+            {route.indexOf('admin') > -1 && <AdminButtons route={route} />}
+            {(route.indexOf('account') === 0 && route.indexOf('admin') === 0) && <PlanButtons selectedPlan={selectedPlan} actions={actions} />}
             <Logo />
         </Bar>
     )

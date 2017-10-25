@@ -7,8 +7,13 @@ import Dashboard from '../'
 import { MyAccountContainer } from './styles'
 
 class Account extends Component {
+    cancelSubscription() {
+        
+    }
+
     render() {
         const { User } = this.props
+        if (!User) return ''
         return (
             <Dashboard>
                 <MyAccountContainer>

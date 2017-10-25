@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { TableCell, TableRow } from 'material-ui/Table'
-import { Icon, tableCellStyle } from './styles'
+import { Icon, tableCellStyle, countryStyle } from './styles'
 
 const getFlag = (countryCode) => {
     const invalidFlags = {
@@ -40,14 +40,14 @@ const getDeviceIcon = (device) => {
 
 const Visitor = ({ visitor }) => (
     <TableRow key={visitor.id}>
-        <TableCell>
+        <TableCell style={countryStyle}>
             {visitor.location && getFlag(visitor.location.country_code)}
-            <p>{visitor.location && visitor.location.country_name}</p>
+            <p style={{ marginLeft: '8px' }}>{visitor.location && visitor.location.country_name}</p>
         </TableCell>
-        <TableCell onClick={() => console.log(visitor.url)}>
+        <TableCell onClick={() => console.log(visitor.url)} style={{ height: '48px' }}>
             <p>{visitor.url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0]}</p>
         </TableCell>
-        <TableCell>
+        <TableCell style={{ height: '48px' }}>
             {moment(visitor.createdAt).fromNow()}
         </TableCell>
         <TableCell style={tableCellStyle}>

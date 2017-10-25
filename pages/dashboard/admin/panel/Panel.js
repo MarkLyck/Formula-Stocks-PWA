@@ -45,7 +45,7 @@ const Panel = ({ visitorCount, allUsers, allVisitors, Statistics }) => {
             </StatisticsContainer>
             <DAUGraph visitors={allVisitors} users={allUsers} />
             <VisitorStatistics statistics={Statistics} />
-            <VisitorList visitors={allVisitors.slice().reverse()} />
+            <VisitorList visitors={allVisitors && allVisitors.slice().reverse()} />
         </Dashboard>
     )
 }
