@@ -1,6 +1,6 @@
 import styled from 'emotion/react'
 
-export const MenuContainer = styled('div')`
+export const MenuContainer = styled('span')`
     display: none;
     @media(max-width: 600px) {
         display: block;

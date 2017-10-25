@@ -20,7 +20,7 @@ class PlanButtons extends Component {
     render() {
         const { selectedPlan } = this.props
         return (
-            <MenuContainer key="plan-menu-container">
+            <MenuContainer>
                 <Button
                     className="plan-menu-button"
                     color="primary"
