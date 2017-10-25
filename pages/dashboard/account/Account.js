@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
 import Dashboard from '../'
 
 class Account extends Component {
     render() {
-        console.log(this.props)
+        const { User } = this.props
+        console.log(User)
         return (
             <Dashboard>
                 test
@@ -24,6 +25,10 @@ const AccountQuery = gql`
     },
   }
 `
+
+Account.propTypes = {
+    User: PropTypes.object,
+}
 
 export default graphql(AccountQuery, {
     props: ({ data }) => ({ ...data }),

@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import { Button } from './styles'
 
-const MenuItem = ({ icon, route, isActive, children }) => {
-    if (typeof window !== 'undefined' && Router.router && route) {
-        Router.prefetch(`/dashboard/${route}`)
+class MenuItem extends Component {
+    state = { isActive: false }
+
+    componentDidMount() {
+        const { route, isActive } = this.props
+        if (isActive) {
+            this.isActive()
+        }
+        if (typeof window !== 'undefined' && Router.router && route) {
+            Router.prefetch(`/dashboard/${route}`)
+        }
     }
 
-    return (
-        <Button onClick={() => Router.push(`/dashboard/${route}`)} data-isActive={isActive}>
-            <i className={`fa fa-${icon}`} />
-            {children}
-        </Button>
-    )
+    isActive = () => {
+        this.setState({ isActive: true })
+    }
+
+    render() {
+        const { icon, route, children } = this.props
+        const { isActive } = this.state
+
+        return (
+            <Button onClick={() => Router.push(`/dashboard/${route}`)} className={isActive ? 'is-active' : ''}>
+                <i className={`fa fa-${icon}`} />
+                {children}
+            </Button>
+        )
+    }
 }
 
 MenuItem.propTypes = {

@@ -12,8 +12,8 @@ export const Button = styled('button')`
     flex-direction: column;
     background: none;
     border: none;
-    background: ${props => (props['data-isActive'] ? props.theme.colors.primary : 'none')};
-    color: ${props => (props['data-isActive'] ? props.theme.colors.white : props.theme.colors.lightGray)};
+    background: none;
+    color: ${props => props.theme.colors.lightGray};
     outline: none;
     svg {
         font-size: 24px;
@@ -30,7 +30,7 @@ export const Button = styled('button')`
       }
     &:hover {
         cursor: pointer;
-        color: ${props => (props['data-isActive'] ? props.theme.colors.white : props.theme.colors.primary)};
+        color: ${props => props.theme.colors.primary};
     }
 `
 

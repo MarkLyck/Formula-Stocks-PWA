@@ -22,6 +22,13 @@ export const MenuList = styled('ul')`
         bottom: 8px;
         margin-bottom: 0;
     }
+    .is-active {
+        background: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.white};
+        &:hover {
+            color: ${props => props.theme.colors.white};
+        }
+    }
     @media (min-width: 1440px) {
         box-sizing: content-box;
         width: 210px;

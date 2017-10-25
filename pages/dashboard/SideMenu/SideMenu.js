@@ -7,6 +7,7 @@ import { MenuList } from './styles'
 
 const isActive = (route) => {
     if (typeof window !== 'undefined') {
+        // console.log(Router.router.pathname.indexOf(route) !== -1)
         return Router.router.pathname.indexOf(route) !== -1
     }
     return false
