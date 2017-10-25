@@ -9,7 +9,6 @@ import { MyAccountContainer } from './styles'
 class Account extends Component {
     render() {
         const { User } = this.props
-        console.log(User)
         return (
             <Dashboard>
                 <MyAccountContainer>
@@ -20,10 +19,7 @@ class Account extends Component {
                         <h4 className="user-info user-plan">{User.plan} Model</h4>
                     </Paper>
                 </MyAccountContainer>
-                <Button
-                    raised
-                    style={{ margin: '0 auto', display: 'block' }}
-                >
+                <Button raised style={{ margin: '0 auto', display: 'block' }}>
                     Cancel subscription
                 </Button>
             </Dashboard>
