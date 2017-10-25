@@ -18,6 +18,7 @@ export const TableContainer = styled('div')`
     .stock-row {
         &:hover {
             cursor: pointer;
+            background: ${props => props.theme.colors.offWhite};
         }
     }
 

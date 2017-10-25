@@ -19,6 +19,7 @@ class PortfolioItem extends Component {
     }
 
     toggleExpandStock = () => {
+        if (this.props.stock.ticker === 'CASH') return
         this.setState({ isExpanded: !this.state.isExpanded })
         if (!this.props.allStocks.length) {
             this.props.refetch({ ticker: this.props.stock.ticker })
