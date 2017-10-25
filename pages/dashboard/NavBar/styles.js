@@ -2,7 +2,7 @@ import styled from 'emotion/react'
 
 export const Bar = styled('div')`
     position: relative;
-    height: 64px;
+    height: 72px;
     padding: 0 24px;
     width: 100%;
     margin-bottom: 16px;

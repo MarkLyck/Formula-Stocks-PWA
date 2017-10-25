@@ -2,10 +2,10 @@ import styled from 'emotion/react'
 
 export const Button = styled('button')`
     position: relative;
-    margin-bottom: 32px;
-    width: 56px;
-    padding: 12px;
-    border-radius: 8px;
+    width: 100%;
+    height: 72px;
+    padding: 8px 0;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,14 +17,15 @@ export const Button = styled('button')`
     outline: none;
     svg {
         font-size: 24px;
-        margin-bottom: 6px;
+        margin: 0;
     }
     h4 {
         min-width: 50px;
+        max-width: 64px;
         display: block;
         text-align: center;
         font-weight: 600;
-        font-size: 11px;
+        font-size: 10px;
         margin: 0;
         margin-top: 8px;
       }
