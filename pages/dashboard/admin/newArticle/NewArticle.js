@@ -7,11 +7,12 @@ import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
 // import htmlToDraft from 'html-to-draftjs'
 import Admin from '../'
-import { EditorContainer } from './styles'
+import { EditorContainer, FileDrop } from './styles'
 
 class NewArticle extends Component {
     state = {
         rerender: false,
+        headerImageUrl: '',
         editorState: EditorState.createEmpty(),
     }
 
@@ -34,15 +35,32 @@ class NewArticle extends Component {
         this._titleInput.value = ''
     }
 
+    onDrop = (files) => {
+        const data = new FormData()
+        data.append('data', files[0])
+
+        fetch('https://api.graph.cool/file/v1/cj5p24f2bblwp0122hin6ek1u', {
+            method: 'POST',
+            body: data,
+        })
+            .then(response => response.json())
+            .then(file => this.setState({ headerImageUrl: file.url }))
+    }
+
     render() {
-        const { editorState } = this.state
+        const { editorState, headerImageUrl } = this.state
 
         return (
             <Admin>
                 <link rel="stylesheet" href="/static/react-draft-wysiwyg.css" />
                 <EditorContainer>
+                    <FileDrop onDrop={this.onDrop} data-headerImageUrl={headerImageUrl}>
+                        <h3>Drag and drop Header image here</h3>
+                        <i className="fa fa-image fa-5x" />
+                    </FileDrop>
                     <input
                         className="title"
+                        // eslint-disable-next-line
                         ref={titleInput => this._titleInput = titleInput}
                         placeholder="Title"
                     />
@@ -54,6 +72,7 @@ class NewArticle extends Component {
                     />
                     <div
                         className="preview"
+                        // eslint-disable-next-line
                         dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }}
                     />
                     <Button onClick={this.onSubmit} fab color="primary" aria-label="add" className="submit">

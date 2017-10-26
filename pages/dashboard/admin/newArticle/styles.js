@@ -1,4 +1,5 @@
 import styled from 'emotion/react'
+import Dropzone from 'react-dropzone'
 
 export const EditorContainer = styled('div')`
     margin: 0 32px;
@@ -30,5 +31,19 @@ export const EditorContainer = styled('div')`
         right: 32px;
     }
 `
+
+export const FileDrop = styled(Dropzone)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    border: 2px dashed ${props => props.theme.colors.primary};
+    background-image: ${props => (props['data-headerImageUrl'] ? `url(${props['data-headerImageUrl']})` : 'none')}
+    background-repeat: no-repeat;
+    background-size: cover;
+`
+
 
 export default null
