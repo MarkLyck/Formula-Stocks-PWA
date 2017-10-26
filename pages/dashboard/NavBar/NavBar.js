@@ -12,14 +12,18 @@ const NavBar = ({ selectedPlan, actions }) => {
     if (typeof window !== 'undefined') {
         route = Router.router.pathname
     } else {
-        return (<Bar><div /><Logo /></Bar>)
+        return (<Bar><span /><Logo /></Bar>)
     }
-    console.log(route.indexOf('admin'))
+
+    const isPlanPage = route.indexOf('portfolio') > -1 || route.indexOf('suggestions') > -1 || route.indexOf('trades') > -1
+    const isAdminPage = route.indexOf('admin') > -1
+    if (!isPlanPage && !isAdminPage) return (<Bar><span /><Logo /></Bar>)
+
     return (
         <Bar>
-            <PlanMenu selectedPlan={selectedPlan} actions={actions} className="plan-menu-container" route={route} />
-            {route.indexOf('admin') > -1 && <AdminButtons route={route} />}
-            {(route.indexOf('account') === 0 && route.indexOf('admin') === 0) && <PlanButtons selectedPlan={selectedPlan} actions={actions} />}
+            {isPlanPage && <PlanMenu selectedPlan={selectedPlan} actions={actions} className="plan-menu-container" route={route} />}
+            {isPlanPage && <PlanButtons selectedPlan={selectedPlan} actions={actions} />}
+            {isAdminPage && <AdminButtons route={route} />}
             <Logo />
         </Bar>
     )

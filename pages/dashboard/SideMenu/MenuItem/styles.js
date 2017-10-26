@@ -31,7 +31,7 @@ export const Button = styled('button')`
       }
     &:hover {
         cursor: pointer;
-        color: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.white};
     }
 `
 
