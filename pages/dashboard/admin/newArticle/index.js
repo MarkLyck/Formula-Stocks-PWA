@@ -1,4 +1,4 @@
 import withData from 'lib/withData'
-import NewArticle from './NewArticle'
+import NewArticle from './NewArticleContainer'
 
 export default withData(NewArticle)

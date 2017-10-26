@@ -4,8 +4,6 @@ import { hasStorage } from 'common/featureTests'
 import { getDeviceType } from 'common/helpers'
 import { CREATE_VISIT } from './constants'
 
-console.log(platform)
-
 const createVisit = createVisitor => fetchJsonP('https://freegeoip.net/json')
     .then(response => response.json())
     .then((location) => {

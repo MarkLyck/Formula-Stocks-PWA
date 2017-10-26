@@ -8,7 +8,7 @@ const AdminButtons = ({ route }) => {
     Router.prefetch('/dashboard/admin/users')
     Router.prefetch('/dashboard/admin/api')
     Router.prefetch('/dashboard/admin/articles')
-    console.log('render admin buttons')
+
     return (
         <div key="admin-buttons">
             <Button
