@@ -17,6 +17,7 @@ app.prepare().then(() => {
 
         if (req.url === '/sw.js') {
             app.serveStatic(req, res, path.resolve('./.next/sw.js'))
+            // if pathname matches /articles/* load articles/article... 
         } else if (pathname === '/b') {
             app.render(req, res, '/a', query)
         } else {
