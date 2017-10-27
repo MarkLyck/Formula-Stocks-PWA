@@ -22,12 +22,13 @@ class NewArticle extends Component {
 
     onSubmit = () => {
         const { createArticle, actions } = this.props
-        const { editorState } = this.state
+        const { editorState, headerImageUrl } = this.state
         const title = this._titleInput.value
 
         actions.newArticle(
             title,
             draftToHtml(convertToRaw(editorState.getCurrentContent())),
+            headerImageUrl,
             createArticle,
         )
 
@@ -90,10 +91,11 @@ NewArticle.propTypes = {
 }
 
 const createArticle = gql`
-  mutation ($title: String, $body: String) {
+  mutation ($title: String, $body: String, $headerImageUrl: String) {
     createArticle(
     title: $title,
     body: $body,
+    headerImageUrl: $headerImageUrl,
     ) { id }
   }
 `

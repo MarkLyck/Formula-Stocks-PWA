@@ -45,5 +45,4 @@ export const FileDrop = styled(Dropzone)`
     background-size: cover;
 `
 
-
 export default null
