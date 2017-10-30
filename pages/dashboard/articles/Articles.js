@@ -8,7 +8,12 @@ import { ArticlesList } from './styles'
 const Articles = ({ allArticles }) => (
     <Dashboard>
         <ArticlesList>
-            {allArticles && allArticles.map(article => <ArticleCard article={article} />)}
+            {allArticles && allArticles.map(article => <ArticleCard article={article} key={article.title} />)}
+            <div style={{ height: 0 }} />
+            <div style={{ height: 0 }} />
+            <div style={{ height: 0 }} />
+            <div style={{ height: 0 }} />
+            <div style={{ height: 0 }} />
         </ArticlesList>
     </Dashboard>
 )

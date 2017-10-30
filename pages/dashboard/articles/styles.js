@@ -8,8 +8,14 @@ export const ArticlesList = styled('ul')`
     margin: 0 auto;
     > div {
         width: 100%;
-        max-width: 278px;
-        margin: 16px;
+        max-width: 360px;
+        margin: 24px;
+        transition: all .2s;
+        &:hover {
+            transform: scale(1.02);
+            cursor: pointer;
+            box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+        }
         h4 {
             margin: 16px;
             font-weight: 500;

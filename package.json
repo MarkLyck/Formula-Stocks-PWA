@@ -19,6 +19,7 @@
     "draft-js": "^0.10.4",
     "draftjs-to-html": "^0.7.6",
     "emotion": "^6.0.3",
+    "express": "^4.16.2",
     "fetch-jsonp": "^1.1.3",
     "graphql": "^0.10.5",
     "graphql-request": "^1.3.4",

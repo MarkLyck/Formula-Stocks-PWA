@@ -8,13 +8,14 @@ import { HeaderImage, Title, Body } from './styles'
 class Article extends Component {
     componentDidMount() {
         const articleTitle = Router.router ? Router.router.query.title : ''
-        this.props.refetch({ title: articleTitle })
+        console.log(articleTitle)
+        this.props.refetch({ title: articleTitle.split('-').join(' ') })
     }
 
     render() {
         if (!this.props.allArticles || !this.props.allArticles.length) return null
         const article = this.props.allArticles[0]
-        console.log(article)
+
         return (
             <Dashboard>
                 <HeaderImage data-headerImageUrl={article.headerImageUrl} />
