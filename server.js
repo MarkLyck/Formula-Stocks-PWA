@@ -17,9 +17,13 @@ app.prepare().then(() => {
 
         if (req.url === '/sw.js') {
             app.serveStatic(req, res, path.resolve('./.next/sw.js'))
-            // if pathname matches /articles/* load articles/article... 
-        } else if (pathname === '/b') {
-            app.render(req, res, '/a', query)
+            // if pathname matches /articles/* load articles/article...
+        } else if (pathname.indexOf('dashboard/articles/') > -1) {
+            query.title = pathname.split('/')[pathname.split('/').length - 1]
+            app.render(req, res, '/dashboard/articles/article', query)
+        } else if (pathname.indexOf('/articles/') > -1) {
+            query.title = pathname.split('/')[pathname.split('/').length - 1]
+            app.render(req, res, '/articles/article', query)
         } else {
             handle(req, res)
         }

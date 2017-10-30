@@ -37,6 +37,7 @@ export const FileDrop = styled(Dropzone)`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 16px;
     width: 100%;
     height: 350px;
     border: 2px dashed ${props => props.theme.colors.primary};

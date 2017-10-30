@@ -5,6 +5,7 @@ import Logo from './logo_horizontal.svg'
 import PlanButtons from './planButtons'
 import PlanMenu from './planMenu'
 import AdminButtons from './adminButtons'
+import ArticlesBackButton from './articlesBackButton'
 import { Bar } from './styles'
 
 const NavBar = ({ selectedPlan, actions }) => {
@@ -17,10 +18,12 @@ const NavBar = ({ selectedPlan, actions }) => {
 
     const isPlanPage = route.indexOf('portfolio') > -1 || route.indexOf('suggestions') > -1 || route.indexOf('trades') > -1
     const isAdminPage = route.indexOf('admin') > -1
-    if (!isPlanPage && !isAdminPage) return (<Bar><span /><Logo /></Bar>)
+    const isArticlePage = Router.router.query.title
+    if (!isPlanPage && !isAdminPage && !isArticlePage) return (<Bar><span /><Logo /></Bar>)
 
     return (
         <Bar>
+            {isArticlePage && <ArticlesBackButton />}
             {isPlanPage && <PlanMenu selectedPlan={selectedPlan} actions={actions} className="plan-menu-container" route={route} />}
             {isPlanPage && <PlanButtons selectedPlan={selectedPlan} actions={actions} />}
             {isAdminPage && <AdminButtons route={route} />}
