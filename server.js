@@ -5,25 +5,18 @@ const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+// load the market data
 require('./server/marketData')
 
 app.prepare().then(() => {
     const server = express()
 
-  // use pages/post.js as /blog/:id
-  server.get('/dashboard/articles/:title', (req, res) => {
-    return app.render(
-      req,
-      res,
-      '/dashboard/articles/article',
-      Object.assign(
-        {
-          title: req.params.title
-        },
-        req.query
-      )
-    )
-  })
+    // use dashboard/articles/article.js a  s /dashboard/articles/:title
+    server.get('/dashboard/articles/:title', (req, res) => app.render(req, res,
+        '/dashboard/articles/article',
+        // eslint-disable-next-line
+        Object.assign({ title: req.params.title }, req.query)
+    ))
 
     // redirect from /post to /blog or /post?id to /blog/:id
     server.get('/dashboard/articles/article', (req, res) => {
@@ -34,7 +27,7 @@ app.prepare().then(() => {
     // handle each other url
     server.get('*', (req, res) => handle(req, res))
 
-    server.listen(port, err => {
+    server.listen(port, (err) => {
         if (err) throw err
         console.log(`> Ready on http://localhost:${port}`)
     })
