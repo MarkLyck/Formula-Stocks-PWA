@@ -8,24 +8,35 @@ class MenuItem extends Component {
 
     componentDidMount() {
         const { route, isActive } = this.props
-        if (isActive) {
-            this.isActive()
-        }
+        if (isActive) { this.isActive() }
+
         if (typeof window !== 'undefined' && Router.router && route) {
             Router.prefetch(`/dashboard/${route}`)
         }
     }
 
-    isActive = () => {
-        this.setState({ isActive: true })
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isActive) {
+            this.isActive()
+        } else {
+            this.setState({ isActive: false })
+        }
+        return nextProps
+    }
+
+    isActive = () => this.setState({ isActive: true })
+
+    clickHandler = () => {
+        this.props.setActiveRoute(this.props.route)
+        Router.push(`/dashboard/${this.props.route}`)
     }
 
     render() {
-        const { icon, route, children } = this.props
+        const { icon, children } = this.props
         const { isActive } = this.state
 
         return (
-            <Button onClick={() => Router.push(`/dashboard/${route}`)} className={isActive ? 'is-active' : ''}>
+            <Button onClick={this.clickHandler} className={isActive ? 'is-active' : ''}>
                 <i className={`fa fa-${icon}`} />
                 {children}
             </Button>
@@ -38,6 +49,7 @@ MenuItem.propTypes = {
     route: PropTypes.string,
     children: PropTypes.node,
     isActive: PropTypes.bool,
+    setActiveRoute: PropTypes.func,
 }
 
 export default MenuItem

@@ -48,9 +48,23 @@ class NewArticle extends Component {
             .then(file => this.setState({ headerImageUrl: file.url }))
     }
 
+    uploadImageCallBack = file => new Promise((resolve) => {
+        const data = new FormData()
+        data.append('data', file)
+
+        fetch('https://api.graph.cool/file/v1/cj5p24f2bblwp0122hin6ek1u', {
+            method: 'POST',
+            body: data,
+        })
+            .then(response => response.json())
+            .then((imageFile) => {
+                console.log(imageFile.url)
+                resolve({ data: { link: imageFile.url } })
+            })
+    })
+
     render() {
         const { editorState, headerImageUrl } = this.state
-
         return (
             <Admin>
                 <link rel="stylesheet" href="/static/react-draft-wysiwyg.css" />
@@ -70,6 +84,20 @@ class NewArticle extends Component {
                         wrapperClassName="wrapper"
                         editorClassName="editor"
                         onEditorStateChange={this.onEditorStateChange}
+                        toolbar={{
+                            image: {
+                                urlEnabled: true,
+                                uploadEnabled: true,
+                                alignmentEnabled: true,
+                                uploadCallback: this.uploadImageCallBack,
+                                inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                                alt: { present: false, mandatory: false },
+                                defaultSize: {
+                                    height: 'auto',
+                                    width: 'auto',
+                                },
+                            },
+                        }}
                     />
                     <div
                         className="preview"
