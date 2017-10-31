@@ -34,6 +34,7 @@ export const FailedContainer = styled('div')`
 export const GraphContainer = styled('div')`
     position: relative;
     width: 100%;
+    height: auto;
     .suggestion-graph {
         height: 100%;
     }

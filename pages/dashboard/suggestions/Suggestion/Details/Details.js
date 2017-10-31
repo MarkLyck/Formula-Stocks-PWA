@@ -2,23 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Dialog, { DialogTitle } from 'material-ui/Dialog'
 import List, { ListItem } from 'material-ui/List'
-import { ListItemStyles } from './styles'
+import theme from 'common/theme'
+import { ListContainer, ListItemStyles, ItemValue } from './styles'
 
 const unitValues = {
     percent: '%',
 }
 
 const Details = ({ suggestion, ...otherProps }) => (
-    <Dialog {...otherProps}>
+    <Dialog {...otherProps} className="stock-details">
         <DialogTitle>{suggestion.name}</DialogTitle>
-        <List>
-            {suggestion.advanced_data && suggestion.advanced_data.map(item => (
-                <ListItem style={ListItemStyles} key={item.name}>
-                    <h3>{item.display_name}:</h3>
-                    <h3>{item.value}{unitValues[item.unit]}</h3>
-                </ListItem>
-            ))}
-        </List>
+        <ListContainer theme={theme}>
+            <List>
+                {suggestion.advanced_data && suggestion.advanced_data.map((item, i) => (
+                    <ListItem style={ListItemStyles} key={item.name} className={(i % 2 === 0) ? 'gray-item' : 'white-item'}>
+                        <h3>{item.display_name}:</h3>
+                        <ItemValue>{item.value}{unitValues[item.unit]}</ItemValue>
+                    </ListItem>
+                ))}
+            </List>
+        </ListContainer>
     </Dialog>
 )
 

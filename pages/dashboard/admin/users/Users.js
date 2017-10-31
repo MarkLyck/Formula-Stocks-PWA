@@ -36,6 +36,7 @@ const UsersQuery = gql`
       allUsers {
         id
         createdAt
+        updatedAt
         name
         email
       },
