@@ -13,8 +13,18 @@ import BillingInfo from './BillingInfo'
 class SignUp extends Component {
     state = {
         accountInfo: {},
-        page: 1,
+        page: 2,
     }
+
+
+    componentDidMount() {
+        // if (typeof window !== 'undefined') {
+        //     // eslint-disable-next-line
+        //     this.stripe = Stripe('pk_test_EAYel8PILq2WQhZqRK7XRemy')
+        // }
+    }
+
+    stripe = undefined
 
     nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
@@ -32,6 +42,11 @@ class SignUp extends Component {
             browser: platform.name,
             type: getDeviceType(),
         }
+
+        // this.stripe.createToken(card).then((result) => {
+        //     // Handle result.error or result.token
+        //     console.log(result)
+        // })
 
         // TODO handle stripe subscription
 

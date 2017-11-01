@@ -45,6 +45,7 @@
     "react-jss": "^7.0.2",
     "react-redux": "^5.0.5",
     "react-slick": "^0.14.11",
+    "react-stripe-elements": "^1.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",

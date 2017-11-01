@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider } from 'emotion/react/theming'
 import { DialogContent } from 'material-ui/Dialog'
+import { StripeProvider, Elements } from 'react-stripe-elements'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import theme from 'common/theme'
 import Disclaimer from 'components/Disclaimer'
 import { dialogStyles, nextBtnStyles } from '../styles'
+import CheckoutForm from './checkoutForm'
 
 class BillingInfo extends Component {
     state = {
@@ -39,14 +41,21 @@ class BillingInfo extends Component {
     )
 
     render() {
-        const { name } = this.state
-        const { tax } = this.props
+        // const { name } = this.state
+        // const { tax } = this.props
 
         return (
             <ThemeProvider theme={theme}>
                 <DialogContent style={dialogStyles}>
                     <h5>First charge after 30 days, you can cancel at any time.</h5>
-                    <TextField
+
+                    <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
+                        <Elements>
+                            <CheckoutForm />
+                        </Elements>
+                    </StripeProvider>
+
+                    {/* <TextField
                         id="name"
                         label="Name on card"
                         type="name"
@@ -85,7 +94,7 @@ class BillingInfo extends Component {
                     <Disclaimer>
                         By signing up you agree to our <a role="button" tabIndex="0" onClick={this.toggleTerms}>Terms of Service</a>
                     </Disclaimer>
-                    <Button raised color="primary" style={nextBtnStyles} onClick={this.submitBillingInfo}>Sign up</Button>
+                    <Button raised color="primary" style={nextBtnStyles} onClick={this.submitBillingInfo}>Sign up</Button> */}
                 </DialogContent>
             </ThemeProvider>
         )

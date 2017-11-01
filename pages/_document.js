@@ -51,6 +51,8 @@ class MyDocument extends Document {
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
                     />
 
+                    <script src="https://js.stripe.com/v3/" />
+
                     <script src="https://www.amcharts.com/lib/3/amcharts.js" />
                     <script src="https://www.amcharts.com/lib/3/serial.js" />
                     <script src="https://www.amcharts.com/lib/3/pie.js" />
