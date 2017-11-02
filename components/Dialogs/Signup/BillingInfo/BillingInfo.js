@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { ThemeProvider } from 'emotion/react/theming'
 import { DialogContent } from 'material-ui/Dialog'
 import { StripeProvider, Elements } from 'react-stripe-elements'
-import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
+// import TextField from 'material-ui/TextField'
+// import Button from 'material-ui/Button'
 import theme from 'common/theme'
-import Disclaimer from 'components/Disclaimer'
+// import Disclaimer from 'components/Disclaimer'
 import { dialogStyles, nextBtnStyles } from '../styles'
 import CheckoutForm from './checkoutForm'
 
@@ -47,8 +47,6 @@ class BillingInfo extends Component {
         return (
             <ThemeProvider theme={theme}>
                 <DialogContent style={dialogStyles}>
-                    <h5>First charge after 30 days, you can cancel at any time.</h5>
-
                     <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
                         <Elements>
                             <CheckoutForm />
