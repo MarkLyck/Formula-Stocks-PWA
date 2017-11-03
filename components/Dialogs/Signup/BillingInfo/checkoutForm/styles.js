@@ -1,10 +1,22 @@
+import { keyframes } from 'emotion'
 import styled from 'emotion/react'
+
+// This returns a animation
+const formError = keyframes`
+  0% {
+      margin-top: 0;
+  }
+
+  100% {
+      margin-top: 48px;
+  }
+`
 
 export const Form = styled('form')`
     font-family: Quicksand, Open Sans, Segoe UI, sans-serif;
     font-size: 16px;
     font-weight: 600;
-    margin-top: 16px;
+    position: relative;
 
     .field.half-width {
       width: 50%;
@@ -22,6 +34,10 @@ export const Form = styled('form')`
       bottom: 0;
       background-color: #cfd7df;
       transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .baseline-focused {
+        background-color: ${props => props.theme.colors.primary};
     }
 
     label {
@@ -144,20 +160,8 @@ export const Form = styled('form')`
       cursor: pointer;
     }
 
-    .error svg {
-      margin-top: 0 !important;
-    }
-
-    .error svg .base {
-      fill: ${props => props.theme.colors.primary};
-    }
-
-    .error svg .glyph {
-      fill: #fff;
-    }
-
-    .error .message {
-      color: ${props => props.theme.colors.primary};
+    .input .input-error {
+        color: red;
     }
 
     .success .icon .border {
@@ -205,7 +209,10 @@ export const Form = styled('form')`
             }
         }
     }
-
+    .form-error {
+        animation: ${formError} 0.5s ease;
+        margin-top: 48px;
+    }
 `
 
 export const Row = styled('div')`
@@ -219,6 +226,35 @@ export const Field = styled('div')`
     width: 100%;
     height: 50px;
     margin: 0 10px;
+`
+
+// This returns a animation
+const expand = keyframes`
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+`
+
+export const ErrorMessage = styled('div')`
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.error};
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    animation: ${expand} 1s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    svg {
+        margin-right: 4px;
+    }
 `
 
 export default null

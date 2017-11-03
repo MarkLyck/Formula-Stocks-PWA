@@ -12,10 +12,6 @@ import CheckoutForm from './checkoutForm'
 
 class BillingInfo extends Component {
     state = {
-        name: '',
-        cardNumber: '',
-        expiryDate: '',
-        cvc: '',
         termsIsVisible: false,
     }
 
@@ -41,15 +37,14 @@ class BillingInfo extends Component {
     )
 
     render() {
-        // const { name } = this.state
-        // const { tax } = this.props
+        const { tax } = this.props
 
         return (
             <ThemeProvider theme={theme}>
                 <DialogContent style={dialogStyles}>
                     <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
                         <Elements>
-                            <CheckoutForm />
+                            <CheckoutForm tax={tax} />
                         </Elements>
                     </StripeProvider>
 
