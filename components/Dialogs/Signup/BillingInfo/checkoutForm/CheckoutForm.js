@@ -97,7 +97,6 @@ class CheckoutForm extends Component {
                 <Row className={error.message ? 'form-error' : ''}>
                     <Field
                         id="name"
-                        // eslint-disable-next-line
                         autoFocus
                         className={this.state.nameClass}
                         inputState={this.state.nameClass}
