@@ -1,13 +1,6 @@
 import { keyframes } from 'emotion'
 import styled from 'emotion/react'
 
-export const FieldContainer = styled('div')`
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 0 10px;
-`
-
 // This returns a animation
 const expand = keyframes`
   0% {
@@ -19,7 +12,7 @@ const expand = keyframes`
   }
 `
 
-export const ErrorMessage = styled('div')`
+export const MessageContainer = styled('div')`
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.error};
     font-size: 12px;

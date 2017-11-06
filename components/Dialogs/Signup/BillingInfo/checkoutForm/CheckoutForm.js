@@ -5,7 +5,8 @@ import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } fr
 import theme from 'common/theme'
 import Disclaimer from 'components/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
-import { Form, Row, Field, ErrorMessage } from './styles'
+import Form, { Row, Field, ErrorMessage } from 'components/Form'
+import { FieldContainer } from './styles'
 
 const createOptions = () => ({
     style: {
@@ -45,15 +46,17 @@ class CheckoutForm extends Component {
         showTerms: false,
     }
 
+    setName = (e) => {
+        e.preventDefault()
+        this.name = e.target.value
+    }
+
+    name = ''
+
     handleBlur = (elementName) => {
         const newState = this.state
         newState[elementName] = 'filled'
         this.setState(newState)
-    }
-
-    handleChange = (change) => {
-        // Handle error states in here
-        console.log('[change]', change)
     }
 
     handleFocus = (elementName) => {
@@ -65,7 +68,7 @@ class CheckoutForm extends Component {
     handleSubmit = (ev) => {
         ev.preventDefault()
         if (this.state.submitting) return null
-        if (!this.nameInput.value) {
+        if (!this.name) {
             this.setState({ submitting: false, error: { message: 'Please enter your full name' } })
             return null
         }
@@ -90,35 +93,26 @@ class CheckoutForm extends Component {
 
         return (
             <Form onSubmit={this.handleSubmit} theme={theme}>
-                {error.message && (
-                    <ErrorMessage>
-                        <i className="fa fa-times-circle" />
-                        <p>{error.message}</p>
-                    </ErrorMessage>)
-                }
+                {error.message && <ErrorMessage message={error.message} />}
                 <Row className={error.message ? 'form-error' : ''}>
-                    <Field>
-                        <input
-                            id="name"
-                            // eslint-disable-next-line
-                            autoFocus
-                            className={`input ${this.state.nameClass}`}
-                            onBlur={() => this.handleBlur('nameClass')}
-                            onFocus={() => this.handleFocus('nameClass')}
-                            onReady={() => console.log('ready')}
-                            type="text"
-                            placeholder="John Doe"
-                            required=""
-                            // eslint-disable-next-line
-                            ref={ref => (this.nameInput = ref)}
-                        />
-                        <label htmlFor="name">Name</label>
-                        <div className={`baseline baseline-${this.state.nameClass}`} />
-                    </Field>
+                    <Field
+                        id="name"
+                        // eslint-disable-next-line
+                        autoFocus
+                        className={this.state.nameClass}
+                        inputState={this.state.nameClass}
+                        onBlur={() => this.handleBlur('nameClass')}
+                        onFocus={() => this.handleFocus('nameClass')}
+                        onChange={this.setName}
+                        type="text"
+                        placeholder="John Doe"
+                        required=""
+                        label="Name"
+                    />
                 </Row>
 
                 <Row>
-                    <Field>
+                    <FieldContainer>
                         <CardNumberElement
                             className={
                                 `input
@@ -132,11 +126,11 @@ class CheckoutForm extends Component {
                         />
                         <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>Card number</label>
                         <div className={`baseline baseline-${this.state.cardNumber}`} />
-                    </Field>
+                    </FieldContainer>
                 </Row>
 
                 <Row>
-                    <Field className="field half-width">
+                    <FieldContainer className="FieldContainer half-width">
                         <CardExpiryElement
                             className={`input ${this.state.cardExpiry}`}
                             onBlur={() => this.handleBlur('cardExpiry')}
@@ -146,8 +140,8 @@ class CheckoutForm extends Component {
                         />
                         <label htmlFor="card-expiry">Expiration</label>
                         <div className={`baseline baseline-${this.state.cardExpiry}`} />
-                    </Field>
-                    <Field className="field half-width">
+                    </FieldContainer>
+                    <FieldContainer className="FieldContainer half-width">
                         <CardCVCElement
                             className={`input ${this.state.cardCVC}`}
                             onBlur={() => this.handleBlur('cardCVC')}
@@ -157,7 +151,7 @@ class CheckoutForm extends Component {
                         />
                         <label htmlFor="card-cvc">CVC</label>
                         <div className={`baseline baseline-${this.state.cardCVC}`} />
-                    </Field>
+                    </FieldContainer>
                 </Row>
 
                 <div className="beside">
