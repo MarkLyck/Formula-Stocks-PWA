@@ -1,11 +1,13 @@
 // CardSection.js
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Button from 'material-ui/Button'
 import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements'
 import theme from 'common/theme'
 import Disclaimer from 'components/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
+import { nextBtnStyles } from '../../styles'
 import { FieldContainer } from './styles'
 
 const createOptions = () => ({
@@ -157,7 +159,14 @@ class CheckoutForm extends Component {
                     <p className="description">Price after 30 days:</p>
                     <p className="price semi-bold">$50 monthly</p>
                 </div>
-                <button type="submit">{!submitting ? 'Try it free for 30 days' : 'submitting'}</button>
+                <Button
+                    raised
+                    color="primary"
+                    type="submit"
+                    style={nextBtnStyles}
+                >
+                    {!submitting ? 'Try it free for 30 days' : 'submitting'}
+                </Button>
                 <Disclaimer className="disclaimer">
                     By signing up you agree to our <a role="button" tabIndex="0" onClick={this.toggleTerms}>Terms of Service</a>
                 </Disclaimer>

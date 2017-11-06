@@ -21,7 +21,7 @@ export const dialogStyles = {
 
 export const nextBtnStyles = {
     marginTop: '8px',
-    width: '100%',
+    width: 'calc(100% - 30px)',
     maxWidth: '320px',
 }
 
