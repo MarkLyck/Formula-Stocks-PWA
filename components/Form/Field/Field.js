@@ -14,8 +14,9 @@ const Field = ({
     required,
     label,
     inputState,
+    ...otherProps
 }) => (
-    <FieldContainer>
+    <FieldContainer className="field">
         <input
             id={id}
             // eslint-disable-next-line
@@ -27,6 +28,7 @@ const Field = ({
             type={type}
             placeholder={placeholder}
             required={required}
+            {...otherProps}
         />
         <label htmlFor={id}>{label}</label>
         <div className={`baseline baseline-${inputState}`} />

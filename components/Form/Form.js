@@ -16,7 +16,13 @@ export default styled('form')`
     font-family: Quicksand, Open Sans, Segoe UI, sans-serif;
     font-size: 16px;
     font-weight: 600;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .field {
+        width: 100%;
+    }
 
     .field.half-width {
       width: 50%;

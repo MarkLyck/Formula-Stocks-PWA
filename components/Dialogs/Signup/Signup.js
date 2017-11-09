@@ -13,15 +13,7 @@ import BillingInfo from './BillingInfo'
 class SignUp extends Component {
     state = {
         accountInfo: {},
-        page: 2,
-    }
-
-
-    componentDidMount() {
-        // if (typeof window !== 'undefined') {
-        //     // eslint-disable-next-line
-        //     this.stripe = Stripe('pk_test_EAYel8PILq2WQhZqRK7XRemy')
-        // }
+        page: 1,
     }
 
     stripe = undefined

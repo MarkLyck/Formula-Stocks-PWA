@@ -1,9 +1,9 @@
 import styled from 'emotion/react'
 
 export const AutoCompleteContainer = styled('div')`
-    margin-top: 16px;
     margin-bottom: 8px;
     width: 100%;
+    overflow: visible;
     .suggestionsContainerOpen {
         position: absolute;
         left: 0;

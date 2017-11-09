@@ -3,29 +3,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Autosuggest from 'react-autosuggest'
-import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
 import { MenuItem } from 'material-ui/Menu'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
 import countries from 'common/data/countries'
+import { Field } from 'components/Form'
 import { AutoCompleteContainer } from '../styles'
 
-
 function renderInput(inputProps) {
-    const { classes, home, value, ref, ...other } = inputProps
+    const { classes, home, value, ref, inputState, onBlur, onFocus, ...other } = inputProps
 
     return (
-        <TextField
+        <Field
             autoFocus={home}
-            className={classes.textField}
+            label="Country"
+            className={`${classes.textField} ${classes.input} ${inputState}`}
+            inputState={inputState}
             value={value}
             inputRef={ref}
+            onBlur={onBlur}
+            onFocus={onFocus}
             style={{ width: '100%' }}
-            InputProps={{
-                classes: { input: classes.input },
-                ...other,
-            }}
+            {...other}
         />
     )
 }
@@ -94,7 +94,7 @@ class IntegrationAutosuggest extends Component {
     }
 
     render() {
-        const { classes } = this.props
+        const { classes, inputState, onBlur, onFocus } = this.props
 
         return (
             <AutoCompleteContainer>
@@ -115,6 +115,9 @@ class IntegrationAutosuggest extends Component {
                     inputProps={{
                         autoFocus: false,
                         classes,
+                        inputState,
+                        onBlur,
+                        onFocus,
                         placeholder: 'Country',
                         value: this.state.value,
                         onChange: this.handleChange,
@@ -137,6 +140,9 @@ IntegrationAutosuggest.defaultProps = {
 IntegrationAutosuggest.propTypes = {
     classes: PropTypes.object.isRequired,
     handleCountrySelect: PropTypes.func.isRequired,
+    inputState: PropTypes.string,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
 }
 
 export default IntegrationAutosuggest
