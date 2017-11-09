@@ -4,10 +4,12 @@ import theme from 'common/theme'
 import { MessageContainer } from './styles'
 
 const ErrorMessage = ({ message }) => (
-    <MessageContainer theme={theme}>
-        <i className="fa fa-times-circle" />
-        <p>{message}</p>
-    </MessageContainer>
+    <div style={{ position: 'relative', width: '100%' }}>
+        <MessageContainer theme={theme}>
+            <i className="fa fa-times-circle" />
+            <p>{message}</p>
+        </MessageContainer>
+    </div>
 )
 
 ErrorMessage.propTypes = {

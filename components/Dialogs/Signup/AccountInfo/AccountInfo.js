@@ -6,7 +6,7 @@ import { DialogContent } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import countries from 'common/data/countries'
 import theme from 'common/theme'
-import Form, { Row, Field } from 'components/Form'
+import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import { dialogStyles, nextBtnStyles } from '../styles'
 import CountrySelect from './CountrySelect'
 
@@ -21,6 +21,7 @@ class AccountInfo extends Component {
         emailClass: 'empty',
         passwordClass: 'empty',
         countryClass: 'empty',
+        error: {},
     }
 
     handleCountrySelect = country => this.setState({ country })
@@ -38,8 +39,30 @@ class AccountInfo extends Component {
     }
 
     submitAccountInfo = () => {
-        // TODO add Form validation here...
-        this.props.nextPage(this.state)
+        const { email, password, country, address, city, postalCode } = this.state
+
+        // eslint-disable-next-line
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+        const selectedCountry = countries.filter(item => item.label === country)[0]
+
+        if (!emailRegex.test(email)) {
+            this.setState({ error: { message: 'Invalid email' } })
+        } else if (!password) {
+            this.setState({ error: { message: 'Please enter a password' } })
+        } else if (password.length < 4) {
+            this.setState({ error: { message: 'Password must be at least 4 characters' } })
+        } else if (!country) {
+            this.setState({ error: { message: 'Please choose your country' } })
+        } else if (selectedCountry && selectedCountry.taxPercent && !address) {
+            this.setState({ error: { message: 'Please enter your address' } })
+        } else if (selectedCountry && selectedCountry.taxPercent && !city) {
+            this.setState({ error: { message: 'Please enter your city' } })
+        } else if (selectedCountry && selectedCountry.taxPercent && !postalCode) {
+            this.setState({ error: { message: 'Please enter your address' } })
+        } else {
+            this.props.nextPage({ email, password, selectedCountry, address, city, postalCode })
+        }
     }
 
     renderFullAddress = () => {
@@ -93,18 +116,18 @@ class AccountInfo extends Component {
     }
 
     render() {
-        // const { email } = this.state
+        const { error } = this.state
 
         return (
             <ThemeProvider theme={theme}>
                 <DialogContent style={dialogStyles}>
                     <Form>
-                        <Row>
+                        {error.message && <ErrorMessage message={error.message} />}
+                        <Row className={error.message ? 'form-error' : ''}>
                             <Field
                                 label="Email"
                                 type="email"
                                 autoFocus
-                                // value={email}
                                 className={this.state.emailClass}
                                 inputState={this.state.emailClass}
                                 onChange={event => this.setState({ email: event.target.value })}
@@ -118,14 +141,13 @@ class AccountInfo extends Component {
                             <Field
                                 label="Password"
                                 type="password"
-                                // value={email}
                                 className={this.state.passwordClass}
                                 inputState={this.state.passwordClass}
                                 onChange={event => this.setState({ password: event.target.value })}
                                 onBlur={() => this.handleBlur('passwordClass')}
                                 onFocus={() => this.handleFocus('passwordClass')}
                                 autoComplete="current-password"
-                                placeholder="••••••"
+                                placeholder="••••••••"
                                 margin="normal"
                             />
                         </Row>
