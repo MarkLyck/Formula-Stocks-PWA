@@ -34,14 +34,14 @@ class BillingInfo extends Component {
     )
 
     render() {
-        const { tax } = this.props
+        const { tax, handleSignup } = this.props
 
         return (
             <ThemeProvider theme={theme}>
                 <DialogContent style={dialogStyles}>
                     <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
                         <Elements>
-                            <CheckoutForm tax={tax} />
+                            <CheckoutForm tax={tax} handleSignup={handleSignup} />
                         </Elements>
                     </StripeProvider>
                 </DialogContent>

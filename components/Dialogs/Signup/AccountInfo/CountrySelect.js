@@ -21,7 +21,6 @@ function renderInput(inputProps) {
             className={`${classes.textField} ${classes.input} ${inputState}`}
             inputState={inputState}
             value={value}
-            inputRef={ref}
             onBlur={onBlur}
             onFocus={onFocus}
             style={{ width: '100%' }}

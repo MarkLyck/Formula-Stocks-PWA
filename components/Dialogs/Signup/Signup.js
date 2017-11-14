@@ -20,11 +20,10 @@ class SignUp extends Component {
 
     nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
-    handleSignup = (card) => {
+    handleSignup = (name, { token }) => {
         const { createUser } = this.props
         const { accountInfo } = this.state
 
-        const name = 'Mark'
         const type = 'trial'
         const location = (hasStorage && localStorage.getItem('location'))
             ? JSON.parse(localStorage.getItem('location')) : {}
@@ -35,12 +34,7 @@ class SignUp extends Component {
             type: getDeviceType(),
         }
 
-        // this.stripe.createToken(card).then((result) => {
-        //     // Handle result.error or result.token
-        //     console.log(result)
-        // })
-
-        // TODO handle stripe subscription
+        console.log(token)
 
         createUser({ variables: {
             email: accountInfo.email,
@@ -55,23 +49,25 @@ class SignUp extends Component {
             type,
             location,
             device,
+            cardToken: token.id,
         } })
             .then(() => Router.push('/dashboard/portfolio'))
             .catch(e => console.error(e))
-        console.log(card)
     }
 
     render() {
         if (typeof window === 'undefined') { return null }
-        const { page } = this.state
+        const { page, accountInfo } = this.state
         const { ...other } = this.props
         delete other.createUser
+
+        const tax = (accountInfo && accountInfo.selectedCountry) ? accountInfo.selectedCountry.taxPercent : 0
 
         return (
             <Dialog {...other} transition={Slide}>
                 <DialogTitle>Sign up</DialogTitle>
                 { page === 1 && <AccountInfo nextPage={this.nextPage} /> }
-                { page === 2 && <BillingInfo handleSignup={this.handleSignup} /> }
+                { page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} /> }
             </Dialog>
         )
     }
@@ -86,9 +82,10 @@ const createUser = gql`
   mutation (
       $email: String!,
       $password: String!,
-      $name: String!
-      $type: String!
-      $location: Json!
+      $name: String!,
+      $type: String!,
+      $cardToken: String!,
+      $location: Json!,
       $device: Json!
   ) {
     createUser(authProvider: {
@@ -101,6 +98,7 @@ const createUser = gql`
     type: $type,
     location: $location,
     device: $device,
+    cardToken: $cardToken,
     ) { id }
   }
 `

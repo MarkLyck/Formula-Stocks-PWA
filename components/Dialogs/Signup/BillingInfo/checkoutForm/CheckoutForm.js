@@ -77,11 +77,10 @@ class CheckoutForm extends Component {
 
         this.setState({ submitting: true, error: {} })
         this.props.stripe.createToken().then((payload) => {
-            console.log(payload)
             if (payload.error) {
                 this.setState({ submitting: false, error: payload.error })
             } else {
-                this.setState({ submitting: false })
+                this.props.handleSignup(this.name, payload)
             }
         })
         return ev
@@ -91,6 +90,7 @@ class CheckoutForm extends Component {
 
     render() {
         const { error, submitting, showTerms } = this.state
+        const { tax } = this.props
         const cardNumberError = error.message && error.message.indexOf('number') > -1
 
         return (
@@ -121,7 +121,6 @@ class CheckoutForm extends Component {
                                 ${(cardNumberError && this.state.cardNumber !== 'empty') ? 'input-error' : ''}`
                             }
                             onBlur={() => this.handleBlur('cardNumber')}
-                            onChange={ev => this.handleChange(ev)}
                             onFocus={() => this.handleFocus('cardNumber')}
                             {...createOptions()}
                         />
@@ -135,7 +134,6 @@ class CheckoutForm extends Component {
                         <CardExpiryElement
                             className={`input ${this.state.cardExpiry}`}
                             onBlur={() => this.handleBlur('cardExpiry')}
-                            onChange={ev => this.handleChange(ev)}
                             onFocus={() => this.handleFocus('cardExpiry')}
                             {...createOptions()}
                         />
@@ -146,7 +144,6 @@ class CheckoutForm extends Component {
                         <CardCVCElement
                             className={`input ${this.state.cardCVC}`}
                             onBlur={() => this.handleBlur('cardCVC')}
-                            onChange={ev => this.handleChange(ev)}
                             onFocus={() => this.handleFocus('cardCVC')}
                             {...createOptions()}
                         />
@@ -156,9 +153,21 @@ class CheckoutForm extends Component {
                 </Row>
 
                 <div className="beside">
-                    <p className="description">Price after 30 days:</p>
-                    <p className="price semi-bold">$50 monthly</p>
+                    <p className="description">Price:</p>
+                    <p className={`price ${!tax ? 'semi-bold' : ''}`}>${50} {!tax ? 'monthly' : ''}</p>
                 </div>
+                {tax ? (
+                    <div className="beside">
+                        <p className="description">VAT Tax:</p>
+                        <p className="price">${tax}</p>
+                    </div>
+                ) : ''}
+                {tax ? (
+                    <div className="beside">
+                        <p className="price semi-bold">Total price after 30 days:</p>
+                        <p className="price semi-bold">${50 + tax} / m</p>
+                    </div>
+                ) : ''}
                 <Button
                     raised
                     color="primary"
@@ -178,6 +187,8 @@ class CheckoutForm extends Component {
 
 CheckoutForm.propTypes = {
     stripe: PropTypes.object,
+    tax: PropTypes.number,
+    handleSignup: PropTypes.func,
 }
 
 export default injectStripe(CheckoutForm)

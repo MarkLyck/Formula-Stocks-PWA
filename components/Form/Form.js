@@ -166,7 +166,7 @@ export default styled('form')`
       cursor: pointer;
     }
 
-    .input .input-error {
+    .input-error {
         color: red;
     }
 
@@ -200,8 +200,9 @@ export default styled('form')`
         font-weight: 500;
         width: calc(100% - 30px);
         margin: 0 auto;
-        .price {
+        .price.semi-bold {
             font-weight: 600;
+            text-decoration: underline;
         }
     }
 
