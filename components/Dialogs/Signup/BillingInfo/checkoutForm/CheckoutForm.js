@@ -48,6 +48,13 @@ class CheckoutForm extends Component {
         showTerms: false,
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.signupError) {
+            this.setState({ error: { message: newProps.signupError } })
+        }
+        return newProps
+    }
+
     setName = (e) => {
         e.preventDefault()
         this.name = e.target.value

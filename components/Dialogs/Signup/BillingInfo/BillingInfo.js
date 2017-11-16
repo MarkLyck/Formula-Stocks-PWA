@@ -34,14 +34,14 @@ class BillingInfo extends Component {
     )
 
     render() {
-        const { tax, handleSignup } = this.props
+        const { tax, handleSignup, signupError } = this.props
 
         return (
             <ThemeProvider theme={theme}>
                 <DialogContent style={dialogStyles}>
                     <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
                         <Elements>
-                            <CheckoutForm tax={tax} handleSignup={handleSignup} />
+                            <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
                         </Elements>
                     </StripeProvider>
                 </DialogContent>
@@ -52,6 +52,7 @@ class BillingInfo extends Component {
 
 BillingInfo.propTypes = {
     handleSignup: PropTypes.func.isRequired,
+    signupError: PropTypes.string,
     tax: PropTypes.number,
 }
 
