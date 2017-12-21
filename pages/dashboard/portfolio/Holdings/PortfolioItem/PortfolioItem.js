@@ -6,33 +6,6 @@ import { TableBody, TableRow, TableCell } from 'material-ui/Table'
 import PortfolioitemGraph from './PortfolioItemGraph'
 import { PercentChange, NameCellWrapper } from './styles'
 
-<<<<<<< HEAD
-const PortfolioItem = ({ stock }) => {
-    const costBasisPrice = stock.purchase_price - stock.dividends
-    const percentIncrease = (((stock.latest_price - costBasisPrice) * 100) / costBasisPrice).toFixed(2)
-    const isPositive = percentIncrease > 0
-    const isCash = stock.ticker === 'CASH'
-    const TableCellPadding = { padding: '0 16px' }
-
-    return (
-        <TableRow key={stock.ticker} style={{ fontWeight: '500' }} className={isCash ? 'cash-row' : ''}>
-            <TableCell style={TableCellPadding}>
-                <NameCellWrapper data-isCash={isCash}>
-                    <i className={`fa fa-fw fa-${isCash ? 'dollar-sign' : 'flask'}`} />
-                    <div>
-                        {!isCash && <p className="stock-name">{stock.name}</p>}
-                        <p className="stock-ticker">{stock.ticker}</p>
-                    </div>
-                </NameCellWrapper>
-            </TableCell>
-            <TableCell numeric style={TableCellPadding} className="allocation">
-                <p>{stock.percentage_weight}%</p>
-            </TableCell>
-            <TableCell numeric style={TableCellPadding}>
-                {!isNaN(percentIncrease)
-                    ? <PercentChange data-isPositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
-                    : ''
-=======
 class PortfolioItem extends Component {
     state = {
         isExpanded: false,
@@ -113,7 +86,6 @@ class PortfolioItem extends Component {
                             </TableCell>
                         </TableRow>
                     )
->>>>>>> bc8c91287822d99b85025d4aa8b6fd8054ae103c
                 }
             </TableBody>
         )

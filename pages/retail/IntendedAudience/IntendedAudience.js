@@ -17,10 +17,11 @@ const IntendedAudience = () => (
                 If you are an experienced, technically advanced, or professionel investor, you might prefer to see our pages with
                 additional technical, in-depth information, which at the same time requires more background knowledge.<br /><br />
 
-                For deeper technical information <BrochureLink role="link" onClick={downloadBrochure}>click here to download our brochure.</BrochureLink>
+                For deeper technical information <BrochureLink role="link" onClick={downloadBrochure}>
+                click here to download our brochure.</BrochureLink>
                 <br /><br />
 
-                For institutional and professional services please <Link href="/pro">click here</Link>.
+                For institutional and professional services please <Link href="/pro"><a>click here</a></Link>.
             </p>
         </Section>
     </ThemeProvider>
