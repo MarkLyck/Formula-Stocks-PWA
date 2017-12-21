@@ -12,7 +12,7 @@ export const NameCellWrapper = styled('div')`
     padding: 8px;
     svg {
         margin-right: 16px;
-        color: ${props => (props.isCash ? props.theme.colors.secondary : props.theme.colors.primary)};
+        color: ${props => (props['data-isCash'] ? props.theme.colors.secondary : props.theme.colors.primary)};
         font-size: 1.4rem;
     }
     p {

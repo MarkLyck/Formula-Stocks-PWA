@@ -13,7 +13,7 @@ const PortfolioItem = ({ stock }) => {
     return (
         <TableRow key={stock.ticker} style={{ fontWeight: '500' }} className={isCash ? 'cash-row' : ''}>
             <TableCell style={TableCellPadding}>
-                <NameCellWrapper isCash={isCash}>
+                <NameCellWrapper data-isCash={isCash}>
                     <i className={`fa fa-fw fa-${isCash ? 'dollar-sign' : 'flask'}`} />
                     <div>
                         {!isCash && <p className="stock-name">{stock.name}</p>}
