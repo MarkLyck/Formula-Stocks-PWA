@@ -9,23 +9,36 @@ export const MenuList = styled('ul')`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 2px;
-    padding-top: 16px;
-    width: 84px;
+    width: 100px;
     height: 100%;
     box-sizing: border-box;
-    button {
-        height: 56px;
-    }
     > button:last-child {
         position: absolute;
-        bottom: 8px;
-        margin-bottom: 0;
+        bottom: 0;
+    }
+    .is-active {
+        color: ${props => props.theme.colors.white};
+        position: relative;
+        width: 100%;
+        background: ${props => props.theme.colors.gray};
+        border-radius: 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,.08);
+        &::after {
+            content: '';
+            background: ${props => props.theme.colors.primary};
+            width: 8px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        &:hover {
+            color: ${props => props.theme.colors.white};
+        }
     }
     @media (min-width: 1440px) {
         box-sizing: content-box;
         width: 210px;
-        padding: 0 16px;
         button {
             position: relative;
             box-sizing: border-box;
@@ -33,18 +46,15 @@ export const MenuList = styled('ul')`
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
+            padding-left: 20px;
             width: 100%;
-            height: 56px;
-            margin-top: 16px;
-            margin-bottom: 16px;
+            height: 72px;
             svg {
-                margin: 0;
-                margin-right: 12px;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             h4 {
                 position: absolute;
-                left: 50px;
+                left: calc(50px + 8px);
                 top: 50%;
                 transform: translateY(-50%);
                 text-align: left;
@@ -53,12 +63,8 @@ export const MenuList = styled('ul')`
                 font-weight: 400;
             }
         }
-        > button:first-child {
-            margin-top: 16px;
-        }
         > button:last-child {
-            bottom: 8px;
-            left: 16px;
+            bottom: 0;
         }
     }
 `

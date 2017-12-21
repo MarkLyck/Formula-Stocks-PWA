@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Button from 'material-ui/Button'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import { hasStorage } from 'common/featureTests'
-import { MenuContainer, SelectedPlanName } from './styles'
+import { SelectedPlanName } from './styles'
 
 class PlanButtons extends Component {
     state = { open: false, anchorEl: null }
@@ -20,7 +20,7 @@ class PlanButtons extends Component {
     render() {
         const { selectedPlan } = this.props
         return (
-            <MenuContainer key="plan-menu-container">
+            <span>
                 <Button
                     className="plan-menu-button"
                     color="primary"
@@ -43,7 +43,7 @@ class PlanButtons extends Component {
                     <MenuItem raised={selectedPlan === 'business'} onClick={() => this.setPlan('business')}>Business</MenuItem>
                     <MenuItem raised={selectedPlan === 'fund'} onClick={() => this.setPlan('fund')}>Fund</MenuItem>
                 </Menu>
-            </MenuContainer>
+            </span>
         )
     }
 }

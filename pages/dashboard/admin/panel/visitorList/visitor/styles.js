@@ -1,10 +1,17 @@
 import styled from 'emotion/react'
 
+export const countryStyle = {
+    display: 'flex',
+    height: '48px',
+    alignItems: 'center',
+}
+
 export const tableCellStyle = {
     display: 'flex',
     alignItems: 'center',
-    height: '100%',
+    height: '48px',
     padding: '6px',
+    boxSizing: 'border-box',
 }
 
 export const Icon = styled('img')`

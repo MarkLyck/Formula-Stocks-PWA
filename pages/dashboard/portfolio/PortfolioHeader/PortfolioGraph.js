@@ -86,7 +86,7 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName }) => {
 
     return (
         <GraphContainer theme={theme}>
-            <Legends>
+            <Legends className="portfolio-legends">
                 <Legend color={theme.colors.primary}><p>{planName}</p></Legend>
                 <Legend color={theme.colors.black}><p>DJIA</p></Legend>
             </Legends>

@@ -1,25 +1,34 @@
-const { createServer } = require('http')
-const path = require('path')
+const express = require('express')
 const next = require('next')
 
+const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dir: '.', dev })
+const app = next({ dev })
 const handle = app.getRequestHandler()
+// load the market data
 require('./server/marketData')
 
-const PORT = process.env.PORT || 3000
-
 app.prepare().then(() => {
-    const server = createServer((req, res) => {
-        if (req.url === '/sw.js') {
-            app.serveStatic(req, res, path.resolve('./.next/sw.js'))
-        } else {
-            handle(req, res)
-        }
+    const server = express()
+
+    // use dashboard/articles/article.js a  s /dashboard/articles/:title
+    server.get('/dashboard/articles/:title', (req, res) => app.render(req, res,
+        '/dashboard/articles/article',
+        // eslint-disable-next-line
+        Object.assign({ title: req.params.title }, req.query)
+    ))
+
+    // redirect from /post to /blog or /post?id to /blog/:id
+    server.get('/dashboard/articles/article', (req, res) => {
+        if (req.query.title) return res.redirect('/dashboard/articles')
+        return res.redirect(301, `/articles/${req.query.id}`)
     })
 
-    server.listen(PORT, (err) => {
+    // handle each other url
+    server.get('*', (req, res) => handle(req, res))
+
+    server.listen(port, (err) => {
         if (err) throw err
-        console.log(`> Ready on http://localhost:${PORT}`)
+        console.log(`> Ready on http://localhost:${port}`)
     })
 })

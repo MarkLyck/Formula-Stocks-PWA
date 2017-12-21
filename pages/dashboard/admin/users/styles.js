@@ -1,6 +1,6 @@
 
 export const ContainerStyle = {
-    margin: '0 16px',
+    margin: '16px',
 }
 
 export default null
