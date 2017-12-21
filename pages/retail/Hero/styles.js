@@ -1,5 +1,13 @@
 import styled from 'emotion/react'
+import { keyframes } from 'emotion'
 import Slider from 'react-slick'
+
+// This returns a animation
+const typedjsBlink = keyframes`
+    0% { opacity: 1; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1; }
+`
 
 export const HeroContainer = styled('div')`
     position: relative;
@@ -30,11 +38,29 @@ export const Content = styled('div')`
     width: 100%;
     max-width: calc(1160px + 64px);
     margin: 0 32px;
-    h2 {
+    .text-content {
         color: #fff;
+        max-width: calc(100% - 80px);
+        z-index: 5;
+        width: 100%;
+        max-width: 1224px;
+        margin: 0 32px;
     }
-    h3 {
-        color: #fff;
+    .type-wrap {
+        font-weight: 700;
+        font-size: 2.5em;
+        text-shadow: 0 2px 2px rgba(0,0,0,.3);
+    }
+    h1 {
+        font-size: 2em;
+        font-weight: 100;
+        text-shadow: 0 2px 2px rgba(0,0,0,.3);
+    }
+    .typed-cursor {
+        opacity: 1;
+        animation: ${typedjsBlink} 0.7s infinite;
+        -webkit-animation: ${typedjsBlink} 0.7s infinite;
+        animation: ${typedjsBlink} 0.7s infinite;
     }
     .bold {
         font-weight: bold;
