@@ -14,7 +14,7 @@ class Login extends Component {
         password: '',
     }
 
-    componentDidMount() { Router.prefetch('/dashboard') }
+    componentDidMount() { Router.prefetch('/dashboard/portfolio') }
 
     handleLogin = () => {
         const { email, password } = this.state

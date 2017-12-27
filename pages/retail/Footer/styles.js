@@ -8,6 +8,13 @@ export const FooterContainer = styled('footer')`
     p {
         color: ${props => props.theme.colors.white};
     }
+    a {
+        outline: none;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
 `
 
 export const FooterDisclaimer = styled('div')`

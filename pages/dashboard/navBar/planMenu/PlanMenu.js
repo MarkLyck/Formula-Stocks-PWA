@@ -29,7 +29,7 @@ class PlanButtons extends Component {
                     aria-haspopup="true"
                     onClick={this.toggleMenu}
                 >
-                    <SelectedPlanName>{selectedPlan}</SelectedPlanName>
+                    <SelectedPlanName>{selectedPlan || 'Entry'}</SelectedPlanName>
                     <i className="fa fa-angle-down" />
                 </Button>
                 <Menu

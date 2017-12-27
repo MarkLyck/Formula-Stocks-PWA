@@ -1,6 +1,6 @@
 import styled from 'emotion/react'
 
-export const TermsContainer = styled('div')`
+export const LegalContainer = styled('div')`
     padding: 32px;
     overflow-y: auto;
     margin-top: 64px;

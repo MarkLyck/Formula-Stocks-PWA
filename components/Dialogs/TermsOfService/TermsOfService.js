@@ -6,7 +6,7 @@ import Toolbar from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
 import Slide from 'material-ui/transitions/Slide'
-import { TermsContainer } from './styles'
+import { LegalContainer } from './styles'
 
 function Transition(props) {
     return <Slide direction="up" {...props} />
@@ -28,7 +28,7 @@ const TermsOfService = ({ open, hideTerms }) => (
                 <h3>Terms of Service</h3>
             </Toolbar>
         </AppBar>
-        <TermsContainer>
+        <LegalContainer>
             <p className="disclaimer">Last updated (Sep 21st, 2016)</p>
 
             <p>
@@ -688,7 +688,7 @@ const TermsOfService = ({ open, hideTerms }) => (
             </p>
 
             <p>© Formula Stocks ApS 2017 All Rights Reserved</p>
-        </TermsContainer>
+        </LegalContainer>
     </Dialog>
 )
 
