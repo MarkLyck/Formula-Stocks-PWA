@@ -3,7 +3,7 @@ import styled from 'emotion/react'
 export const ListContainer = styled('div')`
     overflow-y: auto;
     .gray-item {
-        background: ${props => props.theme.colors.offWhite};
+        background: ${props => props.theme.colors.offwhite};
         border-top: 1px solid ${props => props.theme.colors.fadedGray};
         border-bottom: 1px solid ${props => props.theme.colors.fadedGray};
     }

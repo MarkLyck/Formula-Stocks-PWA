@@ -13,7 +13,7 @@ import { Screenshot } from './styles'
 
 const WhatToExpect = ({ latestSells }) => (
     <ThemeProvider theme={theme}>
-        <Section data-offWhite theme={theme}>
+        <Section data-offwhite theme={theme}>
             <SectionTitle>What to expect</SectionTitle>
             <Beside>
                 <Left>

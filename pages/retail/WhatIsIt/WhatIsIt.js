@@ -10,7 +10,7 @@ import { Screenshot } from './styles'
 
 const WhatIsIt = () => (
     <ThemeProvider theme={theme}>
-        <Section data-offWhite theme={theme}>
+        <Section data-offwhite theme={theme}>
             <SectionTitle>What is it?</SectionTitle>
             <Beside>
                 <Left data-center>

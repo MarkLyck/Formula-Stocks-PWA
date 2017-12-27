@@ -10,7 +10,7 @@ import theme from 'common/theme'
 
 const HowWeBeatTheMarket = () => (
     <ThemeProvider theme={theme}>
-        <Section data-offWhite theme={theme}>
+        <Section data-offwhite theme={theme}>
             <SectionTitle>How we beat the market</SectionTitle>
             <p>
                 Formula Stocks uses a combination of many specific technologies developed over a 14- year period to do as Mark Twain

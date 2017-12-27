@@ -46,7 +46,7 @@ class PortfolioItem extends Component {
                     onClick={this.toggleExpandStock}
                 >
                     <TableCell style={TableCellPadding}>
-                        <NameCellWrapper data-isCash={isCash}>
+                        <NameCellWrapper data-iscash={isCash}>
                             <i className={`fa fa-fw fa-${isCash ? 'dollar-sign' : 'flask'}`} />
                             <div>
                                 {!isCash && <p className="stock-name">{stock.name}</p>}
@@ -59,7 +59,7 @@ class PortfolioItem extends Component {
                     </TableCell>
                     <TableCell numeric style={TableCellPadding}>
                         {!isNaN(percentIncrease)
-                            ? <PercentChange data-isPositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
+                            ? <PercentChange data-ispositive={isPositive}>{isPositive && '+'}{percentIncrease}%</PercentChange>
                             : ''
                         }
                     </TableCell>

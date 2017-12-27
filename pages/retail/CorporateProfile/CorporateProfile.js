@@ -11,7 +11,7 @@ import { cardStyle, ProfileImg, ProfileTextContainer, ExecutiveTeam } from './st
 
 const CorporateProfile = () => (
     <ThemeProvider theme={theme}>
-        <Section data-offWhite theme={theme}>
+        <Section data-offwhite theme={theme}>
             <SectionTitle>Corporate profile</SectionTitle>
             <Beside>
                 <Left>

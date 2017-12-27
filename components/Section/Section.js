@@ -2,7 +2,7 @@ import styled from 'emotion/react'
 import PropTypes from 'prop-types'
 
 const Section = styled('div')`
-    background: ${props => (props['data-offWhite'] ? props.theme.colors.offWhite : '#fff')};
+    background: ${props => (props['data-offwhite'] ? props.theme.colors.offwhite : '#fff')};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +18,7 @@ const SectionContent = styled('div')`
 `
 
 const Sect = props => (
-    <Section theme={props.theme} data-offWhite={props['data-offWhite']}>
+    <Section theme={props.theme} data-offwhite={props['data-offwhite']}>
         <SectionContent>
             {props.children}
         </SectionContent>
@@ -28,7 +28,7 @@ const Sect = props => (
 Sect.propTypes = {
     theme: PropTypes.object,
     children: PropTypes.node,
-    'data-offWhite': PropTypes.bool,
+    'data-offwhite': PropTypes.bool,
 }
 
 export default Sect

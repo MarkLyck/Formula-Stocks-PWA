@@ -7,7 +7,7 @@ import theme from 'common/theme'
 
 const ScrolledToBottom = () => (
     <ThemeProvider theme={theme}>
-        <Section data-offWhite theme={theme}>
+        <Section data-offwhite theme={theme}>
             <h2>Now that you have scrolled all the way to the bottom...</h2>
             <Subtitle>It can be just the right moment to stop reading and do some clicking instead.</Subtitle>
             <Button raised color="primary" style={{ marginBottom: '16px' }}>I'm ready to try</Button>

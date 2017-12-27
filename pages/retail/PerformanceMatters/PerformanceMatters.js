@@ -7,7 +7,7 @@ import Comparison from './Comparison'
 
 const PerformanceMatters = () => (
     <ThemeProvider theme={theme}>
-        <Section data-offWhite theme={theme}>
+        <Section data-offwhite theme={theme}>
             <SectionTitle>Why performance matters</SectionTitle>
             <p>
                 Assume that you would like to get an ~18% yearly return. After all, who would not? Through the
