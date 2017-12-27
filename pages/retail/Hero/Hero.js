@@ -6,10 +6,7 @@ import { HeroContainer, Content, SliderImage, StyledSlider, Overlay, Bold } from
 class Hero extends Component {
     state = { slide: 0 }
 
-    preStringTyped = (arrPos) => {
-        console.log(arrPos)
-        // this.setState({ slide: arrPos })
-    }
+    preStringTyped = arrPos => this.setState({ slide: arrPos })
 
     componentDidMount() {
         const { portfolioReturn, winRatio } = this.props

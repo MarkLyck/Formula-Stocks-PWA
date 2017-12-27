@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { hasStorage } from 'common/featureTests'
+import { gql, graphql } from 'react-apollo'
 import AppBar from 'material-ui/AppBar'
 import Router from 'next/router'
 import Toolbar from 'material-ui/Toolbar'
@@ -23,11 +23,11 @@ const renderLoggedInLinks = actions => (
     </NavLinks>
 )
 
-const NavBar = ({ actions }) => (
+const NavBar = ({ actions, loggedInUser }) => (
     <AppBar position="fixed" color="default">
         <Toolbar>
             <Logo />
-            {(hasStorage && localStorage.graphcoolToken)
+            {(loggedInUser.loggedInUser && loggedInUser.loggedInUser.id !== null)
                 ? renderLoggedInLinks(actions)
                 : renderLoggedOutLinks(actions)
             }
@@ -37,6 +37,18 @@ const NavBar = ({ actions }) => (
 
 NavBar.propTypes = {
     actions: PropTypes.object,
+    loggedInUser: PropTypes.object,
 }
 
-export default NavBar
+const LOGGED_IN_USER = gql`
+  query LoggedInUser {
+    loggedInUser {
+      id
+    }
+  }
+`
+
+export default graphql(LOGGED_IN_USER, {
+    name: 'loggedInUser',
+    options: { fetchPolicy: 'network-only' },
+})(NavBar)

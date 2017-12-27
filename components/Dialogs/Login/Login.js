@@ -20,7 +20,8 @@ class Login extends Component {
         const { email, password } = this.state
         this.props.signinUser({ variables: { email, password } })
             .then((response) => {
-                localStorage.setItem('graphcoolToken', response.data.signinUser.token)
+                console.log(response)
+                localStorage.setItem('graphcoolToken', response.data.authenticateUser.token)
                 Router.push('/dashboard/portfolio')
             })
             .catch(e => console.error(e))
@@ -61,12 +62,20 @@ Login.propTypes = {
     signinUser: PropTypes.func,
 }
 
-const signinUser = gql`
-  mutation ($email: String!, $password: String!) {
-    signinUser(email: {email: $email, password: $password}) {
+// const signinUser = gql`
+//   mutation ($email: String!, $password: String!) {
+//     signinUser(email: {email: $email, password: $password}) {
+//       token
+//     }
+//   }
+// `
+
+const AUTHENTICATE_EMAIL_USER = gql`
+  mutation AuthenticateUser($email: String!, $password: String!) {
+    authenticateUser(email: $email, password: $password) {
       token
     }
   }
 `
 
-export default graphql(signinUser, { name: 'signinUser' })(Login)
+export default graphql(AUTHENTICATE_EMAIL_USER, { name: 'signinUser' })(Login)

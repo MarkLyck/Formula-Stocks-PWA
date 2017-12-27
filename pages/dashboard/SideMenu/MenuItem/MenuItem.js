@@ -39,7 +39,7 @@ class MenuItem extends Component {
     render() {
         const { icon, children } = this.props
         const { isActive } = this.state
-        console.log(this.props)
+
         return (
             <Button onClick={this.clickHandler} className={isActive ? 'is-active' : ''}>
                 <i className={`fa fa-${icon}`} />
