@@ -10,7 +10,7 @@ import { Bar } from './styles'
 
 const NavBar = ({ selectedPlan, actions }) => {
     let route = ''
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && Router.router) {
         route = Router.router.pathname
     } else {
         return (<Bar><span /><Logo /></Bar>)

@@ -38,10 +38,10 @@ class PlanButtons extends Component {
                     open={this.state.open}
                     onRequestClose={this.toggleMenu}
                 >
-                    <MenuItem raised={selectedPlan === 'entry'} onClick={() => this.setPlan('entry')}>Entry</MenuItem>
-                    <MenuItem raised={selectedPlan === 'premium'} onClick={() => this.setPlan('premium')}>Premium</MenuItem>
-                    <MenuItem raised={selectedPlan === 'business'} onClick={() => this.setPlan('business')}>Business</MenuItem>
-                    <MenuItem raised={selectedPlan === 'fund'} onClick={() => this.setPlan('fund')}>Fund</MenuItem>
+                    <MenuItem onClick={() => this.setPlan('entry')}>Entry</MenuItem>
+                    <MenuItem onClick={() => this.setPlan('premium')}>Premium</MenuItem>
+                    <MenuItem onClick={() => this.setPlan('business')}>Business</MenuItem>
+                    <MenuItem onClick={() => this.setPlan('fund')}>Fund</MenuItem>
                 </Menu>
             </span>
         )
