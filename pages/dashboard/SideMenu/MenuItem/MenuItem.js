@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { hasStorage } from 'common/featureTests'
 import Router from 'next/router'
 import { Button } from './styles'
 
@@ -29,6 +30,7 @@ class MenuItem extends Component {
     clickHandler = () => {
         const { route, setActiveRoute } = this.props
         if (route === 'logout') {
+            if (hasStorage) localStorage.removeItem('graphcoolToken')
             Router.push('/')
             return
         }

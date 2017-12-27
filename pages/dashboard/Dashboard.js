@@ -14,13 +14,13 @@ if (typeof window !== 'undefined') {
     hydrate(window.__NEXT_DATA__.ids)
 }
 
-const Dashboard = ({ children }) => (
+const Dashboard = props => (
     <ThemeProvider theme={theme}>
         <DashboardLayout>
             <SideMenu />
             <DashboardContent>
                 <NavBar />
-                {children}
+                {props.children}
             </DashboardContent>
         </DashboardLayout>
     </ThemeProvider>

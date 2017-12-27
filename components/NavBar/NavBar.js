@@ -11,14 +11,7 @@ import Logo from './logo_horizontal.svg'
 import { NavLinks } from './styles'
 
 class NavBar extends Component {
-    state = { loggedIn: false }
-
-    componentWillReceiveProps(newProps) {
-        const { LoggedInUserQuery } = newProps
-        if (LoggedInUserQuery.loggedInUser && LoggedInUserQuery.loggedInUser.id !== null) {
-            this.setState({ loggedIn: true })
-        }
-    }
+    state = { loggedIn: (hasStorage && localStorage.getItem('graphcoolToken')) }
 
     logout = () => {
         if (hasStorage) localStorage.removeItem('graphcoolToken')
