@@ -29,7 +29,7 @@ class SideMenu extends Component {
                     <MenuItem setActiveRoute={this.setActiveRoute} key="articles" icon="newspaper" route="articles" isActive={this.isActive('articles')}><h4>Articles</h4></MenuItem>
                     <MenuItem setActiveRoute={this.setActiveRoute} key="admin" icon="tachometer-alt" route="admin/panel" isActive={this.isActive('admin')}><h4>Admin</h4></MenuItem>
                     <MenuItem setActiveRoute={this.setActiveRoute} key="account" icon="user-alt" route="account" isActive={this.isActive('account')}><h4>Account</h4></MenuItem>
-                    <MenuItem setActiveRoute={this.setActiveRoute} key="logout" icon="sign-out" route=""><h4>Log out</h4></MenuItem>
+                    <MenuItem setActiveRoute={this.setActiveRoute} key="logout" icon="sign-out" route="logout"><h4>Log out</h4></MenuItem>
                     <MenuItem setActiveRoute={this.setActiveRoute} key="support" icon="question-circle"><h4>Support</h4></MenuItem>
                 </MenuList>
             </ThemeProvider>

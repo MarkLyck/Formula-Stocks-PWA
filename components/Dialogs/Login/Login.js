@@ -21,7 +21,7 @@ class Login extends Component {
         this.props.signinUser({ variables: { email, password } })
             .then((response) => {
                 localStorage.setItem('graphcoolToken', response.data.signinUser.token)
-                Router.push('/dashboard')
+                Router.push('/dashboard/portfolio')
             })
             .catch(e => console.error(e))
     }

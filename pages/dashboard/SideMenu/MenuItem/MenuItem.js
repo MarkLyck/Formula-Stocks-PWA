@@ -27,14 +27,19 @@ class MenuItem extends Component {
     isActive = () => this.setState({ isActive: true })
 
     clickHandler = () => {
-        this.props.setActiveRoute(this.props.route)
+        const { route, setActiveRoute } = this.props
+        if (route === 'logout') {
+            Router.push('/')
+            return
+        }
+        setActiveRoute(this.props.route)
         Router.push(`/dashboard/${this.props.route}`)
     }
 
     render() {
         const { icon, children } = this.props
         const { isActive } = this.state
-
+        console.log(this.props)
         return (
             <Button onClick={this.clickHandler} className={isActive ? 'is-active' : ''}>
                 <i className={`fa fa-${icon}`} />

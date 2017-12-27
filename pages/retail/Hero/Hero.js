@@ -6,7 +6,10 @@ import { HeroContainer, Content, SliderImage, StyledSlider, Overlay, Bold } from
 class Hero extends Component {
     state = { slide: 0 }
 
-    preStringTyped = arrPos => this.setState({ slide: arrPos })
+    preStringTyped = (arrPos) => {
+        console.log(arrPos)
+        // this.setState({ slide: arrPos })
+    }
 
     componentDidMount() {
         const { portfolioReturn, winRatio } = this.props
@@ -22,13 +25,17 @@ class Hero extends Component {
 
         const options = {
             strings,
-            typeSpeed: 50,
-            backSpeed: 50,
+            typeSpeed: 60,
+            backSpeed: 75,
             loop: true,
             preStringTyped: this.preStringTyped,
         }
 
         this.typed = new Typed(this.el, options)
+    }
+
+    componentWillUnmount() {
+        this.typed.destroy()
     }
 
     slickSettings = {

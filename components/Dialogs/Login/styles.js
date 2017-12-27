@@ -7,6 +7,7 @@ export const nextBtnStyles = {
 export const dialogStyles = {
     display: 'flex',
     flexDirection: 'column',
+    width: '320px',
 }
 
 export default null

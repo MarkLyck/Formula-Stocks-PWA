@@ -27,7 +27,7 @@ const NavBar = ({ selectedPlan, actions }) => {
             {isPlanPage && <PlanMenu selectedPlan={selectedPlan} actions={actions} className="plan-menu-container" route={route} />}
             {/* {isPlanPage && <PlanButtons selectedPlan={selectedPlan} actions={actions} />} */}
             {isAdminPage && <AdminButtons route={route} />}
-            <Logo />
+            <Logo onClick={() => Router.push('/')} />
         </Bar>
     )
 }

@@ -14,6 +14,9 @@ export const Bar = styled('div')`
     button {
         margin-right: 8px;
     }
+    svg:hover {
+        cursor: pointer;
+    }
 
     @media(max-width: 820px) {
         > svg {

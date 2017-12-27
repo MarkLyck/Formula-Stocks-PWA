@@ -59,8 +59,6 @@ class SignUp extends Component {
                     password: accountInfo.password,
                 } })
                     .then((response) => {
-                        console.log('signin response', response.data)
-                        console.log('signin response', response.data.data)
                         if (hasStorage) {
                             localStorage.setItem('graphcoolToken', response.data.signinUser.token)
                         }
