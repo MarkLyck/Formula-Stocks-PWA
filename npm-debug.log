@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/7.7.1_1/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'material-ui/styles/palette',
+1 verbose cli   'material-ui/styles/theme' ]
+2 info using npm@4.1.2
+3 info using node@v7.7.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData material-ui/styles/palette
+8 silly fetchPackageMetaData material-ui/styles/theme
+9 silly fetchOtherPackageData material-ui/styles/palette
+10 silly cache add args [ 'material-ui/styles/palette', null ]
+11 verbose cache add spec material-ui/styles/palette
+12 silly fetchOtherPackageData material-ui/styles/theme
+13 silly cache add args [ 'material-ui/styles/theme', null ]
+14 verbose cache add spec material-ui/styles/theme
+15 silly cache add parsed spec Result {
+15 silly cache add   raw: 'material-ui/styles/palette',
+15 silly cache add   scope: null,
+15 silly cache add   escapedName: null,
+15 silly cache add   name: null,
+15 silly cache add   rawSpec: 'material-ui/styles/palette',
+15 silly cache add   spec: '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette',
+15 silly cache add   type: 'local' }
+16 silly cache add parsed spec Result {
+16 silly cache add   raw: 'material-ui/styles/theme',
+16 silly cache add   scope: null,
+16 silly cache add   escapedName: null,
+16 silly cache add   name: null,
+16 silly cache add   rawSpec: 'material-ui/styles/theme',
+16 silly cache add   spec: '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/theme',
+16 silly cache add   type: 'local' }
+17 error addLocal Could not install /Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette
+18 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette'
+18 silly fetchPackageMetaData  error for material-ui/styles/palette { Error: ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette'
+18 silly fetchPackageMetaData   errno: -2,
+18 silly fetchPackageMetaData   code: 'ENOENT',
+18 silly fetchPackageMetaData   syscall: 'open',
+18 silly fetchPackageMetaData   path: '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette' }
+19 error addLocal Could not install /Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/theme
+20 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/theme'
+20 silly fetchPackageMetaData  error for material-ui/styles/theme { Error: ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/theme'
+20 silly fetchPackageMetaData   errno: -2,
+20 silly fetchPackageMetaData   code: 'ENOENT',
+20 silly fetchPackageMetaData   syscall: 'open',
+20 silly fetchPackageMetaData   path: '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/theme' }
+21 silly rollbackFailedOptional Starting
+22 silly rollbackFailedOptional Finishing
+23 silly runTopLevelLifecycles Finishing
+24 silly install printInstalled
+25 verbose stack Error: ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette'
+26 verbose cwd /Users/marklyck/web/Formula-Stocks-PWA
+27 error Darwin 17.3.0
+28 error argv "/usr/local/Cellar/node/7.7.1_1/bin/node" "/usr/local/bin/npm" "install" "--save" "material-ui/styles/palette" "material-ui/styles/theme"
+29 error node v7.7.1
+30 error npm  v4.1.2
+31 error path /Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette
+32 error code ENOENT
+33 error errno -2
+34 error syscall open
+35 error enoent ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette'
+36 error enoent ENOENT: no such file or directory, open '/Users/marklyck/web/Formula-Stocks-PWA/material-ui/styles/palette'
+36 error enoent This is most likely not a problem with npm itself
+36 error enoent and is related to npm not being able to find a file.
+37 verbose exit [ -2, true ]
