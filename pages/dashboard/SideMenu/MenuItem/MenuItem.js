@@ -11,7 +11,7 @@ class MenuItem extends Component {
         const { route, isActive } = this.props
         if (isActive) { this.isActive() }
 
-        if (typeof window !== 'undefined' && Router.router && route) {
+        if (typeof window !== 'undefined' && Router.router && route && route !== 'logout') {
             Router.prefetch(`/dashboard/${route}`)
         }
     }
