@@ -20,7 +20,6 @@ class Login extends Component {
         const { email, password } = this.state
         this.props.signinUser({ variables: { email, password } })
             .then((response) => {
-                console.log(response)
                 localStorage.setItem('graphcoolToken', response.data.authenticateUser.token)
                 Router.push('/dashboard/portfolio')
             })
@@ -29,9 +28,9 @@ class Login extends Component {
 
     render() {
         const { email } = this.state
-        const { signinUser, ...other } = this.props
+        const { signinUser, onClose, ...other } = this.props
         return (
-            <Dialog onRequestClose={this.handleRequestClose} {...other} transition={Slide}>
+            <Dialog onClose={onClose} {...other} transition={Slide}>
                 <DialogTitle>Login</DialogTitle>
                 <DialogContent style={dialogStyles}>
                     <TextField
@@ -60,15 +59,8 @@ class Login extends Component {
 
 Login.propTypes = {
     signinUser: PropTypes.func,
+    onClose: PropTypes.func,
 }
-
-// const signinUser = gql`
-//   mutation ($email: String!, $password: String!) {
-//     signinUser(email: {email: $email, password: $password}) {
-//       token
-//     }
-//   }
-// `
 
 const AUTHENTICATE_EMAIL_USER = gql`
   mutation AuthenticateUser($email: String!, $password: String!) {

@@ -88,7 +88,7 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-    onRequestClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
     createUser: PropTypes.func,
     signinUser: PropTypes.func,
 }

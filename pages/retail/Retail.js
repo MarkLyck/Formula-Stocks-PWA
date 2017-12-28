@@ -66,8 +66,8 @@ class Retail extends React.PureComponent {
                 <ScrolledToBottom />
                 <Footer />
 
-                {ui.signupIsVisible && <Signup onRequestClose={actions.toggleSignupModal} open />}
-                {ui.loginIsVisible && <Login onRequestClose={actions.toggleLoginModal} open />}
+                {ui.signupIsVisible && <Signup onClose={actions.toggleSignupModal} open />}
+                {ui.loginIsVisible && <Login onClose={actions.toggleLoginModal} open />}
             </div>
         )
     }
