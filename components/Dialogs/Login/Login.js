@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
+import { ThemeProvider } from 'emotion/react/theming'
 import { gql, graphql } from 'react-apollo'
 import Dialog, { DialogTitle, DialogContent } from 'material-ui/Dialog'
-import TextField from 'material-ui/TextField'
+import theme from 'common/theme'
+import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import Button from 'material-ui/Button'
 import Slide from 'material-ui/transitions/Slide'
 import { dialogStyles, nextBtnStyles } from './styles'
 
 class Login extends Component {
     state = {
-        email: '',
+        email: {},
         password: '',
+        error: {},
+        emailClass: 'empty',
+        passwordClass: 'empty',
     }
 
     componentDidMount() { Router.prefetch('/dashboard/portfolio') }
@@ -26,33 +31,92 @@ class Login extends Component {
             .catch(e => console.error(e))
     }
 
-    render() {
+    handleChange = (element, value) => {
+        const newState = this.state
+        newState[element] = value
+
+        if (newState.error.message && newState.error.message.indexOf(element) > -1) {
+            const validation = this.validateAccountInfo()
+            if (validation.message !== newState.error.message) {
+                newState.error = validation
+            }
+        }
+
+        this.setState(newState)
+    }
+
+    validateAccountInfo = () => {
         const { email } = this.state
+
+        // eslint-disable-next-line
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+        if (!emailRegex.test(email)) {
+            return { error: { message: 'Invalid email' } }
+        }
+        return ''
+    }
+
+    handleBlur = (elementName) => {
+        const newState = this.state
+        newState[elementName] = 'filled'
+
+        this.setState(newState)
+    }
+
+    handleFocus = (elementName) => {
+        const newState = this.state
+        newState[elementName] = 'focused'
+        this.setState(newState)
+    }
+
+    render() {
+        const { error, emailClass, passwordClass } = this.state
         const { signinUser, onClose, ...other } = this.props
+
+        const emailError = emailClass !== 'focused' && error.message && error.message.indexOf('email') > -1
+        const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
+
+        console.log(theme)
+
         return (
-            <Dialog onClose={onClose} {...other} transition={Slide}>
-                <DialogTitle>Login</DialogTitle>
-                <DialogContent style={dialogStyles}>
-                    <TextField
-                        id="email"
-                        label="Email"
-                        type="email"
-                        autoFocus
-                        value={email}
-                        onChange={event => this.setState({ email: event.target.value })}
-                        margin="normal"
-                    />
-                    <TextField
-                        id="password"
-                        label="Password"
-                        type="password"
-                        onChange={event => this.setState({ password: event.target.value })}
-                        autoComplete="current-password"
-                        margin="normal"
-                    />
-                    <Button raised color="primary" style={nextBtnStyles} onClick={this.handleLogin}>login</Button>
-                </DialogContent>
-            </Dialog>
+            <ThemeProvider theme={theme}>
+                <Dialog onClose={onClose} {...other} transition={Slide}>
+                    <DialogTitle>Login</DialogTitle>
+                    <DialogContent style={dialogStyles}>
+                        <Form>
+                            {error.message && <ErrorMessage message={error.message} />}
+                            <Row className={error.message ? 'form-error' : ''}>
+                                <Field
+                                    label="Email"
+                                    type="email"
+                                    autoFocus
+                                    className={`${emailClass} ${emailError ? 'input-error' : ''}`}
+                                    inputState={emailClass}
+                                    onChange={event => this.handleChange('email', event.target.value)}
+                                    onBlur={() => this.handleBlur('emailClass')}
+                                    onFocus={() => this.handleFocus('emailClass')}
+                                    placeholder="example@domain.com"
+                                />
+                            </Row>
+                            <Row>
+                                <Field
+                                    label="Password"
+                                    type="password"
+                                    className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
+                                    inputState={passwordClass}
+                                    onChange={event => this.handleChange('password', event.target.value)}
+                                    onBlur={() => this.handleBlur('passwordClass')}
+                                    onFocus={() => this.handleFocus('passwordClass')}
+                                    autoComplete="current-password"
+                                    placeholder="••••••••"
+                                />
+                            </Row>
+                            <Button raised color="primary" style={nextBtnStyles} onClick={this.handleLogin}>login</Button>
+                        </Form>
+                    </DialogContent>
+                </Dialog>
+            </ThemeProvider>
         )
     }
 }

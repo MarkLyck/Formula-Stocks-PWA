@@ -6,7 +6,6 @@ const formError = keyframes`
   0% {
       margin-top: 0;
   }
-
   100% {
       margin-top: 48px;
   }
