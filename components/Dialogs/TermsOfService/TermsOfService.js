@@ -17,7 +17,7 @@ const TermsOfService = ({ open, hideTerms }) => (
     <Dialog
         fullScreen
         open={open}
-        onRequestClose={hideTerms}
+        onClose={hideTerms}
         transition={Transition}
     >
         <AppBar>
