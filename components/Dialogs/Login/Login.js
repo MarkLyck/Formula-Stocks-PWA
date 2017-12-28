@@ -77,8 +77,6 @@ class Login extends Component {
         const emailError = emailClass !== 'focused' && error.message && error.message.indexOf('email') > -1
         const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
 
-        console.log(theme)
-
         return (
             <ThemeProvider theme={theme}>
                 <Dialog onClose={onClose} {...other} transition={Slide}>
