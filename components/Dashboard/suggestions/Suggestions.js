@@ -7,7 +7,7 @@ import { planIds } from 'common/constants'
 
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
-import Dashboard from '../'
+import Dashboard from '../Dashboard'
 import Suggestion from './Suggestion'
 
 import { SuggestionsList } from './styles'

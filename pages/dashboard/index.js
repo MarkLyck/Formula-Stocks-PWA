@@ -1,4 +1,5 @@
 import withMaterial from 'lib/withMaterial'
-import Dashboard from './Dashboard'
+import withData from 'lib/withData'
+import Dashboard from 'components/Dashboard'
 
-export default withMaterial(Dashboard)
+export default withData(withMaterial(Dashboard))

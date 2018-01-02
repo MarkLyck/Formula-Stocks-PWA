@@ -3,11 +3,10 @@ import { bindActionCreators } from 'redux'
 import { toggleSignupModal, toggleLoginModal } from 'models/ui/actions'
 import { gql, graphql } from 'react-apollo'
 import { hydrate } from 'emotion'
-import withMaterial from 'lib/withMaterial'
 import { planIds, marketIds } from 'common/constants'
-import { newVisit } from './actions'
+import { newVisit } from 'components/Retail/actions'
 
-import Retail from './Retail'
+import Retail from 'components/Retail'
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -49,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
 // available on the `data` prop of the wrapped component (entryPlan)
 export default graphql(entryPlan, {
     props: ({ data }) => ({ Plan: data.Plan, SP500: data.SP500, DJIA: data.DJIA }),
-})(withMaterial(connect(mapStateToProps, mapDispatchToProps)(Retail)))
+})(connect(mapStateToProps, mapDispatchToProps)(Retail))

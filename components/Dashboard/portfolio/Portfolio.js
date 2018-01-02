@@ -7,7 +7,6 @@ import { hasStorage } from 'common/featureTests'
 
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
-import Dashboard from '../'
 import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
 import Holdings from './Holdings'
@@ -30,7 +29,7 @@ class Portfolio extends Component {
         // TODO return spinner here
         if (!Plan) return ''
         return (
-            <Dashboard>
+            <div>
                 <PortfolioContainer>
                     <PortfolioHeader
                         portfolioYields={Plan.portfolioYields}
@@ -47,7 +46,7 @@ class Portfolio extends Component {
                     <StatisticsBox title="Portfolio" value={Plan.portfolio.length} icon="list-ul" />
                     <StatisticsBox title="Percent in cash" value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
                 </StatisticsContainer>
-            </Dashboard>
+            </div>
         )
     }
 }

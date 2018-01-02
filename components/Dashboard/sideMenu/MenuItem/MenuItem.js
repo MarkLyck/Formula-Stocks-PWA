@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { hasStorage } from 'common/featureTests'
 import Router from 'next/router'
+
+// import Link from 'next/link'
 import { Button } from './styles'
 
 class MenuItem extends Component {
@@ -41,6 +43,15 @@ class MenuItem extends Component {
     render() {
         const { icon, children } = this.props
         const { isActive } = this.state
+
+        // return (
+        //     <Link prefetch href={`/dashboard/${this.props.route}`}>
+        //         <a>
+        //             <i className={`fa fa-${icon}`} />
+        //             {children}
+        //         </a>
+        //     </Link>
+        // )
 
         return (
             <Button onClick={this.clickHandler} className={isActive ? 'is-active' : ''}>
