@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { hydrate } from 'emotion'
 import { ThemeProvider } from 'emotion/react/theming'
 import { gql, graphql } from 'react-apollo'
+import Router from 'next/router'
 import theme from 'common/theme'
 import SideMenu from './sideMenu'
 import NavBar from './navBar'
@@ -14,17 +15,27 @@ if (typeof window !== 'undefined') {
     hydrate(window.__NEXT_DATA__.ids)
 }
 
-const Dashboard = props => (
-    <ThemeProvider theme={theme}>
-        <DashboardLayout>
-            <SideMenu />
-            <DashboardContent>
-                <NavBar />
-                {props.children}
-            </DashboardContent>
-        </DashboardLayout>
-    </ThemeProvider>
-)
+class Dashboard extends Component {
+    componentWillMount() {
+        if (Router.router && Router.route === '/dashboard') {
+            Router.push('/dashboard/portfolio')
+        }
+    }
+
+    render() {
+        return (
+            <ThemeProvider theme={theme}>
+                <DashboardLayout>
+                    <SideMenu />
+                    <DashboardContent>
+                        <NavBar />
+                        {this.props.children}
+                    </DashboardContent>
+                </DashboardLayout>
+            </ThemeProvider>
+        )
+    }
+}
 
 Dashboard.propTypes = {
     children: PropTypes.node,
