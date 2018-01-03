@@ -11,7 +11,7 @@ class AdminButtons extends Component {
         Router.prefetch('/dashboard/admin/panel')
         Router.prefetch('/dashboard/admin/users')
         Router.prefetch('/dashboard/admin/api')
-        Router.prefetch('/dashboard/admin/articles')
+        Router.prefetch('/dashboard/admin/newarticle')
         // eslint-disable-next-line
         this.setState({ activeButton: route.split('/')[route.split('/').length - 1] })
     }
@@ -49,8 +49,8 @@ class AdminButtons extends Component {
                 </Button>
                 <Button
                     color="primary"
-                    raised={activeButton === 'newArticle'}
-                    onClick={() => this.navigateTo('/dashboard/admin/newArticle')}
+                    raised={activeButton === 'newarticle'}
+                    onClick={() => this.navigateTo('/dashboard/admin/newarticle')}
                 >
                     New Article
                 </Button>
