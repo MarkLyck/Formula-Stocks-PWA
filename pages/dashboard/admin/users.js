@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { gql, graphql } from 'react-apollo'
+import withMaterial from 'lib/withMaterial'
+import withData from 'lib/withData'
 import Paper from 'material-ui/Paper'
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
-import { ContainerStyle } from './styles'
-import Dashboard from '../../'
-import User from './user'
+import { ContainerStyle } from 'components/Dashboard/admin/users/styles'
+import Dashboard from 'components/Dashboard'
+import User from 'components/Dashboard/admin/users/user'
 
 const UserList = ({ allUsers }) => (
     <Dashboard>
@@ -43,6 +45,6 @@ const UsersQuery = gql`
   }
 `
 
-export default graphql(UsersQuery, {
+export default withData(withMaterial(graphql(UsersQuery, {
     props: ({ data }) => ({ ...data }),
-})(UserList)
+})(UserList)))

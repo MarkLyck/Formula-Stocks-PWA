@@ -29,7 +29,6 @@ class Portfolio extends Component {
     }
 
     render() {
-        console.log('render portfolio')
         const { Plan, DJIA } = this.props
         // TODO return spinner here
         if (!Plan) return ''

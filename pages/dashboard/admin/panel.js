@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { gql, graphql } from 'react-apollo'
+import withMaterial from 'lib/withMaterial'
+import withData from 'lib/withData'
 import _ from 'lodash'
 import { statisticsId } from 'common/constants'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
-import Dashboard from '../../'
-import DAUGraph from './DAUGraph'
-import VisitorStatistics from './statistics'
-import VisitorList from './visitorList'
+import Dashboard from 'components/Dashboard'
+import DAUGraph from 'components/Dashboard/admin/panel/DAUGraph'
+import VisitorStatistics from 'components/Dashboard/admin/panel/statistics'
+import VisitorList from 'components/Dashboard/admin/panel/visitorList'
 
 const uniqueVisitsFromOldSite = 6600
 
@@ -90,6 +92,6 @@ const PanelQuery = gql`
   }
 `
 
-export default graphql(PanelQuery, {
+export default withData(withMaterial(graphql(PanelQuery, {
     props: ({ data }) => ({ ...data }),
-})(Panel)
+})(Panel)))
