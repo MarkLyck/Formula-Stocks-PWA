@@ -42,6 +42,23 @@ module.exports = {
                 }))
         }
 
+        config.module.rules.push(
+            {
+                test: /\.(css|scss)/,
+                loader: 'emit-file-loader',
+                options: {
+                    name: 'dist/[path][name].[ext]',
+                },
+            },
+            {
+                test: /\.css$/,
+                loader: 'babel-loader!raw-loader',
+            },
+            {
+                test: /\.scss$/,
+                loader: 'babel-loader!raw-loader!sass-loader',
+            })
+
         // Remove minifed react aliases for material-ui so production builds work
         if (config.resolve.alias) {
             delete config.resolve.alias.react
