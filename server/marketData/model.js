@@ -28,6 +28,15 @@ const mutateMarket = (id, data) => {
         .catch(e => console.log(`ERROR: ${e}`))
 }
 
+const isJson = (str) => {
+    try {
+        JSON.parse(str)
+    } catch (e) {
+        return false
+    }
+    return true
+}
+
 exports.updateMarket = (path, market) => {
     const options = { host: 'www.quandl.com', path }
 
@@ -38,8 +47,11 @@ exports.updateMarket = (path, market) => {
         res.on('data', (chunk) => { str += chunk })
 
         res.on('end', () => {
-            json = JSON.parse(str)
-            mutateMarket(marketIds[market], json.dataset.data)
+            if (isJson(str)) {
+                console.log('running')
+                json = JSON.parse(str)
+                mutateMarket(marketIds[market], json.dataset.data)
+            }
         })
     })
 }
